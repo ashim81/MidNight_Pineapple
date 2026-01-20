@@ -1,0 +1,78 @@
+
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+sysinfo.txt
+*.stacktrace
+*.pidb
+*.booproj
+*.svd
+*.userprefs
+*.unityproj
+*.tmproj
+*.sln
+*.csproj
+*.pidb.meta
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity Cache
+*.bak
+*.tmp
+*.temp
+
+# Unity Build Artifacts
+*.apk
+*.aab
+*.unitypackage
+*.app/
+*.app.dSYM/
+*.ipa
+
+# Asset meta data should only be ignored when the corresponding asset is also ignored
+!*.meta
+
+# Visual Studio / JetBrains
+.vs/
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+*.vcxproj.user
+
+# Build results
+*.exe
+*.dll
+*.obj
+*.log
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Others
+*.lastcodeanalysissucceeded
+*.nupkg
+node_modules/
+*.log
+*.tmp
+*.bak
