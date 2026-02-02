@@ -1,3 +1,1 @@
-#Link to the GANTT TIMELINE
-[Gantt Timeline (Excel)](https://vandalsuidaho-my.sharepoint.com/:x:/g/personal/brek3306_vandals_uidaho_edu/IQDCdonUlH4QTbKsYDI9aas3AThWyhXbpPk4bLWKAyZioSY?e=rMhj9e)
 
