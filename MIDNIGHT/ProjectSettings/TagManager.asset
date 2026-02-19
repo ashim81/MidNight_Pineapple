@@ -2,8 +2,10 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - NPC
+  - 'PlayerSpawn '
   layers:
   - Default
   - TransparentFX
@@ -41,36 +43,26 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ground
+    uniqueID: 2942894673
+    locked: 0
+  - name: wall
+    uniqueID: 946670713
+    locked: 0
+  - name: gate
+    uniqueID: 1240576287
+    locked: 0
+  - name: steponit
+    uniqueID: 3048164629
+    locked: 0
+  - name: exitlevel
+    uniqueID: 2778966881
+    locked: 0
+  - name: player
+    uniqueID: 2113817943
+    locked: 0
+  - name: darkness
+    uniqueID: 1792283507
+    locked: 0
   m_RenderingLayers:
   - Default
-  - Light Layer 1
-  - Light Layer 2
-  - Light Layer 3
-  - Light Layer 4
-  - Light Layer 5
-  - Light Layer 6
-  - Light Layer 7
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
