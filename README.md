@@ -1,13 +1,10 @@
 # Fruit of the Witch
-## 🎮 Game Overview
 
-<div align="center">
-  <img src="docs/team_lead05/images/pineapple.png" width="250"/>
-</div>
+<img src="docs/team_lead05/images/pineapple.png" width="250"/>
 
 **Fruit of the Witch** is a 2D combat-adventure game where players explore mysterious environments, engage in strategic combat, and search for hidden magical fruits.
 
-Some fruits grant powerful abilities, while others may weaken the player — adding unpredictability and strategy to gameplay.
+In a dark forest ruled by a powerful witch, a magical pineapple holds the power to break a deadly curse. After the witch kidnaps his sister, a brave hero must sneak into her house, escape through the jungle, and face her in a final battle. Only one will survive, and the fate of his sister depends on it.
 
 ---
 
