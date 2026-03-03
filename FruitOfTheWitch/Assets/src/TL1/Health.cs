@@ -20,6 +20,7 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         Debug.Log(gameObject.name + " took " + damage + " damage.");
 
+        // Apply knockback
         if (attacker != null && rb != null)
         {
             Vector2 direction = (transform.position - attacker.position).normalized;
@@ -36,5 +37,11 @@ public class Health : MonoBehaviour
     {
         Debug.Log(gameObject.name + " died.");
         Destroy(gameObject);
+    }
+
+    // ✅ This is needed for the health bar
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }

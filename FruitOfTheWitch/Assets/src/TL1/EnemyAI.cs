@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public Transform player;
-    public float moveSpeed = 2f;
-    public float attackRange = 1.2f;
+    public float moveSpeed = 3f;
+    public float attackRange = 1.5f;
 
     private Rigidbody2D rb;
     private EnemyAttack enemyAttack;
@@ -19,16 +19,18 @@ public class EnemyAI : MonoBehaviour
     {
         if (player == null) return;
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distanceX = player.position.x - transform.position.x;
 
-        if (distance > attackRange)
+        // If outside attack range → move toward player
+        if (Mathf.Abs(distanceX) > attackRange)
         {
-            Vector2 direction = (player.position - transform.position).normalized;
-            rb.linearVelocity = direction * moveSpeed;
+            float direction = Mathf.Sign(distanceX);
+            rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
+            // Stop horizontal movement but keep gravity
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
 
             if (enemyAttack != null)
             {
