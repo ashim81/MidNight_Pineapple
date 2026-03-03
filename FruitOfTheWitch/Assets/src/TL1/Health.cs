@@ -34,10 +34,18 @@ public class Health : MonoBehaviour
     }
 
     void Die()
+{
+    Debug.Log(gameObject.name + " died.");
+
+    GameManager gm = FindObjectOfType<GameManager>();
+
+    if (gm != null)
     {
-        Debug.Log(gameObject.name + " died.");
-        Destroy(gameObject);
+        gm.ShowWin();
     }
+
+    Destroy(gameObject);
+}
 
     // ✅ This is needed for the health bar
     public int GetCurrentHealth()
