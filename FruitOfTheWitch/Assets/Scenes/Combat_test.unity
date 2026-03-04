@@ -678,14 +678,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1067254059}
   - component: {fileID: 1067254058}
-  - component: {fileID: 1067254057}
   - component: {fileID: 1067254056}
+  - component: {fileID: 1067254057}
   - component: {fileID: 1067254055}
   - component: {fileID: 1067254060}
   - component: {fileID: 1067254061}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1644,6 +1644,8 @@ MonoBehaviour:
   player: {fileID: 1067254059}
   moveSpeed: 2
   attackRange: 1.2
+  jumpForce: 7
+  jumpCooldown: 2
 --- !u!1 &2003265600
 GameObject:
   m_ObjectHideFlags: 0
