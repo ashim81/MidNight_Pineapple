@@ -861,8 +861,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1067254059}
   - component: {fileID: 1067254058}
-  - component: {fileID: 1067254057}
   - component: {fileID: 1067254056}
+  - component: {fileID: 1067254057}
   - component: {fileID: 1067254055}
   - component: {fileID: 1067254060}
   - component: {fileID: 1067254061}
@@ -1844,6 +1844,7 @@ MonoBehaviour:
   attackRange: 1.2
   jumpForce: 7
   jumpCooldown: 2
+<<<<<<< HEAD
 --- !u!114 &1711223235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1857,6 +1858,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTouchDamage
   damageFromPlayer: 5
+=======
+>>>>>>> 90171dbb8bc4ca1af7496c1bbe8fa3f4470281d0
 --- !u!1 &2003265600
 GameObject:
   m_ObjectHideFlags: 0
