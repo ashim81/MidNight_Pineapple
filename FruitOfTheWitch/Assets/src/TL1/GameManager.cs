@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject winText;
+    public GameObject winMessage;
 
     public void ShowWin()
     {
-        winText.SetActive(true);
-        Time.timeScale = 0f; // freeze game
+        winMessage.SetActive(true);
     }
 }
