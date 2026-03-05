@@ -238,6 +238,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  soundToEmit: 'dsad '
+  soundToEmit: 0
   soundVisual: {fileID: 2448593896729971905}
   soundEngine: {fileID: 0}
