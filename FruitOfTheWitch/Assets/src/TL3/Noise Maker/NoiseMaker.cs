@@ -49,7 +49,7 @@ public class NoiseMaker : MonoBehaviour
     
     // Send Signal to Audio Engine
 
-        // soundEngine.SendMessage(soundToEmit.ToString(), transform.position, SendMessageOptions.DontRequireReceiver);
+        soundEngine.SendMessage(soundToEmit.ToString(), transform.position, SendMessageOptions.DontRequireReceiver);
 
         while (currentRadius < radius)
         {
