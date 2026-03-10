@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -672,7 +672,7 @@ MonoBehaviour:
     m_CachedPref: 241
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 49970
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -720,11 +720,14 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: 49970
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1318
+      - m_Data: -2982
+      - m_Data: -2770
+      - m_Data: -1594
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1345,9 +1348,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 240.68665, y: 46.059612, z: -0.75947565}
+    m_Target: {x: 19.820412, y: 36.394424, z: -0.12821282}
     speed: 2
-    m_Value: {x: 240.68665, y: 46.059612, z: -0.75947565}
+    m_Value: {x: 19.820412, y: 36.394424, z: -0.12821282}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1397,9 +1400,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 140.15498
+    m_Target: 77.028656
     speed: 2
-    m_Value: 140.15498
+    m_Value: 77.028656
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1640,7 +1643,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Tilemaps/Tl2
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1650,22 +1653,22 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Tilemaps/Tl2
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\fuads\Downloads\Midnight_Pineapple\MidNight_Pineapple\FruitOfTheWitch
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 13}
     m_SelectedIDs:
-    - m_Data: 49594
+    - m_Data: 49804
     m_LastClickedID:
-      m_Data: 49594
+      m_Data: 49804
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49266
-    - m_Data: 49590
+    - m_Data: 49488
+    - m_Data: 49490
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1699,7 +1702,8 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 49266
+    - m_Data: 49488
+    - m_Data: 49490
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1726,8 +1730,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 49970
+    m_LastClickedInstanceID: 49970
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 63186
