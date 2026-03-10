@@ -1,16 +1,25 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class mainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void PlayGame()
     {
-        
+        SceneManager.LoadScene("Level1_WitchHouse");
     }
-
-    // Update is called once per frame
-    void Update()
+    public void PlayBCMode()
     {
-        
+        SceneManager.LoadScene("Level1_WitchHouse");
+        Debug.Log("BC MODE");
     }
+        public void LoadSave()
+    {
+        Debug.Log("Combat_test");
+        SceneManager.LoadScene("Combat_test");
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+        
 }

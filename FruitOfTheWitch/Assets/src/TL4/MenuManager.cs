@@ -1,14 +1,9 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public void PlayGame()
+    void Awake()
     {
-        SceneManager.LoadScene("Combat_test");
-    }
-    public void ExitGame()
-    {
-        Application.Quit();
+        DontDestroyOnLoad(gameObject);
     }
 }
