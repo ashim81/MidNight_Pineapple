@@ -1,27 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-public class pauseMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
+        gameObject.SetActive(true);
     }
     void Update()
     {
-        if (Keyboard.current.escapeKey.isPressed)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            openPauseMenu();
+            Debug.Log("Pause Menu Opened");
+            SceneManager.LoadScene("Main Menu");
         }
     }
-
-    private void openPauseMenu()
-    {
-        Debug.Log("Pause Menu Opened");
-    }
- /*   public void ReturntoMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
-*/
 }
