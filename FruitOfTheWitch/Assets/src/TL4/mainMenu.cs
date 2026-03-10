@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayBCMode()
     {
-        SceneManager.LoadScene("Level2_Jungle");
+        SceneManager.LoadScene("Level1_WitchHouse");
         Debug.Log("BC MODE");
     }
         public void LoadSave()
