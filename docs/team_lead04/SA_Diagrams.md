@@ -1,0 +1,1 @@
+[Class and Sequence Diagrams](https://vandalsuidaho-my.sharepoint.com/:w:/g/personal/brek3306_vandals_uidaho_edu/IQCbsYHzZKjyTLhznA2z1-51AVbOCt5x8oOHEVmaG59fPFo?e=wdhvOs)
