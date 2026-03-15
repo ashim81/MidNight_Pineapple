@@ -25,8 +25,8 @@ In a dark forest ruled by a powerful witch, a magical pineapple holds the power 
 
 TL1 - Asim  
 TL2 - Camden  
-TL3 - Abdullah  
-TL4 - Brandon  
-TL5 - Lainey  
-TL6 - Nastia  
-TL7 - Swikriti  
+TL2+ - Abdullah  
+TL3 - Brandon  
+TL4 - Lainey  
+TL5 - Nastia  
+TL6 - Swikriti  
