@@ -23,14 +23,10 @@ In a dark forest ruled by a powerful witch, a magical pineapple holds the power 
 #Gantt chart
 [Gantt Timeline Link](https://vandalsuidaho-my.sharepoint.com/:x:/g/personal/brek3306_vandals_uidaho_edu/IQA-WxhcJmHHSbnkV6Ah_ch0AfUllPKvCS2JVRodhSHY5hM?e=HUNUD9)
 
-TL1 - Asim 
-TL2 - Camden
-TL2 - Abdullah
-TL3 - Brandon
-TL4 - Lainey
-TL5 - Nastia
-TL6 - Swikriti
-
-
-
-
+TL1 - Asim  
+TL2 - Camden  
+TL2+ - Abdullah  
+TL3 - Brandon  
+TL4 - Lainey  
+TL5 - Nastia  
+TL6 - Swikriti  

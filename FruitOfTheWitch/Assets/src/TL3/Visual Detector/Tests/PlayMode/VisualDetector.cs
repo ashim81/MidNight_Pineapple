@@ -110,7 +110,8 @@ public class AlertedState : IEnemyState
 {
     public void UpdateState(VisualDetector enemy)
     {
-        // SEND SIGNAL TO PARENT
+        // Enemy fully detected player
+        // Could trigger chase or alarm
     }
 }
 
@@ -135,6 +136,17 @@ public void FillTowards(float distance)
 public bool FillReached(float distance)
 {
     return fillDistance >= distance;
+}
+
+// STRESS TEST
+public int TrianglesInCone
+{
+    get => trianglesInCone;
+    set
+    {
+        trianglesInCone = value;
+        GenerateConeMesh();
+    }
 }
 
 // Create a Cone Based on Inspector Inputs
