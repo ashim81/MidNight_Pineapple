@@ -1,6 +1,7 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
-  <Project Path="Tests.csproj" />
-  <Project Path="PlayerTests.csproj" />
+  <Project Path="ViasualDetector.csproj" />
+  <Project Path="Test.csproj" />
+  <Project Path="PlayMode1.csproj" />
   <Project Path="BoundaryTests.csproj" />
 </Solution>
