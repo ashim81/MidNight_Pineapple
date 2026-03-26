@@ -27,6 +27,7 @@ public class AudioEngine : MonoBehaviour
         if (!sfxSource) sfxSource = GetComponent<AudioSource>(); // Ensure SFX Source is assigned
     }
 
+    /*Before New Implementation
     public void Alarm(Vector3 position) //Plays alarm sound at its position
     {
         PlaySFX(alarmClip);
@@ -35,18 +36,18 @@ public class AudioEngine : MonoBehaviour
     public void PlayStartGame() //Plays start game sound
     {
     sfxSource.PlayOneShot(startGameClip, masterVolume);
-    }
+    } */
 
     void PlaySFX(AudioClip clip)
     {
         if (!clip || !sfxSource) return;
         sfxSource.PlayOneShot(clip, masterVolume);
-    }
+    } 
 
     
-    //Later: Function for all stealth SFX, called by Sound Engine when it receives a signal from Noise Maker
+    //New Implementation: Function for all stealth SFX, called by Sound Engine when it receives a signal from Noise Maker
     
-    /*public void PlaySFXGame(string soundName)
+    public void PlaySFXGame(string soundName)
     {
         if (!sfxSource) return;
 
@@ -71,7 +72,7 @@ public class AudioEngine : MonoBehaviour
                 break;
 
             default:
-                clip = defaultClip;
+                clip = alarmClip; //change this later to a default clip
                 break;
         }
 
@@ -79,5 +80,5 @@ public class AudioEngine : MonoBehaviour
         {
             sfxSource.PlayOneShot(clip);
         }
-    } */
+    }
 }

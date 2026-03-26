@@ -28,7 +28,7 @@ public class NoiseMaker : MonoBehaviour
 
 [Header("Sound Engine")]
 
-    public GameObject soundEngine;
+    public GameObject AudioEngine;
 
 // Trigger Sound if Player Detected
 
@@ -49,7 +49,7 @@ public class NoiseMaker : MonoBehaviour
     
     // Send Signal to Audio Engine
 
-        soundEngine.SendMessage(soundToEmit.ToString(), transform.position, SendMessageOptions.DontRequireReceiver);
+        AudioEngine.SendMessage("PlaySFXGame", soundToEmit.ToString(), SendMessageOptions.DontRequireReceiver);
 
         while (currentRadius < radius)
         {
