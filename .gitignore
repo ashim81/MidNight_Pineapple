@@ -1,4 +1,28 @@
+# Ignore Unity generated files and user-specific settings
+[Ll]ibrary/
+[Tt]emp/
+[Bb]uild/
+[Bb]uilds/
+[Oo]bj/
+[Mm]emoryCaptures/
+Logs/
+UserSettings/
 
+# VS Code files
+.vscode
+# Mac OS files
+.DS_Store
+
+# Windows thumbnail cache
+Thumbs.db
+
+# Compiled DLLs
+*.dll
+*.exe
+*.apk
+*.unitypackage
+=======
+UserSettings/
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
@@ -98,3 +122,4 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+>>>>>>> 87b32b94556da58abf556aae6d2806391e58f316
