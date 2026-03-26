@@ -6,17 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/prefabs/Scenes/Main Menu.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Level1_WitchHouse.unity
+    path: Assets/prefabs/Scenes/Level1_WitchHouse.unity
     guid: 4b532ad943d72904b9bfc7860e1260e3
   - enabled: 1
-    path: Assets/Scenes/Level2_Jungle.unity
+    path: Assets/prefabs/Scenes/Level2_Jungle.unity
     guid: 1d45a1c89659ebd4e8bff21d27af44be
   - enabled: 1
-    path: Assets/Scenes/Combat_test.unity
+    path: Assets/prefabs/Scenes/Combat_test.unity
     guid: 678dfe3a4739547b8a60e99353924630
+  - enabled: 1
+    path: Assets/prefabs/Scenes/TL5_TestCase.unity
+    guid: 7c3f9bcef9e60044c87c2e5b375091f6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
