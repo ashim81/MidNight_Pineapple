@@ -1,5 +1,5 @@
 {
-    "name": "Test",
+    "name": "TL3 Editmode",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",

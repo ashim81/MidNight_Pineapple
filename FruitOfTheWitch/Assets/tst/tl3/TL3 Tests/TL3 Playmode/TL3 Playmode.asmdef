@@ -1,5 +1,5 @@
 {
-    "name": "PlayMode1",
+    "name": "TL3 PlayMode",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
