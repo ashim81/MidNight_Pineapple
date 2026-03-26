@@ -33,11 +33,11 @@ public class Health : MonoBehaviour
         }
     }
 
-   void Die()
+  void Die()
 {
     Debug.Log(gameObject.name + " died.");
 
-    GameManager gm = FindObjectOfType<GameManager>();
+    GameManager gm = FindFirstObjectByType<GameManager>();
 
     if (gm != null)
     {
