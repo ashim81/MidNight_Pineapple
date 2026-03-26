@@ -19,19 +19,21 @@ public class AsimCombatStressTest
         Camera cam = Camera.main;
         Assert.IsNotNull(cam, "Main Camera not found!");
 
-        // spawn 100 cubes in your scene
-        for (int i = 0; i < 100; i++)
+        // spawn enemies (NOT cubes anymore)
+        for (int i = 0; i < 1500; i++)
         {
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            GameObject enemy = Object.Instantiate(
+                Resources.Load<GameObject>("Enemy")
+            );
 
-            cube.transform.position = new Vector3(
+            enemy.transform.position = new Vector3(
                 Random.Range(-5f, 5f),
                 Random.Range(2f, 6f),
                 0
             );
+            enemy.transform.localScale = new Vector3(0.9f, 0.9f, 1.9f);
 
-            Rigidbody rb = cube.AddComponent<Rigidbody>();
-            rb.useGravity = true;
+            // ✅ DO NOT ADD OR REMOVE ANY COMPONENTS
 
             yield return new WaitForSeconds(0.05f);
         }
