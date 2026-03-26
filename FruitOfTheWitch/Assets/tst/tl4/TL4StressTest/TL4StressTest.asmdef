@@ -1,9 +1,10 @@
 {
-    "name": "BoundaryTests",
+    "name": "TL4StressTest",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "GameAssembly"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
