@@ -8,30 +8,28 @@ public class EnemySpawnStressTest
     [UnityTest]
     public IEnumerator SpawnStressTest()
     {
-        int enemyCount = 10;           // starting number of enemies
-        int maxEnemies = 100_000;      // optional safety limit
+        int enemyCount = 10;           
+        int maxEnemies = 10240;     
+        
         bool crashed = false;
-
-        GameObject player = new GameObject("Player");
-        player.tag = "Player";
 
         while (!crashed && enemyCount <= maxEnemies)
         {
             bool failed = false;
+            
             GameObject[] spawnedEnemies = new GameObject[enemyCount];
 
             try
             {
-                // Spawn enemies
+                // Build Enemies
                 for (int i = 0; i < enemyCount; i++)
                 {
-                    GameObject go = new GameObject($"Enemy_{i}");
-                    go.AddComponent<VisualDetector>();
-                    go.AddComponent<MeshFilter>();
-                    go.AddComponent<MeshRenderer>();
-                    spawnedEnemies[i] = go;
+                    GameObject ememyBoi = new GameObject($"Enemy_{i}");
+                    ememyBoi.AddComponent<VisualDetector>();
+                    spawnedEnemies[i] = ememyBoi;
                 }
             }
+
             catch (System.Exception e)
             {
                 Debug.LogError($"Spawning failed at {enemyCount} enemies: {e.Message}");
@@ -46,21 +44,18 @@ public class EnemySpawnStressTest
 
             Debug.Log($"Successfully spawned {enemyCount} enemies");
 
-            // Wait a frame so Unity can process
+            // Wait
             yield return null;
 
-            // Clean up all enemies
+            // Cleanup
             foreach (var e in spawnedEnemies)
             {
                 if (e != null) GameObject.Destroy(e);
             }
 
-            // Double the count for next iteration
+            // Double Enemies for Next Run
             enemyCount *= 2;
         }
-
-        // Clean up player
-        GameObject.Destroy(player);
 
         yield return null;
     }

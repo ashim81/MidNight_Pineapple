@@ -12,8 +12,8 @@ public class VisualDetector : MonoBehaviour
 
     [Range(0, 360)] public float angle = 90f;
     public float coneDistance = 5f;
-
-    private int trianglesInCone = 100;
+    public int trianglesInCone = 100;
+    
     private Mesh cone;
     private Mesh fillMesh;
 
@@ -65,6 +65,29 @@ public class VisualDetector : MonoBehaviour
         UpdateFillMesh();
     }
 
+// TEST HARNESS: Non-Playmode Refresh
+public void RefreshForTest()
+{
+    GenerateConeMesh();
+}
+
+// TEST HARNESS: 
+public int GetVertexCount()
+{
+    MeshFilter meshFilter = GetComponent<MeshFilter>();
+
+    // Safety Check
+    if (meshFilter != null && meshFilter.sharedMesh != null)
+    {
+        return meshFilter.sharedMesh.vertexCount;
+    }
+    
+    else
+    {
+        return 0;
+    }
+}
+
 // STATE PATTERN: Create Interface
 public interface IEnemyState
 {
@@ -79,6 +102,11 @@ public class IdleState : IEnemyState
         if (enemy.CanSeePlayer())
         {
             enemy.SetState(VisualDetector.suspiciousState);
+        }
+
+        else
+        {
+            enemy.FillTowards(0f);
         }
     }
 }
@@ -110,7 +138,13 @@ public class AlertedState : IEnemyState
 {
     public void UpdateState(VisualDetector enemy)
     {
-        // SEND SIGNAL TO PARENT
+        if (!enemy.CanSeePlayer())
+        {
+            enemy.SetState(VisualDetector.idleState);
+            return;
+        }
+        
+        enemy.FillTowards(enemy.DistanceToPlayer());
     }
 }
 
