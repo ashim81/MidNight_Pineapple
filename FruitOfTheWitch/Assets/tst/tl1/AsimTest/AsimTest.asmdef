@@ -1,0 +1,6 @@
+{
+    "name": "AsimTest",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}
