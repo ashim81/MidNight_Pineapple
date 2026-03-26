@@ -2,12 +2,15 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawnStressTest
 {
     [UnityTest]
     public IEnumerator SpawnStressTest()
     {
+        SceneManager.LoadScene("Combat_test");
+
         int enemyCount = 10;           
         int maxEnemies = 10240;     
         
@@ -45,7 +48,7 @@ public class EnemySpawnStressTest
             Debug.Log($"Successfully spawned {enemyCount} enemies");
 
             // Wait
-            yield return null;
+            yield return new WaitForSeconds(2.0f);
 
             // Cleanup
             foreach (var e in spawnedEnemies)
