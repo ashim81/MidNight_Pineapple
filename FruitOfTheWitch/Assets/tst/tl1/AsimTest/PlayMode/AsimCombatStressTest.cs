@@ -20,7 +20,7 @@ public class AsimCombatStressTest
         Assert.IsNotNull(cam, "Main Camera not found!");
 
         // spawn enemies (NOT cubes anymore)
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 1500; i++)
         {
             GameObject enemy = Object.Instantiate(
                 Resources.Load<GameObject>("Enemy")
@@ -31,6 +31,7 @@ public class AsimCombatStressTest
                 Random.Range(2f, 6f),
                 0
             );
+            enemy.transform.localScale = new Vector3(0.9f, 0.9f, 1.9f);
 
             // ✅ DO NOT ADD OR REMOVE ANY COMPONENTS
 
