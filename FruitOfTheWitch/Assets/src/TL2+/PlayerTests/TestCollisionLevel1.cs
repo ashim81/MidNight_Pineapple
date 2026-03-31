@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class TestCollision
+public class TestCollisionLevel1
 {
     [SetUp]
     public void Setup()
@@ -19,4 +19,10 @@ public class TestCollision
         yield return null;
         Assert.AreNotEqual(new Vector3(-2, -0.1f, 0), player.transform.position);
     }
+
+    [TearDown]
+     public void Teardown()
+     {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/EmptyScene");
+     }
 }
