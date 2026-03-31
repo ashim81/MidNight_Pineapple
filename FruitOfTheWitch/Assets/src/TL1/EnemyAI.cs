@@ -11,13 +11,16 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody2D rb;
     private EnemyAttack enemyAttack;
+    private Animator animator;
 
     private float lastJumpTime;
+    private bool isGrounded;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         enemyAttack = GetComponent<EnemyAttack>();
+        animator = GetComponent<Animator>(); // ✅ NEW
     }
 
     void FixedUpdate()
@@ -45,11 +48,52 @@ public class EnemyAI : MonoBehaviour
         // Random Jump Logic
         if (Time.time > lastJumpTime + jumpCooldown)
         {
-            if (Random.value < 0.3f) // 30% chance to jump
+            if (Random.value < 0.3f)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 lastJumpTime = Time.time;
             }
+        }
+
+        // 🔥 ANIMATION CONTROL
+        UpdateAnimation();
+    }
+
+    void UpdateAnimation()
+    {
+        float velocityX = rb.linearVelocity.x;
+
+        // Speed parameter
+        animator.SetFloat("Speed", velocityX);
+
+        // Jump
+        animator.SetBool("isJumping", !isGrounded);
+
+        // Direction-based animation
+        if (velocityX > 0.1f)
+        {
+            animator.Play("Walk_right");
+        }
+        else if (velocityX < -0.1f)
+        {
+            animator.Play("Walk_left");
+        }
+    }
+
+    // Ground detection
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
         }
     }
 }

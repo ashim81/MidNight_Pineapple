@@ -1,2 +1,2 @@
 ## Demo Video
-[Watch the Gantt Chart Tutorial on YouTube](https://youtu.be/S6j0KfTJIHo)
+[Watch the TL4 Tutorial on YouTube](https://www.youtube.com/watch?v=Hkr7bc7tEXw)

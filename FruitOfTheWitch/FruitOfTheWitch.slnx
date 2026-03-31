@@ -1,6 +1,14 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ViasualDetector.csproj" />
+<<<<<<< Updated upstream
+  <Project Path="TL3 PlayMode.csproj" />
   <Project Path="PlayerTests.csproj" />
-  <Project Path="Tests.csproj" />
+  <Project Path="TL3 Editmode.csproj" />
+=======
+  <Project Path="PlayerTests.csproj" />
+  <Project Path="Test.csproj" />
+  <Project Path="PlayMode1.csproj" />
+>>>>>>> Stashed changes
   <Project Path="BoundaryTests.csproj" />
 </Solution>
