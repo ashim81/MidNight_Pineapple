@@ -3,6 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject mainMenuCanvas;
+    public void Update(){
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if(sceneName != "Main Menu")
+        {
+            mainMenuCanvas.SetActive(false);
+        }
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene("Level1_WitchHouse");

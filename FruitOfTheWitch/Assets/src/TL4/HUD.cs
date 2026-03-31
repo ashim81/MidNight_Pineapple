@@ -2,8 +2,17 @@ using UnityEngine;
 
 public class HUD : MonoBehaviour
 {
-    public void Awake()
+    public static HUD Instance{get; private set;}
+    void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Instance = this;
+        
+        DontDestroyOnLoad(this.gameObject);
     }
 }
