@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public GameObject fireSpellPrefab;
     public Transform player;
     public float moveSpeed = 3f;
     public float attackRange = 1.5f;
@@ -15,6 +16,25 @@ public class EnemyAI : MonoBehaviour
 
     private float lastJumpTime;
     private bool isGrounded;
+
+    void ShootFireSpell()
+{
+    if (fireSpellPrefab == null || player == null) return;
+
+    GameObject spell = Instantiate(fireSpellPrefab, transform.position, Quaternion.identity);
+
+    FireSpell fs = spell.GetComponent<FireSpell>();
+
+    if (fs != null)
+    {
+        fs.SetDirection(player.position);
+    }
+}
+if (Time.time > lastShootTime + shootCooldown)
+{
+    ShootFireSpell();
+    lastShootTime = Time.time;
+}
 
     void Awake()
     {
