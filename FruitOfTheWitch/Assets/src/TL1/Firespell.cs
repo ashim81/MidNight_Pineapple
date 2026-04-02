@@ -1,22 +1,43 @@
 using UnityEngine;
 
-public class FireSpell : MonoBehaviour
+// 🔷 BASE CLASS
+public class Projectile : MonoBehaviour
 {
-    public float speed = 5f;
-    private Vector2 direction;
+    public float speed = 8f;
+    protected Vector2 direction;
 
-    public void SetDirection(Vector2 targetPosition)
+    public virtual void SetDirection(Vector2 targetPosition)
     {
         direction = (targetPosition - (Vector2)transform.position).normalized;
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
+}
+
+// 🔥 CHILD CLASS
+public class FireSpell : Projectile
+{
+    public float lifeTime = 3f;
 
     void Start()
     {
-        Destroy(gameObject, 4f);
+        Destroy(gameObject, lifeTime);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Health health = collision.GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(10, transform);
+            }
+
+            Destroy(gameObject);
+        }
     }
 }

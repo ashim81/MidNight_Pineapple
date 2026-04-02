@@ -14,92 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.ContainerWindow
   m_PixelRect:
     serializedVersion: 2
-    x: -1399
-    y: -101
+    x: 161
+    y: 66
     width: 1024
     height: 768
   m_ShowMode: 4
-  m_Title: Console
-  m_RootView: {fileID: 5}
+  m_Title: Game
+  m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 0
 --- !u!114 &2
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12004, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.ContainerWindow
-  m_PixelRect:
-    serializedVersion: 2
-    x: 344
-    y: 58
-    width: 1039
-    height: 656
-  m_ShowMode: 0
-  m_Title: Test Runner
-  m_RootView: {fileID: 4}
-  m_MinSize: {x: 50, y: 76}
-  m_MaxSize: {x: 4000, y: 4026}
-  m_Maximized: 0
---- !u!114 &3
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TestRunnerWindow
-  m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.DockArea
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1039
-    height: 656
-  m_MinSize: {x: 50, y: 76}
-  m_MaxSize: {x: 4000, y: 4026}
-  m_ActualView: {fileID: 15}
-  m_Panes:
-  - {fileID: 15}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &4
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.SplitView
-  m_Children:
-  - {fileID: 3}
-  m_Position:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1039
-    height: 656
-  m_MinSize: {x: 50, y: 76}
-  m_MaxSize: {x: 4000, y: 4026}
-  vertical: 0
-  controlID: 2960
-  draggingID: 0
---- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,9 +37,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 6}
-  - {fileID: 8}
-  - {fileID: 7}
+  - {fileID: 3}
+  - {fileID: 5}
+  - {fileID: 4}
   m_Position:
     serializedVersion: 2
     x: 0
@@ -127,7 +52,7 @@ MonoBehaviour:
   m_TopViewHeight: 36
   m_UseBottomView: 1
   m_BottomViewHeight: 20
---- !u!114 &6
+--- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,8 +73,8 @@ MonoBehaviour:
     height: 36
   m_MinSize: {x: 50, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 16}
---- !u!114 &7
+  m_ActualView: {fileID: 12}
+--- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,7 +95,7 @@ MonoBehaviour:
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
---- !u!114 &8
+--- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,8 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 9}
-  - {fileID: 14}
+  - {fileID: 6}
+  - {fileID: 11}
   m_Position:
     serializedVersion: 2
     x: 0
@@ -194,9 +119,9 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 87
+  controlID: 129
   draggingID: 0
---- !u!114 &9
+--- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,20 +134,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
+  - {fileID: 7}
   - {fileID: 10}
-  - {fileID: 13}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 709
+    width: 713
     height: 712
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 88
+  controlID: 130
   draggingID: 0
---- !u!114 &10
+--- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,20 +160,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 11}
-  - {fileID: 12}
+  - {fileID: 8}
+  - {fileID: 9}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 709
+    width: 713
     height: 424
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 89
+  controlID: 131
   draggingID: 0
---- !u!114 &11
+--- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,16 +190,16 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 164
+    width: 167
     height: 424
   m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 18}
+  m_ActualView: {fileID: 14}
   m_Panes:
-  - {fileID: 18}
+  - {fileID: 14}
   m_Selected: 0
   m_LastSelected: 0
---- !u!114 &12
+--- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,20 +214,20 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 164
+    x: 167
     y: 0
-    width: 545
+    width: 546
     height: 424
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
-  m_ActualView: {fileID: 19}
+  m_ActualView: {fileID: 15}
   m_Panes:
-  - {fileID: 19}
-  - {fileID: 20}
-  - {fileID: 21}
+  - {fileID: 15}
+  - {fileID: 16}
+  - {fileID: 17}
   m_Selected: 0
   m_LastSelected: 1
---- !u!114 &13
+--- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,18 +244,18 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 424
-    width: 709
+    width: 713
     height: 288
   m_MinSize: {x: 231, y: 276}
   m_MaxSize: {x: 10001, y: 10026}
-  m_ActualView: {fileID: 17}
+  m_ActualView: {fileID: 13}
   m_Panes:
-  - {fileID: 17}
-  - {fileID: 22}
-  - {fileID: 23}
+  - {fileID: 13}
+  - {fileID: 18}
+  - {fileID: 19}
   m_Selected: 0
   m_LastSelected: 1
---- !u!114 &14
+--- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,1076 +270,18 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 709
+    x: 713
     y: 0
-    width: 315
+    width: 311
     height: 712
   m_MinSize: {x: 276, y: 76}
   m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 24}
+  m_ActualView: {fileID: 20}
   m_Panes:
-  - {fileID: 24}
+  - {fileID: 20}
   m_Selected: 0
   m_LastSelected: 1
---- !u!114 &15
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEditor.TestRunner.dll::UnityEditor.TestTools.TestRunner.TestRunnerWindow
-  m_MinSize: {x: 50, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: Test Runner
-    m_Image: {fileID: 0}
-    m_Tooltip: Test framework for running Edit mode and Play mode tests in Unity.
-      Part of the com.unity.test-framework package.
-    m_TextWithWhitespace: "Test Runner\u200B"
-  m_Pos:
-    serializedVersion: 2
-    x: 0
-    y: 26
-    width: 1039
-    height: 630
-  m_SerializedDataModeController:
-    m_DataMode: 0
-    m_PreferredDataMode: 0
-    m_SupportedDataModes: 
-    isAutomatic: 1
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-    m_ContainerData: []
-    m_DynamicPanelContainerData: []
-    m_OverlaysVisible: 1
-    m_DynamicPanelBehavior: 0
-  m_Spl:
-    ID: 2991
-    splitterInitialOffset: 0
-    currentActiveSplitter: -1
-    realSizes:
-    - 420
-    - 140
-    relativeSizes:
-    - 0.75
-    - 0.25
-    minSizes:
-    - 32
-    - 32
-    maxSizes:
-    - 0
-    - 0
-    lastTotalSize: 560
-    splitSize: 6
-    xOffset: 0
-    m_Version: 1
-    oldRealSizes: 
-    oldMinSizes: 
-    oldMaxSizes: 
-    oldSplitSize: 0
-  m_TestTypeToolbarIndex: 1
-  m_TestListGUIs:
-  - m_Window: {fileID: 15}
-    runProgress:
-      RunGuid: f4e31651-76c0-4d16-a015-66d6eaecc5ad
-      ExecutionSettings:
-        m_TargetPlatform: 0
-        m_HasTargetPlatform: 0
-        filter:
-          testMode: 0
-          testNames: []
-          groupNames: []
-          categoryNames: []
-          assemblyNames: []
-        filters:
-        - testMode: 2
-          testNames: []
-          groupNames: []
-          categoryNames: []
-          assemblyNames:
-          - TL5 PlayMode
-        runSynchronously: 0
-        playerHeartbeatTimeout: 600
-        orderedTestNames: []
-        ignoreTests: []
-        featureFlags:
-          fileCleanUpCheck: 0
-          requiresSplashScreen: 0
-          strictDomainReload: 0
-          disableNestedEnumeratorBugfix: 0
-        randomOrderSeed: 0
-      HasFinished: 1
-      Progress: 0.9999999
-      CurrentStepName: Unlock Reload Assemblies
-      CurrentStageName: 
-    m_NewResultList:
-    - id: 1000
-      uniqueId: '[FruitOfTheWitch][suite]'
-      name: FruitOfTheWitch
-      fullName: FruitOfTheWitch
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 
-      parentUniqueId: 
-    - id: 1007
-      uniqueId: '[TL3 Editmode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL3
-        Editmode.dll][suite]'
-      name: TL3 Editmode.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL3
-        Editmode.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1000
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1001
-      uniqueId: 'TL3 Editmode.dll/[TL3 Editmode][VisualDetectorEditTests][suite]'
-      name: VisualDetectorEditTests
-      fullName: VisualDetectorEditTests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1007
-      parentUniqueId: '[TL3 Editmode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL3
-        Editmode.dll][suite]'
-    - id: 1006
-      uniqueId: 'TL3 Editmode.dll/VisualDetectorEditTests/[TL3 Editmode][VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly][suite]'
-      name: TrianglesInCone_ScalesCorrectly
-      fullName: VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1001
-      parentUniqueId: 'TL3 Editmode.dll/[TL3 Editmode][VisualDetectorEditTests][suite]'
-    - id: 1002
-      uniqueId: 'TL3 Editmode.dll/VisualDetectorEditTests/TrianglesInCone_ScalesCorrectly/[TL3
-        Editmode][VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly(0)]'
-      name: TrianglesInCone_ScalesCorrectly(0)
-      fullName: VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly(0)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1006
-      parentUniqueId: 'TL3 Editmode.dll/VisualDetectorEditTests/[TL3 Editmode][VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly][suite]'
-    - id: 1003
-      uniqueId: 'TL3 Editmode.dll/VisualDetectorEditTests/TrianglesInCone_ScalesCorrectly/[TL3
-        Editmode][VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly(1)]'
-      name: TrianglesInCone_ScalesCorrectly(1)
-      fullName: VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly(1)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1006
-      parentUniqueId: 'TL3 Editmode.dll/VisualDetectorEditTests/[TL3 Editmode][VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly][suite]'
-    - id: 1004
-      uniqueId: 'TL3 Editmode.dll/VisualDetectorEditTests/TrianglesInCone_ScalesCorrectly/[TL3
-        Editmode][VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly(65535)]'
-      name: TrianglesInCone_ScalesCorrectly(65535)
-      fullName: VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly(65535)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1006
-      parentUniqueId: 'TL3 Editmode.dll/VisualDetectorEditTests/[TL3 Editmode][VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly][suite]'
-    - id: 1005
-      uniqueId: 'TL3 Editmode.dll/VisualDetectorEditTests/TrianglesInCone_ScalesCorrectly/[TL3
-        Editmode][VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly(100000)]'
-      name: TrianglesInCone_ScalesCorrectly(100000)
-      fullName: VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly(100000)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1006
-      parentUniqueId: 'TL3 Editmode.dll/VisualDetectorEditTests/[TL3 Editmode][VisualDetectorEditTests.TrianglesInCone_ScalesCorrectly][suite]'
-    - id: 1011
-      uniqueId: '[TL5EditMode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL5EditMode.dll][suite]'
-      name: TL5EditMode.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL5EditMode.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1000
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1008
-      uniqueId: 'TL5EditMode.dll/[TL5EditMode][AudioBoundaryTest][suite]'
-      name: AudioBoundaryTest
-      fullName: AudioBoundaryTest
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1011
-      parentUniqueId: '[TL5EditMode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL5EditMode.dll][suite]'
-    - id: 1010
-      uniqueId: 'TL5EditMode.dll/AudioBoundaryTest/[TL5EditMode][AudioBoundaryTest.FinalSFXVolume_UsesMasterAndSFXCorrectly]'
-      name: FinalSFXVolume_UsesMasterAndSFXCorrectly
-      fullName: AudioBoundaryTest.FinalSFXVolume_UsesMasterAndSFXCorrectly
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1008
-      parentUniqueId: 'TL5EditMode.dll/[TL5EditMode][AudioBoundaryTest][suite]'
-    - id: 1009
-      uniqueId: 'TL5EditMode.dll/AudioBoundaryTest/[TL5EditMode][AudioBoundaryTest.MasterVolume_BoundaryValues_ClampCorrectly]'
-      name: MasterVolume_BoundaryValues_ClampCorrectly
-      fullName: AudioBoundaryTest.MasterVolume_BoundaryValues_ClampCorrectly
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1008
-      parentUniqueId: 'TL5EditMode.dll/[TL5EditMode][AudioBoundaryTest][suite]'
-    m_ResultText: 
-    m_ResultStacktrace: 
-    m_TestListState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 53080e2fffffff7f
-      m_RenameOverlay:
-        m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
-        m_EditFieldRect:
-          serializedVersion: 2
-          x: 0
-          y: 0
-          width: 0
-          height: 0
-        m_UserData: 0
-        m_IsWaitingForDelay: 0
-        m_IsRenaming: 0
-        m_OriginalEventType: 11
-        m_IsRenamingFilename: 0
-        m_TrimLeadingAndTrailingWhitespace: 0
-        m_ClientGUIView: {fileID: 0}
-      m_SearchString: 
-    m_TestRunnerUIFilter:
-      PassedHidden: 0
-      FailedHidden: 0
-      NotRunHidden: 0
-      m_SearchString: 
-      selectedCategories: []
-      availableCategories:
-      - Uncategorized
-    m_SelectedOption: 0
-  - m_Window: {fileID: 15}
-    runProgress:
-      RunGuid: f4e31651-76c0-4d16-a015-66d6eaecc5ad
-      ExecutionSettings:
-        m_TargetPlatform: 0
-        m_HasTargetPlatform: 0
-        filter:
-          testMode: 0
-          testNames: []
-          groupNames: []
-          categoryNames: []
-          assemblyNames: []
-        filters:
-        - testMode: 2
-          testNames: []
-          groupNames: []
-          categoryNames: []
-          assemblyNames:
-          - TL5 PlayMode
-        runSynchronously: 0
-        playerHeartbeatTimeout: 600
-        orderedTestNames: []
-        ignoreTests: []
-        featureFlags:
-          fileCleanUpCheck: 0
-          requiresSplashScreen: 0
-          strictDomainReload: 0
-          disableNestedEnumeratorBugfix: 0
-        randomOrderSeed: 0
-      HasFinished: 1
-      Progress: 0.9999999
-      CurrentStepName: Unlock Reload Assemblies
-      CurrentStageName: 
-    m_NewResultList:
-    - id: 1000
-      uniqueId: '[FruitOfTheWitch][suite]'
-      name: FruitOfTheWitch
-      fullName: FruitOfTheWitch
-      resultStatus: 0
-      duration: 22.379871
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 
-      parentUniqueId: 
-    - id: 1003
-      uniqueId: '[AsimTest][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/AsimTest.dll][suite]'
-      name: AsimTest.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/AsimTest.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1000
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1001
-      uniqueId: 'AsimTest.dll/[AsimTest][AsimCombatStressTest][suite]'
-      name: AsimCombatStressTest
-      fullName: AsimCombatStressTest
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1003
-      parentUniqueId: '[AsimTest][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/AsimTest.dll][suite]'
-    - id: 1021
-      uniqueId: 'AsimTest.dll/AsimCombatStressTest/[AsimTest][AsimCombatStressTest.CubeStressTestInScene]'
-      name: CubeStressTestInScene
-      fullName: AsimCombatStressTest.CubeStressTestInScene
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1020
-      parentUniqueId: 'AsimTest.dll/[AsimTest][AsimCombatStressTest][suite]'
-    - id: 1006
-      uniqueId: '[PlayerTests][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/PlayerTests.dll][suite]'
-      name: PlayerTests.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/PlayerTests.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1000
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1004
-      uniqueId: 'PlayerTests.dll/[PlayerTests][TestCollision][suite]'
-      name: TestCollision
-      fullName: TestCollision
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1006
-      parentUniqueId: '[PlayerTests][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/PlayerTests.dll][suite]'
-    - id: 1024
-      uniqueId: 'PlayerTests.dll/TestCollision/[PlayerTests][TestCollision.TestCollisionWithWalls]'
-      name: TestCollisionWithWalls
-      fullName: TestCollision.TestCollisionWithWalls
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1023
-      parentUniqueId: 'PlayerTests.dll/[PlayerTests][TestCollision][suite]'
-    - id: 1009
-      uniqueId: '[TL3 PlayMode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL3
-        PlayMode.dll][suite]'
-      name: TL3 PlayMode.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL3
-        PlayMode.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1000
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1007
-      uniqueId: 'TL3 PlayMode.dll/[TL3 PlayMode][EnemySpawnStressTest][suite]'
-      name: EnemySpawnStressTest
-      fullName: EnemySpawnStressTest
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1009
-      parentUniqueId: '[TL3 PlayMode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL3
-        PlayMode.dll][suite]'
-    - id: 1027
-      uniqueId: 'TL3 PlayMode.dll/EnemySpawnStressTest/[TL3 PlayMode][EnemySpawnStressTest.SpawnStressTest]'
-      name: SpawnStressTest
-      fullName: EnemySpawnStressTest.SpawnStressTest
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1026
-      parentUniqueId: 'TL3 PlayMode.dll/[TL3 PlayMode][EnemySpawnStressTest][suite]'
-    - id: 1012
-      uniqueId: '[TL4StressTest][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL4StressTest.dll][suite]'
-      name: TL4StressTest.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL4StressTest.dll
-      resultStatus: 1
-      duration: 1.693448
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1000
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1010
-      uniqueId: 'TL4StressTest.dll/[TL4StressTest][Stresstest1][suite]'
-      name: Stresstest1
-      fullName: Stresstest1
-      resultStatus: 1
-      duration: 1.693448
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1012
-      parentUniqueId: '[TL4StressTest][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL4StressTest.dll][suite]'
-    - id: 1030
-      uniqueId: 'TL4StressTest.dll/Stresstest1/[TL4StressTest][Stresstest1.HealthBar_RapidUpdates_DoesNotDropFrames]'
-      name: HealthBar_RapidUpdates_DoesNotDropFrames
-      fullName: Stresstest1.HealthBar_RapidUpdates_DoesNotDropFrames
-      resultStatus: 1
-      duration: 1.693448
-      messages: 
-      output: 'DontDestroyOnLoad only works for root GameObjects or components on
-        root GameObjects.
-
-'
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1029
-      parentUniqueId: 'TL4StressTest.dll/[TL4StressTest][Stresstest1][suite]'
-    - id: 1015
-      uniqueId: '[TL5 PlayMode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL5
-        PlayMode.dll][suite]'
-      name: TL5 PlayMode.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL5
-        PlayMode.dll
-      resultStatus: 1
-      duration: 20.686424
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1000
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1013
-      uniqueId: 'TL5 PlayMode.dll/[TL5 PlayMode][AudioStressTest][suite]'
-      name: AudioStressTest
-      fullName: AudioStressTest
-      resultStatus: 1
-      duration: 20.686424
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1015
-      parentUniqueId: '[TL5 PlayMode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL5
-        PlayMode.dll][suite]'
-    - id: 1033
-      uniqueId: 'TL5 PlayMode.dll/AudioStressTest/[TL5 PlayMode][AudioStressTest.AlarmStressTest_InScene]'
-      name: AlarmStressTest_InScene
-      fullName: AudioStressTest.AlarmStressTest_InScene
-      resultStatus: 1
-      duration: 20.686424
-      messages: 
-      output: 
-      stacktrace: 'at AudioStressTest+<AlarmStressTest_InScene>d__0.MoveNext () [0x00114]
-        in /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Assets/tst/tl5/tl5
-        PlayMode/AudioStressTest.cs:36
-
-        at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext
-        () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0b7a23ab2e1d/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44
-
-'
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1032
-      parentUniqueId: 'TL5 PlayMode.dll/[TL5 PlayMode][AudioStressTest][suite]'
-    m_ResultText: 
-    m_ResultStacktrace: 
-    m_TestListState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 8ed4486f
-      m_LastClickedID: 1867043982
-      m_ExpandedIDs: 53080e2fffffff7f
-      m_RenameOverlay:
-        m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
-        m_EditFieldRect:
-          serializedVersion: 2
-          x: 0
-          y: 0
-          width: 0
-          height: 0
-        m_UserData: 0
-        m_IsWaitingForDelay: 0
-        m_IsRenaming: 0
-        m_OriginalEventType: 11
-        m_IsRenamingFilename: 0
-        m_TrimLeadingAndTrailingWhitespace: 0
-        m_ClientGUIView: {fileID: 0}
-      m_SearchString: 
-    m_TestRunnerUIFilter:
-      PassedHidden: 0
-      FailedHidden: 0
-      NotRunHidden: 0
-      m_SearchString: 
-      selectedCategories: []
-      availableCategories:
-      - Uncategorized
-    m_SelectedOption: 0
-  - m_Window: {fileID: 15}
-    runProgress:
-      RunGuid: f4e31651-76c0-4d16-a015-66d6eaecc5ad
-      ExecutionSettings:
-        m_TargetPlatform: 0
-        m_HasTargetPlatform: 0
-        filter:
-          testMode: 0
-          testNames: []
-          groupNames: []
-          categoryNames: []
-          assemblyNames: []
-        filters:
-        - testMode: 2
-          testNames: []
-          groupNames: []
-          categoryNames: []
-          assemblyNames:
-          - TL5 PlayMode
-        runSynchronously: 0
-        playerHeartbeatTimeout: 600
-        orderedTestNames: []
-        ignoreTests: []
-        featureFlags:
-          fileCleanUpCheck: 0
-          requiresSplashScreen: 0
-          strictDomainReload: 0
-          disableNestedEnumeratorBugfix: 0
-        randomOrderSeed: 0
-      HasFinished: 1
-      Progress: 0.9999999
-      CurrentStepName: Unlock Reload Assemblies
-      CurrentStageName: 
-    m_NewResultList:
-    - id: 1000
-      uniqueId: '[FruitOfTheWitch][suite]'
-      name: FruitOfTheWitch
-      fullName: FruitOfTheWitch
-      resultStatus: 0
-      duration: 0.5021254
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 
-      parentUniqueId: 
-    - id: 1003
-      uniqueId: '[AsimTest][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/AsimTest.dll][suite]'
-      name: AsimTest.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/AsimTest.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1023
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1001
-      uniqueId: 'AsimTest.dll/[AsimTest][AsimCombatStressTest][suite]'
-      name: AsimCombatStressTest
-      fullName: AsimCombatStressTest
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1003
-      parentUniqueId: '[AsimTest][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/AsimTest.dll][suite]'
-    - id: 1021
-      uniqueId: 'AsimTest.dll/AsimCombatStressTest/[AsimTest][AsimCombatStressTest.CubeStressTestInScene]'
-      name: CubeStressTestInScene
-      fullName: AsimCombatStressTest.CubeStressTestInScene
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 'Enemy(Clone) took 5 damage.
-
-        Enemy(Clone) took 5 damage.
-
-        Enemy(Clone)
-        took 5 damage.
-
-        Enemy(Clone) took 5 damage.
-
-        Enemy(Clone)
-        took 5 damage.
-
-        Enemy(Clone) took 5 damage.
-
-        Enemy(Clone)
-        took 5 damage.
-
-        Enemy(Clone) took 5 damage.
-
-        Enemy(Clone)
-        took 5 damage.
-
-        Enemy(Clone) took 5 damage.
-
-        Enemy(Clone)
-        took 5 damage.
-
-        Enemy(Clone) took 5 damage.
-
-        Enemy(Clone)
-        took 5 damage.
-
-        Enemy(Clone) took 5 damage.
-
-        Enemy(Clone)
-        took 5 damage.
-
-'
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1020
-      parentUniqueId: 'AsimTest.dll/[AsimTest][AsimCombatStressTest][suite]'
-    - id: 1006
-      uniqueId: '[PlayerTests][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/PlayerTests.dll][suite]'
-      name: PlayerTests.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/PlayerTests.dll
-      resultStatus: 1
-      duration: 0.5021254
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1023
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1004
-      uniqueId: 'PlayerTests.dll/[PlayerTests][TestCollision][suite]'
-      name: TestCollision
-      fullName: TestCollision
-      resultStatus: 1
-      duration: 0.5021254
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1006
-      parentUniqueId: '[PlayerTests][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/PlayerTests.dll][suite]'
-    - id: 1024
-      uniqueId: 'PlayerTests.dll/TestCollision/[PlayerTests][TestCollision.TestCollisionWithWalls]'
-      name: TestCollisionWithWalls
-      fullName: TestCollision.TestCollisionWithWalls
-      resultStatus: 1
-      duration: 0.5021254
-      messages: 
-      output: 'DontDestroyOnLoad only works for root GameObjects or components on
-        root GameObjects.
-
-'
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1023
-      parentUniqueId: 'PlayerTests.dll/[PlayerTests][TestCollision][suite]'
-    - id: 1009
-      uniqueId: '[TL3 PlayMode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL3
-        PlayMode.dll][suite]'
-      name: TL3 PlayMode.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL3
-        PlayMode.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1023
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1007
-      uniqueId: 'TL3 PlayMode.dll/[TL3 PlayMode][EnemySpawnStressTest][suite]'
-      name: EnemySpawnStressTest
-      fullName: EnemySpawnStressTest
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1009
-      parentUniqueId: '[TL3 PlayMode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL3
-        PlayMode.dll][suite]'
-    - id: 1027
-      uniqueId: 'TL3 PlayMode.dll/EnemySpawnStressTest/[TL3 PlayMode][EnemySpawnStressTest.SpawnStressTest]'
-      name: SpawnStressTest
-      fullName: EnemySpawnStressTest.SpawnStressTest
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1026
-      parentUniqueId: 'TL3 PlayMode.dll/[TL3 PlayMode][EnemySpawnStressTest][suite]'
-    - id: 1012
-      uniqueId: '[TL4StressTest][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL4StressTest.dll][suite]'
-      name: TL4StressTest.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL4StressTest.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1023
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1010
-      uniqueId: 'TL4StressTest.dll/[TL4StressTest][Stresstest1][suite]'
-      name: Stresstest1
-      fullName: Stresstest1
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1012
-      parentUniqueId: '[TL4StressTest][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL4StressTest.dll][suite]'
-    - id: 1030
-      uniqueId: 'TL4StressTest.dll/Stresstest1/[TL4StressTest][Stresstest1.HealthBar_RapidUpdates_DoesNotDropFrames]'
-      name: HealthBar_RapidUpdates_DoesNotDropFrames
-      fullName: Stresstest1.HealthBar_RapidUpdates_DoesNotDropFrames
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1029
-      parentUniqueId: 'TL4StressTest.dll/[TL4StressTest][Stresstest1][suite]'
-    - id: 1015
-      uniqueId: '[TL5 PlayMode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL5
-        PlayMode.dll][suite]'
-      name: TL5 PlayMode.dll
-      fullName: /Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL5
-        PlayMode.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1023
-      parentUniqueId: '[FruitOfTheWitch][suite]'
-    - id: 1013
-      uniqueId: 'TL5 PlayMode.dll/[TL5 PlayMode][AudioStressTest][suite]'
-      name: AudioStressTest
-      fullName: AudioStressTest
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1015
-      parentUniqueId: '[TL5 PlayMode][/Users/asimsapkota/Documents/CS3383/Game/MidNight_Pineapple/FruitOfTheWitch/Library/ScriptAssemblies/TL5
-        PlayMode.dll][suite]'
-    - id: 1033
-      uniqueId: 'TL5 PlayMode.dll/AudioStressTest/[TL5 PlayMode][AudioStressTest.AlarmStressTest_InScene]'
-      name: AlarmStressTest_InScene
-      fullName: AudioStressTest.AlarmStressTest_InScene
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1032
-      parentUniqueId: 'TL5 PlayMode.dll/[TL5 PlayMode][AudioStressTest][suite]'
-    m_ResultText: 
-    m_ResultStacktrace: 
-    m_TestListState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 5e11a81e
-      m_LastClickedID: 514330974
-      m_ExpandedIDs: 53080e2fffffff7f
-      m_RenameOverlay:
-        m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
-        m_EditFieldRect:
-          serializedVersion: 2
-          x: 0
-          y: 0
-          width: 0
-          height: 0
-        m_UserData: 0
-        m_IsWaitingForDelay: 0
-        m_IsRenaming: 0
-        m_OriginalEventType: 11
-        m_IsRenamingFilename: 0
-        m_TrimLeadingAndTrailingWhitespace: 0
-        m_ClientGUIView: {fileID: 0}
-      m_SearchString: 
-    m_TestRunnerUIFilter:
-      PassedHidden: 0
-      FailedHidden: 0
-      NotRunHidden: 0
-      m_SearchString: 
-      selectedCategories: []
-      availableCategories:
-      - Uncategorized
-    m_SelectedOption: 0
---- !u!114 &16
+--- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1680,7 +547,7 @@ MonoBehaviour:
     m_DynamicPanelContainerData: []
     m_OverlaysVisible: 1
     m_DynamicPanelBehavior: 0
---- !u!114 &17
+--- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1703,7 +570,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 448
-    width: 708
+    width: 712
     height: 262
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1746,14 +613,14 @@ MonoBehaviour:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 2.171753}
+    scrollPos: {x: 0, y: 52.74475}
     m_SelectedIDs:
-    - m_Data: 50192
+    - m_Data: 49652
     m_LastClickedID:
-      m_Data: 50192
+      m_Data: 49652
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 48764
+    - m_Data: 49548
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1771,7 +638,7 @@ MonoBehaviour:
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
-      m_ClientGUIView: {fileID: 13}
+      m_ClientGUIView: {fileID: 10}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -1786,7 +653,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 48764
+    - m_Data: 49548
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1814,8 +681,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 42784
-    m_LastClickedInstanceID: 42784
+    - m_Data: 52070
+    m_LastClickedInstanceID: 52070
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 63186
@@ -1824,6 +691,7 @@ MonoBehaviour:
     - m_Data: 49798
     - m_Data: 49674
     - m_Data: 51822
+    - m_Data: 53430
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1853,7 +721,7 @@ MonoBehaviour:
     m_GridSize: 62
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
---- !u!114 &18
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1876,7 +744,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 24
-    width: 163
+    width: 166
     height: 398
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1898,165 +766,18 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1519874
-      - m_Data: -1518044
-      - m_Data: -1517810
-      - m_Data: -1515156
-      - m_Data: -1513956
-      - m_Data: -1504754
-      - m_Data: -1504316
-      - m_Data: -1502608
-      - m_Data: -1502316
-      - m_Data: -1501588
-      - m_Data: -1501538
-      - m_Data: -1501530
-      - m_Data: -1501472
-      - m_Data: -1501386
-      - m_Data: -1501370
-      - m_Data: -1501262
-      - m_Data: -1501236
-      - m_Data: -1501232
-      - m_Data: -1501190
-      - m_Data: -1501128
-      - m_Data: -1501090
-      - m_Data: -1501064
-      - m_Data: -1501060
-      - m_Data: -1501018
-      - m_Data: -1500956
-      - m_Data: -1500664
-      - m_Data: -1500230
-      - m_Data: -1498522
-      - m_Data: -1498230
-      - m_Data: -1497502
-      - m_Data: -1497452
-      - m_Data: -1497444
-      - m_Data: -1497386
-      - m_Data: -1497300
-      - m_Data: -1497284
-      - m_Data: -1497176
-      - m_Data: -1497150
-      - m_Data: -1497146
-      - m_Data: -1497104
-      - m_Data: -1497042
-      - m_Data: -1497004
-      - m_Data: -1496978
-      - m_Data: -1496974
-      - m_Data: -1496932
-      - m_Data: -1496870
-      - m_Data: -1496578
-      - m_Data: -1496146
-      - m_Data: -1494438
-      - m_Data: -1494146
-      - m_Data: -1493418
-      - m_Data: -1493368
-      - m_Data: -1493360
-      - m_Data: -1493302
-      - m_Data: -1493216
-      - m_Data: -1493200
-      - m_Data: -1493092
-      - m_Data: -1493066
-      - m_Data: -1493062
-      - m_Data: -1493020
-      - m_Data: -1492958
-      - m_Data: -1492920
-      - m_Data: -1492894
-      - m_Data: -1492890
-      - m_Data: -1492848
-      - m_Data: -1492786
-      - m_Data: -1492494
-      - m_Data: -1492062
-      - m_Data: -1490354
-      - m_Data: -1490062
-      - m_Data: -1489334
-      - m_Data: -1489284
-      - m_Data: -1489276
-      - m_Data: -1489218
-      - m_Data: -1489132
-      - m_Data: -1489116
-      - m_Data: -1489008
-      - m_Data: -1488982
-      - m_Data: -1488978
-      - m_Data: -1488936
-      - m_Data: -1488874
-      - m_Data: -1488836
-      - m_Data: -1488810
-      - m_Data: -1488806
-      - m_Data: -1488764
-      - m_Data: -1488702
-      - m_Data: -1488410
-      - m_Data: -1487946
-      - m_Data: -1487710
-      - m_Data: -1486002
-      - m_Data: -1485710
-      - m_Data: -1484936
-      - m_Data: -1484886
-      - m_Data: -1484878
-      - m_Data: -1484820
-      - m_Data: -1484734
-      - m_Data: -1484718
-      - m_Data: -1484610
-      - m_Data: -1484584
-      - m_Data: -1484580
-      - m_Data: -1484538
-      - m_Data: -1484476
-      - m_Data: -1484438
-      - m_Data: -1484412
-      - m_Data: -1484408
-      - m_Data: -1484366
-      - m_Data: -1484304
-      - m_Data: -1484022
-      - m_Data: -1439576
-      - m_Data: -1439384
-      - m_Data: -1437676
-      - m_Data: -1437384
-      - m_Data: -1436610
-      - m_Data: -1436560
-      - m_Data: -1436552
-      - m_Data: -1436494
-      - m_Data: -1436408
-      - m_Data: -1436392
-      - m_Data: -1436282
-      - m_Data: -1436256
-      - m_Data: -1436252
-      - m_Data: -1436210
-      - m_Data: -1436148
-      - m_Data: -1436110
-      - m_Data: -1436084
-      - m_Data: -1436080
-      - m_Data: -1436038
-      - m_Data: -1435976
-      - m_Data: -1435680
-      - m_Data: -1404852
-      - m_Data: -1404008
-      - m_Data: -1400664
-      - m_Data: -1396744
-      - m_Data: -1392672
-      - m_Data: -1389084
-      - m_Data: -1386344
-      - m_Data: -1386042
-      - m_Data: -1382696
-      - m_Data: -846824
-      - m_Data: -843224
-      - m_Data: -839212
-      - m_Data: -837476
-      - m_Data: -835822
-      - m_Data: -834510
-      - m_Data: -829268
-      - m_Data: -822996
-      - m_Data: -821376
-      - m_Data: -820734
-      - m_Data: -818612
-      - m_Data: -815516
-      - m_Data: -814520
-      - m_Data: -812188
-      - m_Data: -542648
-      - m_Data: -539288
-      - m_Data: -536814
-      - m_Data: -2044
-      - m_Data: -1332
-      - m_Data: 51168
-      - m_Data: 56246
-      - m_Data: 64538
+      - m_Data: -7222
+      - m_Data: -7220
+      - m_Data: -4434
+      - m_Data: -3424
+      - m_Data: -3218
+      - m_Data: -2772
+      - m_Data: -1908
+      - m_Data: 52012
+      - m_Data: 52022
+      - m_Data: 52078
+      - m_Data: 52096
+      - m_Data: 52184
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -2074,7 +795,7 @@ MonoBehaviour:
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
-        m_ClientGUIView: {fileID: 11}
+        m_ClientGUIView: {fileID: 0}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -2082,7 +803,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
---- !u!114 &19
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2103,9 +824,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 165
+    x: 168
     y: 24
-    width: 543
+    width: 544
     height: 398
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2677,9 +1398,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -0.06000042, y: -0.03999996, z: -10}
+    m_Target: {x: -2.1603954, y: 0.19426566, z: 0}
     speed: 2
-    m_Value: {x: -0.06000042, y: -0.03999996, z: -10}
+    m_Value: {x: -2.1603954, y: 0.19426566, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -2729,9 +1450,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 10.641568
+    m_Target: 10
     speed: 2
-    m_Value: 10.641568
+    m_Value: 10
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -2752,7 +1473,7 @@ MonoBehaviour:
   m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
-    m_SceneView: {fileID: 19}
+    m_SceneView: {fileID: 15}
     m_CameraOverscanSettings:
       m_Opacity: 50
       m_Scale: 6.0875015
@@ -2765,7 +1486,7 @@ MonoBehaviour:
     name: Contributors / Receivers
     section: Lighting
   m_ViewIsLockedToObject: 0
---- !u!114 &20
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2786,10 +1507,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1669
-    y: 94
-    width: 1096
-    height: 724
+    x: -1607
+    y: -242
+    width: 1022
+    height: 584
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -2845,30 +1566,30 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1096
-      height: 703
-    m_Scale: {x: 0.5708333, y: 0.5708333}
-    m_Translation: {x: 548, y: 351.5}
+      width: 1022
+      height: 563
+    m_Scale: {x: 0.5212963, y: 0.5212963}
+    m_Translation: {x: 511, y: 281.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -960
-      y: -615.7664
-      width: 1920
-      height: 1231.5328
+      x: -980.2486
+      y: -540
+      width: 1960.4972
+      height: 1080
     m_MinimalGUI: 1
-  m_defaultScale: 0.5708333
-  m_LastWindowPixelSize: {x: 1096, y: 724}
+  m_defaultScale: 0.5212963
+  m_LastWindowPixelSize: {x: 1022, y: 584}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
   m_showToolbar: 1
---- !u!114 &21
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2889,10 +1610,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Animator\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 261
-    y: 36
-    width: 796
-    height: 476.5
+    x: -1611
+    y: -242
+    width: 1017
+    height: 584
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -2942,7 +1663,7 @@ MonoBehaviour:
   m_CurrentEditor: 1
   m_LayerEditor:
     m_SelectedLayerIndex: 0
---- !u!114 &22
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2963,10 +1684,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Console\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1336
-    y: 844
-    width: 1430
-    height: 484
+    x: -1920
+    y: 368
+    width: 1336
+    height: 388
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -2980,7 +1701,7 @@ MonoBehaviour:
     m_DynamicPanelContainerData: []
     m_OverlaysVisible: 1
     m_DynamicPanelBehavior: 0
---- !u!114 &23
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3019,7 +1740,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
     m_DynamicPanelBehavior: 0
   mForceToReOpen: 0
---- !u!114 &24
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3040,9 +1761,9 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 710
+    x: 714
     y: 24
-    width: 314
+    width: 310
     height: 686
   m_SerializedDataModeController:
     m_DataMode: 0

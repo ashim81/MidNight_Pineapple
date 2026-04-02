@@ -1,46 +1,46 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
     public GameObject fireSpellPrefab;
     public Transform player;
+    public Transform firePoint;
+
     public float moveSpeed = 3f;
     public float attackRange = 1.5f;
 
     public float jumpForce = 7f;
     public float jumpCooldown = 2f;
 
+    private float lastJumpTime;
+
     private Rigidbody2D rb;
     private EnemyAttack enemyAttack;
     private Animator animator;
 
-    private float lastJumpTime;
     private bool isGrounded;
-
-    void ShootFireSpell()
-{
-    if (fireSpellPrefab == null || player == null) return;
-
-    GameObject spell = Instantiate(fireSpellPrefab, transform.position, Quaternion.identity);
-
-    FireSpell fs = spell.GetComponent<FireSpell>();
-
-    if (fs != null)
-    {
-        fs.SetDirection(player.position);
-    }
-}
-if (Time.time > lastShootTime + shootCooldown)
-{
-    ShootFireSpell();
-    lastShootTime = Time.time;
-}
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         enemyAttack = GetComponent<EnemyAttack>();
-        animator = GetComponent<Animator>(); // ✅ NEW
+        animator = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        StartCoroutine(ShootLoop());
+    }
+
+    // 🔥 FIRE EVERY 1 SECOND
+    IEnumerator ShootLoop()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            ShootFireSpell();
+        }
     }
 
     void FixedUpdate()
@@ -49,7 +49,7 @@ if (Time.time > lastShootTime + shootCooldown)
 
         float distanceX = player.position.x - transform.position.x;
 
-        // Move horizontally toward player
+        // Movement
         if (Mathf.Abs(distanceX) > attackRange)
         {
             float direction = Mathf.Sign(distanceX);
@@ -65,31 +65,42 @@ if (Time.time > lastShootTime + shootCooldown)
             }
         }
 
-        // Random Jump Logic
-        if (Time.time > lastJumpTime + jumpCooldown)
+        // Jump logic
+        if (Time.time >= lastJumpTime + jumpCooldown)
         {
-            if (Random.value < 0.3f)
+            if (Random.value < 0.3f && isGrounded)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 lastJumpTime = Time.time;
             }
         }
 
-        // 🔥 ANIMATION CONTROL
         UpdateAnimation();
+    }
+
+    void ShootFireSpell()
+    {
+        if (fireSpellPrefab == null || firePoint == null || player == null)
+            return;
+
+        GameObject spell = Instantiate(fireSpellPrefab, firePoint.position, Quaternion.identity);
+
+        // ✅ USE BASE CLASS (dynamic binding)
+        Projectile proj = spell.GetComponent<Projectile>();
+
+        if (proj != null)
+        {
+            proj.SetDirection(player.position);
+        }
     }
 
     void UpdateAnimation()
     {
         float velocityX = rb.linearVelocity.x;
 
-        // Speed parameter
-        animator.SetFloat("Speed", velocityX);
-
-        // Jump
+        animator.SetFloat("Speed", Mathf.Abs(velocityX));
         animator.SetBool("isJumping", !isGrounded);
 
-        // Direction-based animation
         if (velocityX > 0.1f)
         {
             animator.Play("Walk_right");
@@ -100,7 +111,6 @@ if (Time.time > lastShootTime + shootCooldown)
         }
     }
 
-    // Ground detection
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
