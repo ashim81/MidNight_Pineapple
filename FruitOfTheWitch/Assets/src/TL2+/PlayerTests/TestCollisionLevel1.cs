@@ -11,6 +11,7 @@ public class TestCollisionLevel1
         // Load the test scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/Level1_WitchHouse");
     }
+    
     [UnityTest]
     public IEnumerator TestCollisionWithWalls()
     {

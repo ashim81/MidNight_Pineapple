@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     [SerializeField]
     private Vector2 respawnPoint;
+    [SerializeField]
+    private bool BCmode = false;
     
     private bool sneaky;
     private int exhaustion = 0;
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleStealth();
         HandleSprinting();
+        HandleHealth();
     }
 
     private void HandleMovement()
@@ -54,6 +57,13 @@ public class PlayerController : MonoBehaviour
         if (exhaustion > 0) exhaustion--;
         if (exhaustion <= 0){
             stateMachine.RunCommand(InternalStateMachine.Command.StopRunning);
+        }
+    }
+    private void HandleHealth()
+    {
+        if (health <= 0)
+        {
+            Respawn();
         }
     }
 
@@ -79,6 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         return sneaky;
     }
+
     public int getExhaustion()
     {
         return exhaustion;
@@ -91,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        if (BCmode == false) health -= damage;
         if (health <= 0) health = 0;
     }
 
