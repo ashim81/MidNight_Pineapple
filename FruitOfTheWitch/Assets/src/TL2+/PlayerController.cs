@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private InternalStateMachine stateMachine;
     [SerializeField]
     private float moveSpeed;
+    [SerializeField]
+    private Vector2 respawnPoint;
     
     private bool sneaky;
     private int exhaustion = 0;
