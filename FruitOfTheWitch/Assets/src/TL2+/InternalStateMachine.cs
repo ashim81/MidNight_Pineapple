@@ -16,7 +16,7 @@ public class InternalStateMachine
     }
     public State currentState;
 
-    public enum Command {ToggleSneak, StartRunning, StopRunning}
+    public enum Command {ToggleSneak, ToggleRunning, StopRunning}
 
     public InternalStateMachine()
     {
@@ -47,10 +47,13 @@ public class InternalStateMachine
                     currentState = State.Normal;
                 }
                 break;
-            case Command.StartRunning:
+            case Command.ToggleRunning:
                 if (currentState == State.Normal)
                 {
                     currentState = State.Running;
+                } else if (currentState == State.Running)
+                {
+                    currentState = State.Normal;
                 }
                 break;
             case Command.StopRunning:

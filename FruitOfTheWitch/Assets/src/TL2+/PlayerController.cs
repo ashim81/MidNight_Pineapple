@@ -30,9 +30,28 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleMovement();
+        HandleStealth();
+        HandleSprinting();
+    }
+
+    private void HandleMovement()
+    {
         moveSpeed = stateMachine.getMoveSpeed();
-        sneaky = stateMachine.isSneaky();
         rb.linearVelocity = moveSpeed * inputVector;
+    }
+
+    private void HandleStealth()
+    {
+        sneaky = stateMachine.isSneaky();
+    }
+
+    private void HandleSprinting()
+    {   
+        if (exhaustion > 0) exhaustion--;
+        if (exhaustion <= 0){
+            stateMachine.RunCommand(InternalStateMachine.Command.StopRunning);
+        }
     }
 
     // Events
@@ -46,10 +65,20 @@ public class PlayerController : MonoBehaviour
         stateMachine.RunCommand(InternalStateMachine.Command.ToggleSneak);
     }
 
+    public void OnSprint(InputValue value)
+    {
+        stateMachine.RunCommand(InternalStateMachine.Command.ToggleRunning);
+        exhaustion = 300;
+    }
+
     // Wrappers
     public bool isSneaky()
     {
         return sneaky;
     }
-    
+    public int getExhaustion()
+    {
+        return exhaustion;
+    }
+
 }
