@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     
     private bool sneaky;
     private int exhaustion = 0;
+    private int health = 100;
 
     
 
@@ -83,4 +84,22 @@ public class PlayerController : MonoBehaviour
         return exhaustion;
     }
 
+    public int getHealth()
+    {
+        return health;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0) health = 0;
+    }
+
+    public void Respawn()
+    {
+        transform.position = respawnPoint;
+        health = 100;
+        exhaustion = 0;
+        stateMachine.RunCommand(InternalStateMachine.Command.Reset);
+    }
 }

@@ -16,7 +16,7 @@ public class InternalStateMachine
     }
     public State currentState;
 
-    public enum Command {ToggleSneak, ToggleRunning, StopRunning}
+    public enum Command {ToggleSneak, ToggleRunning, StopRunning, Reset}
 
     public InternalStateMachine()
     {
