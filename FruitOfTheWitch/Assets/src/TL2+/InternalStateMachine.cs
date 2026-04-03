@@ -4,17 +4,19 @@ public class InternalStateMachine
 {
     private StateObject[] statesList = 
     {
-        new StateObject(5f, false),
-        new StateObject(2f, true)
+        new StateObject(5f, false), // Normal
+        new StateObject(2f, true), // Sneaking
+        new StateObject(7f, false) // Running
     };
 
     public enum State {
         Normal = 0,
-        Sneaking = 1
+        Sneaking = 1,
+        Running = 2
     }
     public State currentState;
 
-    public enum Command { Sneak, Unsneak }
+    public enum Command {ToggleSneak, StartRunning, StopRunning}
 
     public InternalStateMachine()
     {
@@ -33,19 +35,29 @@ public class InternalStateMachine
 
     public void RunCommand(Command command)
     {
-        switch (currentState)
+        switch (command)
         {
-            case State.Normal:
-                if (command == Command.Sneak)
+            case Command.ToggleSneak:
+                if (currentState == State.Normal)
                 {
                     currentState = State.Sneaking;
                 }
-                break;
-            case State.Sneaking:
-                if (command == Command.Unsneak)
+                else if (currentState == State.Sneaking)
                 {
                     currentState = State.Normal;
                 }
+                break;
+            case Command.StartRunning:
+                if (currentState == State.Normal)
+                {
+                    currentState = State.Running;
+                }
+                break;
+            case Command.StopRunning:
+                if (currentState == State.Running)
+                {
+                    currentState = State.Normal;
+                }  
                 break;
         }
     }

@@ -6,9 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     // state machine
     private InternalStateMachine stateMachine;
-    public float moveSpeed;
-    public bool sneaky;
+    [SerializeField]
+    private float moveSpeed;
+    
+    private bool sneaky;
+    private int exhaustion = 0;
 
+    
 
     // Component
     private Rigidbody2D rb;
@@ -32,20 +36,20 @@ public class PlayerController : MonoBehaviour
     }
 
     // Events
-    public void Move(InputAction.CallbackContext context)
+    public void OnMove(InputValue value)
     {
-        inputVector = context.ReadValue<Vector2>();
+        inputVector = value.Get<Vector2>();
     }
 
-    public void Sneak(InputAction.CallbackContext context)
+    public void OnCrouch(InputValue value)
     {
-        if (context.started)
-        {
-            stateMachine.RunCommand(InternalStateMachine.Command.Sneak);
-        }
-        else if (context.canceled)
-        {
-            stateMachine.RunCommand(InternalStateMachine.Command.Unsneak);
-        }
+        stateMachine.RunCommand(InternalStateMachine.Command.ToggleSneak);
     }
+
+    // Wrappers
+    public bool isSneaky()
+    {
+        return sneaky;
+    }
+    
 }
