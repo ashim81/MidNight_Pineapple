@@ -9,27 +9,28 @@ public class Health : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    // 🔥 damage cooldown
+    private float damageCooldown = 0.5f;
+    private float lastDamageTime = -1f;
+
     void Awake()
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // ✅ ONLY DAMAGE FROM ENEMY
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            TakeDamage(10, collision.transform);
-        }
-    }
-
     public void TakeDamage(int damage, Transform attacker = null)
     {
+        // prevent rapid damage
+        if (Time.time < lastDamageTime + damageCooldown)
+            return;
+
+        lastDamageTime = Time.time;
+
         currentHealth -= damage;
         Debug.Log(gameObject.name + " took " + damage + " damage.");
 
-        // Apply knockback
+        // Knockback
         if (attacker != null && rb != null)
         {
             Vector2 direction = (transform.position - attacker.position).normalized;
