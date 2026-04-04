@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class Enemy_AI_TL6 : MonoBehaviour
 {
@@ -7,19 +6,30 @@ public class Enemy_AI_TL6 : MonoBehaviour
 
     public float speed = 2f;
     public float chaseRange = 5f;
-    public float attackRange = 2.5f;
+
+    // Increased so colliders don't block the attack state
+    public float attackRange = 3f;
+
     public float patrolDistance = 3f;
 
     public int damage = 1;
     public float attackCooldown = 2f;
 
-    private float lastAttackTime;
+    private float lastAttackTime = 0f;
+
     private Vector2 startPos;
     private bool movingRight = true;
+
+    private enum State { Patrol, Chase, Attack }
+    private State currentState;
+
+    private Animator animator;
 
     void Start()
     {
         startPos = transform.position;
+        currentState = State.Patrol;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -28,34 +38,51 @@ public class Enemy_AI_TL6 : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        if (distance <= attackRange)
+        if (distance > chaseRange)
         {
-            Attack();
+            currentState = State.Patrol;
         }
-        else if (distance <= chaseRange)
+        else if (distance > attackRange)
         {
-            Chase();
+            currentState = State.Chase;
         }
         else
         {
-            Patrol();
+            currentState = State.Attack;
+        }
+
+        switch (currentState)
+        {
+            case State.Patrol:
+                Patrol();
+                break;
+
+            case State.Chase:
+                Chase();
+                break;
+
+            case State.Attack:
+                Attack();
+                break;
         }
     }
 
     void Patrol()
     {
-        float left = startPos.x - patrolDistance;
-        float right = startPos.x + patrolDistance;
+        float leftLimit = startPos.x - patrolDistance;
+        float rightLimit = startPos.x + patrolDistance;
 
         if (movingRight)
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
-            if (transform.position.x >= right) movingRight = false;
+            if (transform.position.x >= rightLimit)
+                movingRight = false;
         }
         else
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
-            if (transform.position.x <= left) movingRight = true;
+            if (transform.position.x <= leftLimit)
+                movingRight = true;
         }
     }
 
@@ -74,29 +101,23 @@ public class Enemy_AI_TL6 : MonoBehaviour
     {
         FacePlayer();
 
+        // Debug to confirm Attack state is reached
+        Debug.Log(">>> ATTACK STATE ENTERED <<<");
+
         if (Time.time >= lastAttackTime + attackCooldown)
         {
-            StartCoroutine(Hit());
+            animator.SetTrigger("Attack");
+
+            Debug.Log("Enemy Attacked!");
+
+            PlayerController health = player.GetComponent<PlayerController>();
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+            }
+
             lastAttackTime = Time.time;
         }
-    }
-
-    IEnumerator Hit()
-    {
-        Vector2 dir = (player.position - transform.position).normalized;
-
-        transform.position += (Vector3)(dir * 0.4f);
-        yield return new WaitForSeconds(0.1f);
-
-        PlayerController pc = player.GetComponent<PlayerController>();
-        if (pc != null) pc.TakeDamage(damage);
-
-        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-        if (rb != null) rb.linearVelocity = dir * 5f;
-
-        yield return new WaitForSeconds(0.1f);
-
-        transform.position -= (Vector3)(dir * 0.4f);
     }
 
     void FacePlayer()
@@ -105,5 +126,13 @@ public class Enemy_AI_TL6 : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         else
             transform.localScale = new Vector3(-1, 1, 1);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Sound"))
+        {
+            currentState = State.Chase;
+        }
     }
 }
