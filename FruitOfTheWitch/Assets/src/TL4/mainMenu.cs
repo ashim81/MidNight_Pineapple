@@ -1,16 +1,34 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class mainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+    public GameObject mainMenuCanvas;
+    public void Update(){
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if(sceneName != "Main Menu")
+        {
+            mainMenuCanvas.SetActive(false);
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void PlayGame()
     {
-        
+        SceneManager.LoadScene("Level1_WitchHouse");
     }
+    public void PlayBCMode()
+    {
+        SceneManager.LoadScene("Level2_Jungle");
+        Debug.Log("BC MODE");
+    }
+        public void LoadSave()
+    {
+        Debug.Log("Combat_test");
+        SceneManager.LoadScene("Combat_test");
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+        
 }

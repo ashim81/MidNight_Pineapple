@@ -3,12 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public void PlayGame()
-    {
-        SceneManager.LoadScene("Combat_test");
-    }
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
+
+
 }

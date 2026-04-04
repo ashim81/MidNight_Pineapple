@@ -12,8 +12,8 @@ public class VisualDetector : MonoBehaviour
 
     [Range(0, 360)] public float angle = 90f;
     public float coneDistance = 5f;
-
-    private int trianglesInCone = 30;
+    public int trianglesInCone = 100;
+    
     private Mesh cone;
     private Mesh fillMesh;
 
@@ -27,20 +27,17 @@ public class VisualDetector : MonoBehaviour
     public float fillSpeed = 5f;
     private float fillDistance = 0f;
 
-[Header("Enemy State")]
-
-    public EnemyState state = EnemyState.Idle;
-    public enum EnemyState 
-    { 
-        Idle, 
-        Suspicious, 
-        Alerted 
-    }
+// STATE PATTERN: States
+    private IEnemyState currentState;
+    private static IdleState idleState = new IdleState();
+    private static SuspiciousState suspiciousState = new SuspiciousState();
+    private static AlertedState alertedState = new AlertedState();
 
 // Find Player
     void Awake()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        currentState = idleState;
 
         if (playerObject != null)
         {
@@ -63,10 +60,116 @@ public class VisualDetector : MonoBehaviour
 
     void Update()
     {
-        UpdateEnemyState();
+        currentState.UpdateState(this);
         GenerateConeMesh();
         UpdateFillMesh();
     }
+
+// TEST HARNESS: Non-Playmode Refresh
+public void RefreshForTest()
+{
+    GenerateConeMesh();
+}
+
+// TEST HARNESS: 
+public int GetVertexCount()
+{
+    MeshFilter meshFilter = GetComponent<MeshFilter>();
+
+    // Safety Check
+    if (meshFilter != null && meshFilter.sharedMesh != null)
+    {
+        return meshFilter.sharedMesh.vertexCount;
+    }
+    
+    else
+    {
+        return 0;
+    }
+}
+
+// STATE PATTERN: Create Interface
+public interface IEnemyState
+{
+    void UpdateState(VisualDetector enemy);
+}
+
+// STATE PATTERN: Idle
+public class IdleState : IEnemyState
+{
+    public void UpdateState(VisualDetector enemy)
+    {
+        if (enemy.CanSeePlayer())
+        {
+            enemy.SetState(VisualDetector.suspiciousState);
+        }
+
+        else
+        {
+            enemy.FillTowards(0f);
+        }
+    }
+}
+
+// STATE PATTERN: Suspicious
+public class SuspiciousState : IEnemyState
+{
+    public void UpdateState(VisualDetector enemy)
+    {
+        if (!enemy.CanSeePlayer())
+        {
+            enemy.SetState(VisualDetector.idleState);
+            return;
+        }
+
+        float playerDistance = enemy.DistanceToPlayer();
+
+        enemy.FillTowards(playerDistance);
+
+        if (enemy.FillReached(playerDistance))
+        {
+            enemy.SetState(VisualDetector.alertedState);
+        }
+    }
+}
+
+// STATE PATTERN: Alert
+public class AlertedState : IEnemyState
+{
+    public void UpdateState(VisualDetector enemy)
+    {
+        if (!enemy.CanSeePlayer())
+        {
+            enemy.SetState(VisualDetector.idleState);
+            return;
+        }
+        
+        enemy.FillTowards(enemy.DistanceToPlayer());
+    }
+}
+
+// STATE PATTERN: Set State
+public void SetState(IEnemyState newState)
+{
+    currentState = newState;
+}
+
+// STATE PATTERN: Helper Functions
+public float DistanceToPlayer()
+{
+    if (!player) return 0f;
+    return Vector2.Distance(transform.position, player.position);
+}
+
+public void FillTowards(float distance)
+{
+    fillDistance = Mathf.MoveTowards(fillDistance, distance, fillSpeed * Time.deltaTime);
+}
+
+public bool FillReached(float distance)
+{
+    return fillDistance >= distance;
+}
 
 // Create a Cone Based on Inspector Inputs
     void GenerateConeMesh()
@@ -148,11 +251,11 @@ public class VisualDetector : MonoBehaviour
 
     // Add Mesh Filter & Renderer
         MeshFilter alertMeshFilter = fillHolder.AddComponent<MeshFilter>();
-        MeshRenderer altertMeshRenderer = fillHolder.AddComponent<MeshRenderer>();
+        MeshRenderer alertMeshRenderer = fillHolder.AddComponent<MeshRenderer>();
         
     // Create & Assign Color
-        altertMeshRenderer.material = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
-        altertMeshRenderer.material.color = new Color(1f, 0f, 0f, .3f);
+        alertMeshRenderer.material = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+        alertMeshRenderer.material.color = new Color(1f, 0f, 0f, .3f);
     
     // Assign Mesh
         alertMeshFilter.mesh = fillMesh;
@@ -220,37 +323,11 @@ public class VisualDetector : MonoBehaviour
         fillMesh.vertices = vertices;
     }
 
-// Update Ememy State Based on Detection Wave
-    void UpdateEnemyState()
-    {
-        if (!player) return;
-
-        bool canSee = CanSeePlayer();
-        float playerDistance;
-
-        if (canSee)
-        {
-            playerDistance = Vector2.Distance(transform.position, player.position);
-            state = EnemyState.Suspicious;
-        }
-
-        else
-        {
-            playerDistance = 0f;
-            state = EnemyState.Idle;
-        }
-
-        fillDistance = Mathf.MoveTowards( fillDistance, playerDistance, fillSpeed * Time.deltaTime );
-
-        if (fillDistance >= playerDistance && canSee)
-        {
-            state = EnemyState.Alerted;
-        }
-    }
-
 // Checks to See if Player is in Cone & Not Blocked Visually
     bool CanSeePlayer()
     {
+        if (!player) return false;
+
         Vector2 directionToPlayer = (player.position - transform.position).normalized;
         float distanceToPlayer = Vector2.Distance(player.position, transform.position);
         

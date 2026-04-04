@@ -16,18 +16,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // LEFT / RIGHT movement only
         float moveInput = 0;
 
-        if (Keyboard.current.aKey.isPressed)
+        // LEFT movement (A or Left Arrow)
+        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
             moveInput = -1;
 
-        if (Keyboard.current.dKey.isPressed)
+        // RIGHT movement (D or Right Arrow)
+        if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
             moveInput = 1;
 
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-        // Jump with W or Up Arrow
+        // Jump (W or Up Arrow)
         if ((Keyboard.current.wKey.wasPressedThisFrame ||
              Keyboard.current.upArrowKey.wasPressedThisFrame) && isGrounded)
         {
