@@ -15,6 +15,15 @@ public class Health : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    // ✅ ONLY DAMAGE FROM ENEMY
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(10, collision.transform);
+        }
+    }
+
     public void TakeDamage(int damage, Transform attacker = null)
     {
         currentHealth -= damage;
@@ -33,21 +42,20 @@ public class Health : MonoBehaviour
         }
     }
 
-  void Die()
-{
-    Debug.Log(gameObject.name + " died.");
-
-    GameManager gm = FindFirstObjectByType<GameManager>();
-
-    if (gm != null)
+    void Die()
     {
-        gm.ShowWin();
+        Debug.Log(gameObject.name + " died.");
+
+        GameManager gm = FindFirstObjectByType<GameManager>();
+
+        if (gm != null)
+        {
+            gm.ShowWin();
+        }
+
+        Destroy(gameObject);
     }
 
-    Destroy(gameObject);
-}
-
-    // ✅ This is needed for the health bar
     public int GetCurrentHealth()
     {
         return currentHealth;
