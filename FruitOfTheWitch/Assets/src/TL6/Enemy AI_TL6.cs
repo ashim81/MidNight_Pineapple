@@ -1,138 +1,190 @@
 using UnityEngine;
 
-public class Enemy_AI_TL6 : MonoBehaviour
+public class EnemyAI_TL6 : MonoBehaviour
 {
     public Transform player;
 
     public float speed = 2f;
     public float chaseRange = 5f;
+    public float attackRange = 1.8f;
+    public float soundRange = 6f;
 
-    // Increased so colliders don't block the attack state
-    public float attackRange = 3f;
+    public float returnRange = 8f; // 🔥 NEW (IMPORTANT)
 
     public float patrolDistance = 3f;
-
-    public int damage = 1;
-    public float attackCooldown = 2f;
-
-    private float lastAttackTime = 0f;
 
     private Vector2 startPos;
     private bool movingRight = true;
 
-    private enum State { Patrol, Chase, Attack }
-    private State currentState;
+    public float attackCooldown = 2f;
+    private float lastAttackTime = 0f;
 
-    private Animator animator;
+    private SpriteRenderer sr;
+    private Animator anim;
+
+    private enum State { Patrol, Alerted, Chase, Attack, Return }
+    private State currentState;
 
     void Start()
     {
         startPos = transform.position;
         currentState = State.Patrol;
-        animator = GetComponent<Animator>();
+
+        sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (player == null) return;
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        float distanceFromStart = Vector2.Distance(transform.position, startPos);
 
-        if (distance > chaseRange)
+        // -------- STATE SWITCH --------
+        if (distanceFromStart > returnRange)
         {
-            currentState = State.Patrol;
+            currentState = State.Return;
         }
-        else if (distance > attackRange)
-        {
-            currentState = State.Chase;
-        }
-        else
+        else if (distanceToPlayer <= attackRange)
         {
             currentState = State.Attack;
         }
+        else if (distanceToPlayer <= chaseRange)
+        {
+            currentState = State.Chase;
+        }
+        else if (distanceToPlayer <= soundRange)
+        {
+            currentState = State.Alerted;
+        }
+        else
+        {
+            currentState = State.Patrol;
+        }
 
+        // -------- STATE ACTION --------
         switch (currentState)
         {
             case State.Patrol:
                 Patrol();
+                SetAnimation(false, false);
+                break;
+
+            case State.Alerted:
+                MoveToPlayer(distanceToPlayer);
+                SetAnimation(true, false);
                 break;
 
             case State.Chase:
-                Chase();
+                MoveToPlayer(distanceToPlayer);
+                SetAnimation(true, false);
                 break;
 
             case State.Attack:
-                Attack();
+                AttackPlayer();
+                SetAnimation(false, true);
+                break;
+
+            case State.Return:
+                ReturnToStart();
+                SetAnimation(true, false);
                 break;
         }
     }
 
+    // -------- PATROL --------
     void Patrol()
     {
-        float leftLimit = startPos.x - patrolDistance;
-        float rightLimit = startPos.x + patrolDistance;
+        float move = movingRight ? 1 : -1;
 
-        if (movingRight)
+        transform.position += new Vector3(move * speed * Time.deltaTime, 0, 0);
+
+        if (Vector2.Distance(transform.position, startPos) > patrolDistance)
         {
-            transform.position += Vector3.right * speed * Time.deltaTime;
-            if (transform.position.x >= rightLimit)
-                movingRight = false;
+            movingRight = !movingRight;
         }
-        else
+
+        if (sr != null)
         {
-            transform.position += Vector3.left * speed * Time.deltaTime;
-            if (transform.position.x <= leftLimit)
-                movingRight = true;
+            sr.flipX = move < 0;
         }
     }
 
-    void Chase()
+    // -------- MOVE TO PLAYER --------
+    void MoveToPlayer(float distance)
     {
-        FacePlayer();
+        if (distance <= attackRange)
+            return;
 
-        transform.position = Vector2.MoveTowards(
-            transform.position,
-            player.position,
-            speed * Time.deltaTime
-        );
+        Vector2 direction = (player.position - transform.position).normalized;
+
+        transform.position += (Vector3)(direction * speed * Time.deltaTime);
+
+        if (sr != null)
+        {
+            if (direction.x > 0.1f)
+                sr.flipX = false;
+            else if (direction.x < -0.1f)
+                sr.flipX = true;
+        }
     }
 
-    void Attack()
+    // -------- RETURN TO START --------
+    void ReturnToStart()
     {
-        FacePlayer();
+        Vector2 direction = (startPos - (Vector2)transform.position).normalized;
 
-        // Debug to confirm Attack state is reached
-        Debug.Log(">>> ATTACK STATE ENTERED <<<");
+        transform.position += (Vector3)(direction * speed * Time.deltaTime);
 
-        if (Time.time >= lastAttackTime + attackCooldown)
+        if (sr != null)
         {
-            animator.SetTrigger("Attack");
+            if (direction.x > 0.1f)
+                sr.flipX = false;
+            else if (direction.x < -0.1f)
+                sr.flipX = true;
+        }
 
-            Debug.Log("Enemy Attacked!");
+        // reached home
+        if (Vector2.Distance(transform.position, startPos) < 0.1f)
+        {
+            currentState = State.Patrol;
+        }
+    }
 
-            PlayerController health = player.GetComponent<PlayerController>();
-            if (health != null)
+    // -------- ATTACK --------
+    void AttackPlayer()
+    {
+        Vector2 direction = (player.position - transform.position).normalized;
+
+        if (sr != null)
+        {
+            if (direction.x > 0.1f)
+                sr.flipX = false;
+            else if (direction.x < -0.1f)
+                sr.flipX = true;
+        }
+
+        if (Time.time - lastAttackTime > attackCooldown)
+        {
+            PlayerController pc = player.GetComponent<PlayerController>();
+
+            if (pc != null)
             {
-                health.TakeDamage(damage);
+                pc.TakeDamage(10);
+                Debug.Log("Enemy attacked player!");
             }
 
             lastAttackTime = Time.time;
         }
     }
 
-    void FacePlayer()
+    // -------- ANIMATION --------
+    void SetAnimation(bool isMoving, bool isAttacking)
     {
-        if (player.position.x > transform.position.x)
-            transform.localScale = new Vector3(1, 1, 1);
-        else
-            transform.localScale = new Vector3(-1, 1, 1);
-    }
+        if (anim == null) return;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Sound"))
-        {
-            currentState = State.Chase;
-        }
+        anim.SetBool("isMoving", isMoving);
+        anim.SetBool("isAttacking", isAttacking);
     }
 }
