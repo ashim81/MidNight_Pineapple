@@ -46,10 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioEngine
   masterVolume: 0.7
+  sfxVolume: 1
+  musicVolume: 1
   footstepClip: {fileID: 0}
   glassClip: {fileID: 8300000, guid: 168829bc2fcb766428bd63a5a3b8c5b7, type: 3}
   floorTrapClip: {fileID: 8300000, guid: df2fb3855e45be146a700730634650c6, type: 3}
   alarmClip: {fileID: 8300000, guid: efe1cdcebf6804643a110bf5ee1e37b0, type: 3}
+  coinClip: {fileID: 8300000, guid: 178bf0ad75a94a2419f9a910b1577430, type: 3}
+  startGameClip: {fileID: 0}
   sfxSource: {fileID: 9222375880558069323}
   musicSource: {fileID: 0}
 --- !u!82 &9222375880558069323

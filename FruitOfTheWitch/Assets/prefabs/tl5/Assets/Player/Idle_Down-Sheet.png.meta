@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: a955c79e950b6bb47a9e77513ef74444
+guid: 5af7b597e0e9bcd49b0cf44922a236b6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1830512961422493859
-    second: Floors_Tiles_0
+      213: -8107172888652668758
+    second: Idle_Down-Sheet_0
   - first:
-      213: -5171053211276571856
-    second: Floors_Tiles_1
+      213: 8498437240178338058
+    second: Idle_Down-Sheet_1
   - first:
-      213: -1633361425249767131
-    second: Floors_Tiles_2
+      213: 7787126087126609897
+    second: Idle_Down-Sheet_2
   - first:
-      213: -1026657482505922515
-    second: Floors_Tiles_3
-  - first:
-      213: 5624860143380066107
-    second: Floors_Tiles_4
-  - first:
-      213: 3023511036307761811
-    second: Floors_Tiles_5
+      213: 5110488441873064438
+    second: Idle_Down-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Floors_Tiles_0
+      name: Idle_Down-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 223
-        width: 321
-        height: 193
+        x: 23
+        y: 15
+        width: 18
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3a8065607d9476910800000000000000
-      internalID: 1830512961422493859
+      spriteID: aa02e2f16398d7f80800000000000000
+      internalID: -8107172888652668758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floors_Tiles_1
+      name: Idle_Down-Sheet_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 143
-        width: 81
-        height: 80
+        x: 87
+        y: 15
+        width: 18
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03b8733708abc38b0800000000000000
-      internalID: -5171053211276571856
+      spriteID: a09e7cea4a380f570800000000000000
+      internalID: 8498437240178338058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floors_Tiles_2
+      name: Idle_Down-Sheet_2
       rect:
         serializedVersion: 2
-        x: 80
-        y: 143
-        width: 81
-        height: 80
+        x: 151
+        y: 15
+        width: 18
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 521792a00722559e0800000000000000
-      internalID: -1633361425249767131
+      spriteID: 9efeb541bed611c60800000000000000
+      internalID: 7787126087126609897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floors_Tiles_3
+      name: Idle_Down-Sheet_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 161
-        height: 65
+        x: 215
+        y: 15
+        width: 18
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,52 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d28dc39857490c1f0800000000000000
-      internalID: -1026657482505922515
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Floors_Tiles_4
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 64
-        width: 79
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b3feb65af748f0e40800000000000000
-      internalID: 5624860143380066107
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Floors_Tiles_5
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 64
-        width: 79
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 39ae89da44ba5f920800000000000000
-      internalID: 3023511036307761811
+      spriteID: 6f1659e492a1ce640800000000000000
+      internalID: 5110488441873064438
       vertices: []
       indices: 
       edges: []
@@ -260,12 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Floors_Tiles_0: 1830512961422493859
-      Floors_Tiles_1: -5171053211276571856
-      Floors_Tiles_2: -1633361425249767131
-      Floors_Tiles_3: -1026657482505922515
-      Floors_Tiles_4: 5624860143380066107
-      Floors_Tiles_5: 3023511036307761811
+      Idle_Down-Sheet_0: -8107172888652668758
+      Idle_Down-Sheet_1: 8498437240178338058
+      Idle_Down-Sheet_2: 7787126087126609897
+      Idle_Down-Sheet_3: 5110488441873064438
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

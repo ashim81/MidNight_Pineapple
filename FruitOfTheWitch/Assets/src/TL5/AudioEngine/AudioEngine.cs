@@ -16,7 +16,7 @@ public class AudioEngine : MonoBehaviour
         public AudioClip glassClip;
         public AudioClip floorTrapClip;
         public AudioClip alarmClip;
-
+        public AudioClip coinClip;
         public AudioClip startGameClip;
 
 
@@ -96,6 +96,10 @@ public class AudioEngine : MonoBehaviour
 
             case "Alarm":
                 clip = alarmClip;
+                break;
+                
+            case "Coin":
+                clip = coinClip;
                 break;
 
             default:

@@ -8,6 +8,10 @@ public class SceneInteractable : MonoBehaviour
     [SerializeField] private KeyCode interactKey = KeyCode.E; //Interaction key, default is E
     [SerializeField] private string nextSceneName; //For transitional interactables
     [SerializeField] private bool oneTimeUse = true; //anti-spam
+
+    [Header("Audio")]
+    [SerializeField] private AudioEngine audioEngine;
+    [SerializeField] private string soundName;
     
 
     private InteractionLogic _logic;
@@ -57,6 +61,11 @@ public class SceneInteractable : MonoBehaviour
         if (oneTimeUse && _hasBeenUsed)
         {
             return;
+        }
+
+        if (audioEngine != null && !string.IsNullOrEmpty(soundName))
+        {
+            audioEngine.PlaySFXGame(soundName);
         }
 
         InteractionContext context = new InteractionContext(player);
