@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene("Level1_WitchHouse");
+        SceneManager.LoadScene("Level1_Alternative");
     }
     public void PlayBCMode()
     {

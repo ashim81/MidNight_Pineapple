@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 respawnPoint;
     [SerializeField]
     private bool BCmode = false;
+    private Animator animator; //tl5: aded for animation
     
     private bool sneaky;
     private int exhaustion = 0;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         DontDestroyOnLoad(gameObject);
         stateMachine = new InternalStateMachine();
+        animator = GetComponent<Animator>(); //tl5: added for animation
     }
 
     // Update is called once per frame
@@ -39,6 +41,23 @@ public class PlayerController : MonoBehaviour
         HandleStealth();
         HandleSprinting();
         HandleHealth();
+        
+        //tl5: added for animation
+        animator.SetBool("IsMoving", inputVector.magnitude > 0.1f);
+        animator.SetFloat("MoveX", inputVector.x);
+        animator.SetFloat("MoveY", inputVector.y);
+
+        
+        var sr = GetComponent<SpriteRenderer>();
+
+        if (inputVector.x > 0.1f)
+        {
+            sr.flipX = false;
+        }
+        else if (inputVector.x < -0.1f)
+        {
+            sr.flipX = true;
+        }
     }
 
     private void HandleMovement()
