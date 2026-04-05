@@ -66,10 +66,11 @@ public class AudioEngine : MonoBehaviour
     } */
 
     void PlaySFX(AudioClip clip)
+
     {
         if (!clip || !sfxSource) return;
         sfxSource.PlayOneShot(clip, GetFinalSFXVolume()); //03/26/26: Use GetFinalSFXVolume to apply master and SFX volume together
-    } 
+    }
 
     
     //Function for all stealth SFX, called by Sound Engine when it receives a signal from Noise Maker
@@ -83,7 +84,7 @@ public class AudioEngine : MonoBehaviour
         switch (soundName)
         {
             case "Footstep":
-                clip = footstepClip;
+                bool isFootstep = soundName == "Footstep";
                 break;
 
             case "Glass":
@@ -106,6 +107,21 @@ public class AudioEngine : MonoBehaviour
                 clip = alarmClip; //change this later to a default clip
                 break;
         }
+        
+        /*For footstep variation
+        if (soundName == "Footstep")
+        {
+            float randomPitch = Random.Range(0.95f, 1.05f);
+            float randomVolume = Random.Range(0.9f, 1.1f);
+
+            sfxSource.pitch = randomPitch;
+            sfxSource.PlayOneShot(clip, Mathf.Clamp01(GetFinalSFXVolume() * randomVolume));
+            sfxSource.pitch = 1f;
+        }
+        else
+        {
+            PlaySFX(clip);
+        } */
 
         if (clip != null)
         {
