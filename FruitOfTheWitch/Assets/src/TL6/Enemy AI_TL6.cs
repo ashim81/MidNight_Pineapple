@@ -25,6 +25,9 @@ public class EnemyAI_TL6 : MonoBehaviour
     private enum State { Patrol, Alerted, Chase, Attack, Return }
     private State currentState;
 
+    // TL3: This is For the Vision Detector Rotation
+    private Vector2 moveDirection;
+
     void Start()
     {
         startPos = transform.position;
@@ -91,12 +94,18 @@ public class EnemyAI_TL6 : MonoBehaviour
                 SetAnimation(true, false);
                 break;
         }
+        
+        // TL3: Call My Function
+        RotateVisionCone();
     }
 
     // -------- PATROL --------
     void Patrol()
     {
         float move = movingRight ? 1 : -1;
+
+        // TL3: Update My Variable
+        moveDirection = new Vector2(move, 0);
 
         transform.position += new Vector3(move * speed * Time.deltaTime, 0, 0);
 
@@ -118,7 +127,9 @@ public class EnemyAI_TL6 : MonoBehaviour
             return;
 
         Vector2 direction = (player.position - transform.position).normalized;
-
+        
+        // TL3: Same as above but just being safe
+        moveDirection = (player.position - transform.position).normalized;
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
 
         if (sr != null)
@@ -134,7 +145,9 @@ public class EnemyAI_TL6 : MonoBehaviour
     void ReturnToStart()
     {
         Vector2 direction = (startPos - (Vector2)transform.position).normalized;
-
+        
+        // TL3: Same as above but just being safe
+        moveDirection = ((Vector2)startPos - (Vector2)transform.position).normalized;
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
 
         if (sr != null)
@@ -186,5 +199,16 @@ public class EnemyAI_TL6 : MonoBehaviour
 
         anim.SetBool("isMoving", isMoving);
         anim.SetBool("isAttacking", isAttacking);
+    }
+
+    // TL3: Rotates the child vision cone
+    void RotateVisionCone()
+    {
+        VisualDetector detector = GetComponentInChildren<VisualDetector>();
+        if (detector != null && moveDirection != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg - 90f;
+            detector.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 }
