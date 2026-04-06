@@ -29,11 +29,10 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        DontDestroyOnLoad(gameObject);
         stateMachine = new InternalStateMachine();
         animator = GetComponent<Animator>(); //tl5: added for animation
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {

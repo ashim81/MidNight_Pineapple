@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
         if(Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
+            return;
         }
         else
         {
@@ -35,16 +36,21 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
         pauseMenuCanvas.SetActive(true);
+        Debug.Log("Gameis Puase!");
     }
     public void ResumeGame()
     {
+                Debug.Log("Gameis resumed!");
         Time.timeScale = 1f;
         GameIsPaused = false;
         pauseMenuCanvas.SetActive(false);
+                Debug.Log("Gameis Resumed!");
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene("Level1_WitchHouse");
+                Debug.Log("Gameis restarted!");
+        SceneManager.LoadScene("Level1_Alternative");
+        Debug.Log("Gameis restarted!");
     }
     public void ExitToMainMenu()
     {
