@@ -7,11 +7,11 @@ public class NoiseMaker : MonoBehaviour
 
 [Header("Sound Settings")]
 
-    public float radius = 5f;
-    public float expansionSpeed = 5f;
-    public LayerMask enemyLayer;
-
-    public SoundType soundToEmit = SoundType.Default;
+    [SerializeField] private float radius = 5f;
+    [SerializeField] private float expansionSpeed = 5f;
+    [SerializeField] private LayerMask enemyLayer;
+    
+    [SerializeField] private SoundType soundToEmit = SoundType.Default;
     
     public enum SoundType
     {
@@ -24,11 +24,25 @@ public class NoiseMaker : MonoBehaviour
 
 [Header("Visual")]
 
-    public GameObject soundVisual;
+    [SerializeField] private GameObject soundVisual;
 
-[Header("Sound Engine")]
+    private GameObject audioEngine;
 
-    public GameObject AudioEngine;
+    private void Awake()
+    {
+        // Find AudioEngine in Scene
+        if (audioEngine == null)
+        {
+            audioEngine = GameObject.Find("AudioEngine");
+        }
+
+        // Debug for funzies
+        if (audioEngine == null)
+        {
+            Debug.LogWarning($"No AudioEngine in Scene Hierarchy.");
+        }
+    }
+
 
 // Trigger Sound if Player Detected
 
@@ -46,10 +60,17 @@ public class NoiseMaker : MonoBehaviour
     {
         float currentRadius = 0f;
         GameObject visual = Instantiate(soundVisual, transform.position, Quaternion.identity);
+
+    // <Make Sure it is on top
+        SpriteRenderer visualRenderer = visual.GetComponent<SpriteRenderer>();
+        if (visualRenderer != null)
+        {
+            visualRenderer.sortingLayerName = "Foreground";
+        }
     
     // Send Signal to Audio Engine
 
-        AudioEngine.SendMessage("PlaySFXGame", soundToEmit.ToString(), SendMessageOptions.DontRequireReceiver);
+        audioEngine.SendMessage("PlaySFXGame", soundToEmit.ToString(), SendMessageOptions.DontRequireReceiver);
 
         while (currentRadius < radius)
         {
