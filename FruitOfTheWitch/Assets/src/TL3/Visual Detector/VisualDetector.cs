@@ -12,7 +12,7 @@ public class VisualDetector : MonoBehaviour
 
     [SerializeField, Range(0, 360)] private float angle = 90f;
     [SerializeField] private float coneDistance = 5f;
-    [SerializeField] protected int trianglesInCone = 100;
+    [SerializeField] private int trianglesInCone = 100;
     
     private Mesh cone;
     private Mesh fillMesh;
@@ -70,6 +70,20 @@ public class VisualDetector : MonoBehaviour
 
     }
 
+    public void SetState(IEnemyState newState) 
+    {
+        currentState = newState;
+    }
+
+    public void GoToIdle() => SetState(idleState);
+    public void GoToSuspicious() => SetState(suspiciousState);
+    public void GoToAlerted() => SetState(alertedState);
+
+    public bool CheckIfAlerted()
+    {
+        return currentState is AlertedState;
+    }
+
 // TEST HARNESS: Non-Playmode Refresh
 public void RefreshForTest()
 {
@@ -93,87 +107,25 @@ public int GetVertexCount()
     }
 }
 
-// STATE PATTERN: Create Interface
-public interface IEnemyState
-{
-    void UpdateState(VisualDetector enemy);
-}
-
-// STATE PATTERN: Idle
-public class IdleState : IEnemyState
-{
-    public void UpdateState(VisualDetector enemy)
-    {
-        if (enemy.CanSeePlayer())
-        {
-            enemy.SetState(VisualDetector.suspiciousState);
-        }
-
-        else
-        {
-            enemy.FillTowards(0f);
-        }
-    }
-}
-
-// STATE PATTERN: Suspicious
-public class SuspiciousState : IEnemyState
-{
-    public void UpdateState(VisualDetector enemy)
-    {
-        if (!enemy.CanSeePlayer())
-        {
-            enemy.SetState(VisualDetector.idleState);
-            return;
-        }
-
-        float playerDistance = enemy.DistanceToPlayer();
-
-        enemy.FillTowards(playerDistance);
-
-        if (enemy.FillReached(playerDistance))
-        {
-            enemy.SetState(VisualDetector.alertedState);
-        }
-    }
-}
-
-// STATE PATTERN: Alert
-public class AlertedState : IEnemyState
-{
-    public void UpdateState(VisualDetector enemy)
-    {
-        if (!enemy.CanSeePlayer())
-        {
-            enemy.SetState(VisualDetector.idleState);
-            return;
-        }
-        
-        enemy.FillTowards(enemy.DistanceToPlayer());
-    }
-}
-
-// STATE PATTERN: Set State
-public void SetState(IEnemyState newState)
-{
-    currentState = newState;
-}
-
-// STATE PATTERN: Helper Functions
+// STATE PATTERN: Helper Methods
 public float DistanceToPlayer()
 {
     if (!player) return 0f;
     return Vector2.Distance(transform.position, player.position);
 }
 
-public void FillTowards(float distance)
+public void FillTowards(float targetWorldDistance)
 {
-    fillDistance = Mathf.MoveTowards(fillDistance, distance, fillSpeed * Time.deltaTime);
+    float scaleFactor = transform.lossyScale.x; 
+    float scaledTarget = targetWorldDistance / scaleFactor;
+
+    fillDistance = Mathf.MoveTowards(fillDistance, scaledTarget, (fillSpeed / scaleFactor) * Time.deltaTime);
 }
 
-public bool FillReached(float distance)
+public bool FillReached(float targetWorldDistance)
 {
-    return fillDistance >= distance;
+    float scaleFactor = transform.lossyScale.x;
+    return fillDistance >= (targetWorldDistance / scaleFactor);
 }
 
 // Create a Cone Based on Inspector Inputs
@@ -206,6 +158,9 @@ public bool FillReached(float distance)
         vertices[0] = Vector3.zero;
 
     // Build Array of Vertices Locations
+
+        Vector3 localScale = transform.lossyScale;
+
         for (int i = 0; i <= trianglesInCone; i++)
         {
             float currentAngle = startAngle + anglePerTriangle * i;
@@ -215,16 +170,22 @@ public bool FillReached(float distance)
             Vector3 point = new Vector3(Mathf.Sin(radianConversion), Mathf.Cos(radianConversion), 0);
 
         // Raycast to Check for Walls
-            float vertexDistance;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, point, coneDistance, obstacleLayer);
+            float worldConeDistance = coneDistance * Mathf.Abs(transform.lossyScale.x);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, point, worldConeDistance, obstacleLayer);
+
+            float hitDistance;
 
             if (hit.collider != null) 
-                { vertexDistance = hit.distance; } 
+                { 
+                    hitDistance = hit.distance / Mathf.Abs(transform.lossyScale.x);
+                } 
             
             else 
-                { vertexDistance = coneDistance; }
+                { 
+                    hitDistance = coneDistance;
+                }
 
-            vertices[i + 1] = point * vertexDistance;
+            vertices[i + 1] = point * hitDistance;
         }
 
     // Build Triangles: Unity Mesh Wants int[0, 1, 2, 0, 2, 3, 0, 3, 4, 0, ...] where each 3rd is the center point and = 0
@@ -305,6 +266,8 @@ public bool FillReached(float distance)
         float startAngle = -angle / 2f;
 
     // Build Array of Vertices Locations
+        Vector3 localScale = transform.lossyScale;
+
         for (int i = 0; i <= trianglesInCone; i++)
         {
             float currentAngle = startAngle + anglePerTriangle * i;
@@ -313,16 +276,21 @@ public bool FillReached(float distance)
             Vector3 point = new Vector3(Mathf.Sin(radianConversion), Mathf.Cos(radianConversion), 0);
 
         // Raycast to Check for Walls
-            float wallDistance;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, point, coneDistance, obstacleLayer);
+            float worldConeDistance = coneDistance * Mathf.Abs(transform.lossyScale.x);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, point, worldConeDistance, obstacleLayer);
 
-            if (hit.collider != null) 
-                { wallDistance = hit.distance; } 
-            
-            else 
-                { wallDistance = coneDistance; }
+            float localWallDist;
 
-            float clampDistance = Mathf.Min(fillDistance, wallDistance);
+            if (hit.collider != null)
+            {
+                localWallDist = hit.distance / Mathf.Abs(transform.lossyScale.x);
+            }
+            else
+            {
+                localWallDist = coneDistance;
+            }
+
+            float clampDistance = Mathf.Min(fillDistance, localWallDist);
 
             vertices[i + 1] = point * clampDistance;
         }
@@ -332,15 +300,18 @@ public bool FillReached(float distance)
     }
 
 // Checks to See if Player is in Cone & Not Blocked Visually
-    bool CanSeePlayer()
+    public bool CanSeePlayer()
     {
         if (!player) return false;
+
+    // Scaled Parent Fix :'(
+        float worldConeDistance = coneDistance * Mathf.Abs(transform.lossyScale.x);
 
         Vector2 directionToPlayer = (player.position - transform.position).normalized;
         float distanceToPlayer = Vector2.Distance(player.position, transform.position);
         
     // Player Outside Cone Length
-        if (distanceToPlayer > coneDistance) 
+        if (distanceToPlayer > worldConeDistance) 
         {
             return false;
         }
@@ -354,7 +325,7 @@ public bool FillReached(float distance)
         }
 
     // Player Behind Obstacle
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, coneDistance, obstacleLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, worldConeDistance, obstacleLayer);
         
         if (hit.collider != null && hit.collider.transform != player) 
         {
@@ -364,5 +335,60 @@ public bool FillReached(float distance)
     // Player In View
         return true;
     }
+
+    public Transform GetPlayer()
+    {
+        return player;
+    }
 }
 
+
+public interface IEnemyState
+{
+    void UpdateState(VisualDetector enemy);
+}
+
+public class IdleState : IEnemyState
+{
+    public void UpdateState(VisualDetector enemy)
+    {
+        if (enemy.CanSeePlayer()) enemy.GoToSuspicious();
+        else enemy.FillTowards(0f);
+    }
+}
+
+public class SuspiciousState : IEnemyState
+{
+    public void UpdateState(VisualDetector enemy)
+    {
+        if (!enemy.CanSeePlayer())
+        {
+            enemy.SendMessageUpwards("OnHearSound", (Vector2)enemy.GetPlayer().position);
+            enemy.GoToIdle();
+            return;
+        }
+
+        float playerDistance = enemy.DistanceToPlayer();
+        enemy.FillTowards(playerDistance);
+
+        if (enemy.FillReached(playerDistance))
+        {
+            enemy.GoToAlerted();
+        }
+    }
+}
+
+public class AlertedState : IEnemyState
+{
+    public void UpdateState(VisualDetector enemy)
+    {
+        if (!enemy.CanSeePlayer())
+        {
+            enemy.SendMessageUpwards("OnHearSound", (Vector2)enemy.GetPlayer().position);
+            enemy.GoToIdle();
+            return;
+        }
+        
+        enemy.FillTowards(enemy.DistanceToPlayer());
+    }
+}
