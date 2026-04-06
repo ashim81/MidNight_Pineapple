@@ -5,7 +5,8 @@ public enum InteractableType
     Trapdoor,
     Ladder,
     Door,
-    Collectible
+    Collectible,
+    NPC
     //Add more interactable types here
 }
 
