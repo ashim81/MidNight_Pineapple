@@ -199,6 +199,20 @@ public class EnemyAI_TL6 : MonoBehaviour
 
         anim.SetBool("isMoving", isMoving);
         anim.SetBool("isAttacking", isAttacking);
+
+        // PiggyBoi?!
+        if (anim != null)
+        {
+            // Tell the animator if we are moving at all
+            anim.SetBool("isMoving", isMoving);
+            
+            // If we are moving, send the direction vector to the Blend Tree
+            if (isMoving)
+            {
+                anim.SetFloat("MoveX", moveDirection.x);
+                anim.SetFloat("MoveY", moveDirection.y);
+            }
+        }
     }
 
     // TL3: Rotates the child vision cone

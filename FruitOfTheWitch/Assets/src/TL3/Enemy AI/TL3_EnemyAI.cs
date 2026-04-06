@@ -180,7 +180,16 @@ public class TL3_EnemyAI : MonoBehaviour
         if (anim != null)
         {
             anim.SetBool("isMoving", isMoving);
-            anim.SetBool("isAttacking", isAttacking);
+
+            if (isMoving)
+            {
+                // We use Mathf.Sign or a simple check to force values to 1 or -1
+                float x = (Mathf.Abs(moveDirection.x) > 0.1f) ? Mathf.Sign(moveDirection.x) : 0;
+                float y = (Mathf.Abs(moveDirection.y) > 0.1f) ? Mathf.Sign(moveDirection.y) : 0;
+
+                anim.SetFloat("MoveX", x);
+                anim.SetFloat("MoveY", y);
+            }
         }
     }
 
