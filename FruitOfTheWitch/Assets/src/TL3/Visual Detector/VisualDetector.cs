@@ -10,21 +10,21 @@ public class VisualDetector : MonoBehaviour
 
 [Header("Cone Settings")]
 
-    [Range(0, 360)] public float angle = 90f;
-    public float coneDistance = 5f;
-    public int trianglesInCone = 100;
+    [SerializeField, Range(0, 360)] private float angle = 90f;
+    [SerializeField] private float coneDistance = 5f;
+    [SerializeField] protected int trianglesInCone = 100;
     
     private Mesh cone;
     private Mesh fillMesh;
 
 [Header("Detection Settings")]
 
-    public LayerMask obstacleLayer;
+    [SerializeField] private LayerMask obstacleLayer;
     private Transform player;
 
 [Header("Alert Settings")]
 
-    public float fillSpeed = 5f;
+    [SerializeField] private float fillSpeed = 5f;
     private float fillDistance = 0f;
 
 // STATE PATTERN: States
@@ -38,6 +38,10 @@ public class VisualDetector : MonoBehaviour
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         currentState = idleState;
+
+    // Make Sure Cone if On Top
+        MeshRenderer mainRenderer = GetComponent<MeshRenderer>();
+        mainRenderer.sortingLayerName = "Foreground";
 
         if (playerObject != null)
         {
@@ -63,6 +67,7 @@ public class VisualDetector : MonoBehaviour
         currentState.UpdateState(this);
         GenerateConeMesh();
         UpdateFillMesh();
+
     }
 
 // TEST HARNESS: Non-Playmode Refresh
@@ -253,6 +258,9 @@ public bool FillReached(float distance)
         MeshFilter alertMeshFilter = fillHolder.AddComponent<MeshFilter>();
         MeshRenderer alertMeshRenderer = fillHolder.AddComponent<MeshRenderer>();
         
+    // Make Sure Cone if On Top
+        alertMeshRenderer.sortingLayerName = "Foreground";
+
     // Create & Assign Color
         alertMeshRenderer.material = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
         alertMeshRenderer.material.color = new Color(1f, 0f, 0f, .3f);
@@ -357,3 +365,4 @@ public bool FillReached(float distance)
         return true;
     }
 }
+

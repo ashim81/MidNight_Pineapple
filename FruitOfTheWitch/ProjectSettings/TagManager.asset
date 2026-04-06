@@ -52,6 +52,9 @@ TagManager:
   - name: Collisions(Walls)
     uniqueID: 821746947
     locked: 0
+  - name: Foreground
+    uniqueID: 3624056997
+    locked: 0
   - name: Player
     uniqueID: 987638599
     locked: 0
