@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     
     private bool sneaky;
     private int exhaustion = 0;
-    private int health = 100;
+    public int health = 100;
 
     
 
@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        DontDestroyOnLoad(gameObject);
         stateMachine = new InternalStateMachine();
         animator = GetComponent<Animator>(); //tl5: added for animation
     }
