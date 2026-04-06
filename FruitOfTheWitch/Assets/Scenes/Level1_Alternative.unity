@@ -3724,14 +3724,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 360
-  field of view: 60
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 11.25
   orthographic size: 6
   m_Depth: 0
   m_CullingMask:
@@ -39841,7 +39837,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6630893972031695230, guid: a786d96534ab8494daa73993085fd081, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6630893972031695230, guid: a786d96534ab8494daa73993085fd081, type: 3}
@@ -45141,7 +45136,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3509050102504901039, guid: 30eb2fb05c3b7a944ba13522f6d3dcc7, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3509050102504901039, guid: 30eb2fb05c3b7a944ba13522f6d3dcc7, type: 3}
@@ -45174,12 +45168,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 3803866551368808473, guid: 30eb2fb05c3b7a944ba13522f6d3dcc7, type: 3}
       propertyPath: m_Size.x
-      value: 1.0607177
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3803866551368808473, guid: 30eb2fb05c3b7a944ba13522f6d3dcc7, type: 3}
       propertyPath: m_Size.y
-      value: 1.944649
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3803866551368808473, guid: 30eb2fb05c3b7a944ba13522f6d3dcc7, type: 3}
@@ -45188,12 +45180,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3803866551368808473, guid: 30eb2fb05c3b7a944ba13522f6d3dcc7, type: 3}
       propertyPath: m_Offset.x
-      value: -0.009174168
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3803866551368808473, guid: 30eb2fb05c3b7a944ba13522f6d3dcc7, type: 3}
       propertyPath: m_Offset.y
-      value: -0.0091741085
       value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3803866551368808473, guid: 30eb2fb05c3b7a944ba13522f6d3dcc7, type: 3}
@@ -45339,7 +45329,6 @@ SceneRoots:
   - {fileID: 1224342550}
   - {fileID: 28606985}
   - {fileID: 1442052595}
-  - {fileID: 1394450029}
   - {fileID: 1613976333}
   - {fileID: 781726148}
   - {fileID: 756793215}
