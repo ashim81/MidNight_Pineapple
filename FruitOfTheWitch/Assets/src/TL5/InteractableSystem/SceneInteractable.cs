@@ -12,6 +12,10 @@ public class SceneInteractable : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioEngine audioEngine;
     [SerializeField] private string soundName;
+
+    [Header("UI")]
+    [SerializeField] private GameObject interactionPromptUI;
+    [SerializeField] private string promptText = "Press E to interact";
     
 
     private InteractionLogic _logic;
@@ -38,23 +42,38 @@ public class SceneInteractable : MonoBehaviour
             return;
         }
 
-        if (requiresButtonPress)
+        if (requiresButtonPress) //4/6: new for prompt UI
         {
-            _playerInRange = other.gameObject;
+        _playerInRange = other.gameObject;
+
+        if (interactionPromptUI != null)
+            {
+            interactionPromptUI.SetActive(true);
+
+            var text = interactionPromptUI.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+            if (text != null)
+                text.text = promptText;
+            }
         }
         else
         {
-            TryInteract(other.gameObject);
+        TryInteract(other.gameObject);
         }
-    }
+}
 
-    private void OnTriggerExit2D(Collider2D other) //Prevent interaction outside range
+
+private void OnTriggerExit2D(Collider2D other)
     {
         if (_playerInRange == other.gameObject)
         {
-            _playerInRange = null;
+        _playerInRange = null;
+
+        if (interactionPromptUI != null) //4/6: new for prompt UI
+            {
+            interactionPromptUI.SetActive(false);
+            }
         }
-    }
+}
 
     private void TryInteract(GameObject player) //Core function.
     {
@@ -92,6 +111,9 @@ public class SceneInteractable : MonoBehaviour
 
             case InteractableType.Collectible:
                 return new CollectibleInteraction();
+            
+            case InteractableType.NPC:
+                return new NPCInteraction();
 
             default:
                 throw new ArgumentOutOfRangeException();

@@ -61,7 +61,7 @@ public class NoiseMaker : MonoBehaviour
         float currentRadius = 0f;
         GameObject visual = Instantiate(soundVisual, transform.position, Quaternion.identity);
 
-    // Make Sure it is on top
+    // <Make Sure it is on top
         SpriteRenderer visualRenderer = visual.GetComponent<SpriteRenderer>();
         if (visualRenderer != null)
         {
@@ -95,7 +95,7 @@ public class NoiseMaker : MonoBehaviour
 
             foreach (Collider2D hit in detectedEnemies)
             {
-                hit.SendMessage("OnHearSound", transform.position, SendMessageOptions.RequireReceiver);
+                hit.SendMessage("OnHearSound", transform.position, SendMessageOptions.DontRequireReceiver);
             }
             
         // Waits a Frame
