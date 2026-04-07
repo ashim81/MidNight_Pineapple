@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// 🔷 BASE CLASS (handles movement)
+// Parent CLASS (handles movement)
 public class Projectile : MonoBehaviour
 {
     public float speed = 8f;
@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
     }
 }
 
-// 🔥 FIREBALL CLASS
+// FIREBALL CLASS
 public class FireSpell : Projectile
 {
     public float lifeTime = 3f;
@@ -29,7 +29,7 @@ public class FireSpell : Projectile
         Destroy(gameObject, lifeTime);
     }
 
-    // 🔥 DAMAGE PLAYER HERE
+    // DAMAGE PLAYER  
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
