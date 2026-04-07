@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool sneaky;
     private int exhaustion = 0;
     public int health = 100;
-
+    public HealthBar healthBar;   
     
 
     // Component
@@ -122,6 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         if (BCmode == false) health -= damage;
         if (health <= 0) health = 0;
+        healthBar.SetHealth(health);
     }
 
     public void Respawn()
