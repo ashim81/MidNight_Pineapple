@@ -6,14 +6,11 @@ using UnityEngine;
 
 public class VisualDetector : MonoBehaviour
 {
-// Inspector Variables:
-
 [Header("Cone Settings")]
 
     [SerializeField, Range(0, 360)] private float angle = 90f;
     [SerializeField] private float coneDistance = 5f;
     [SerializeField] private int trianglesInCone = 100;
-    
     private Mesh cone;
     private Mesh fillMesh;
 
@@ -27,7 +24,7 @@ public class VisualDetector : MonoBehaviour
     [SerializeField] private float fillSpeed = 5f;
     private float fillDistance = 0f;
 
-// STATE PATTERN: States
+// S T A T E  P A T T E R N : States
     private IEnemyState currentState;
     private static IdleState idleState = new IdleState();
     private static SuspiciousState suspiciousState = new SuspiciousState();
@@ -39,23 +36,20 @@ public class VisualDetector : MonoBehaviour
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         currentState = idleState;
 
-    // Make Sure Cone if On Top
+    // To Fix Render Order
         MeshRenderer mainRenderer = GetComponent<MeshRenderer>();
         mainRenderer.sortingLayerName = "Foreground";
 
-        if (playerObject != null)
-        {
-            player = playerObject.transform;
-        }
+        if (playerObject != null) { player = playerObject.transform; }
     }
 
-// Generate Cone Changes from Inspector
+// Generate Cone Changes in Inspector
     void OnValidate()
     {
         GenerateConeMesh();
     }
 
-// Generate Cone On "Play"
+// General Cone Setup
     void OnEnable()
     {
         GenerateConeMesh();
@@ -67,66 +61,7 @@ public class VisualDetector : MonoBehaviour
         currentState.UpdateState(this);
         GenerateConeMesh();
         UpdateFillMesh();
-
     }
-
-    public void SetState(IEnemyState newState) 
-    {
-        currentState = newState;
-    }
-
-    public void GoToIdle() => SetState(idleState);
-    public void GoToSuspicious() => SetState(suspiciousState);
-    public void GoToAlerted() => SetState(alertedState);
-
-    public bool CheckIfAlerted()
-    {
-        return currentState is AlertedState;
-    }
-
-// TEST HARNESS: Non-Playmode Refresh
-public void RefreshForTest()
-{
-    GenerateConeMesh();
-}
-
-// TEST HARNESS: 
-public int GetVertexCount()
-{
-    MeshFilter meshFilter = GetComponent<MeshFilter>();
-
-    // Safety Check
-    if (meshFilter != null && meshFilter.sharedMesh != null)
-    {
-        return meshFilter.sharedMesh.vertexCount;
-    }
-    
-    else
-    {
-        return 0;
-    }
-}
-
-// STATE PATTERN: Helper Methods
-public float DistanceToPlayer()
-{
-    if (!player) return 0f;
-    return Vector2.Distance(transform.position, player.position);
-}
-
-public void FillTowards(float targetWorldDistance)
-{
-    float scaleFactor = transform.lossyScale.x; 
-    float scaledTarget = targetWorldDistance / scaleFactor;
-
-    fillDistance = Mathf.MoveTowards(fillDistance, scaledTarget, (fillSpeed / scaleFactor) * Time.deltaTime);
-}
-
-public bool FillReached(float targetWorldDistance)
-{
-    float scaleFactor = transform.lossyScale.x;
-    return fillDistance >= (targetWorldDistance / scaleFactor);
-}
 
 // Create a Cone Based on Inspector Inputs
     void GenerateConeMesh()
@@ -175,15 +110,9 @@ public bool FillReached(float targetWorldDistance)
 
             float hitDistance;
 
-            if (hit.collider != null) 
-                { 
-                    hitDistance = hit.distance / Mathf.Abs(transform.lossyScale.x);
-                } 
+            if (hit.collider != null) { hitDistance = hit.distance / Mathf.Abs(transform.lossyScale.x); } 
             
-            else 
-                { 
-                    hitDistance = coneDistance;
-                }
+            else { hitDistance = coneDistance; }
 
             vertices[i + 1] = point * hitDistance;
         }
@@ -235,10 +164,7 @@ public bool FillReached(float targetWorldDistance)
         int[] triangles = new int[trianglesInCone * 3];
 
     // Set All Vertices to Zero; DEFAULT STATE
-        for (int i = 0; i < vertices.Length; i++) 
-        {
-            vertices[i] = Vector3.zero;
-        }
+        for (int i = 0; i < vertices.Length; i++) { vertices[i] = Vector3.zero; }
 
     // Build Triangles: Unity Mesh Wants int[0, 1, 2, 0, 2, 3, 0, 3, 4, 0, ...] where each 3rd is the center point and = 0    
         for (int i = 0; i < trianglesInCone; i++)
@@ -281,14 +207,9 @@ public bool FillReached(float targetWorldDistance)
 
             float localWallDist;
 
-            if (hit.collider != null)
-            {
-                localWallDist = hit.distance / Mathf.Abs(transform.lossyScale.x);
-            }
-            else
-            {
-                localWallDist = coneDistance;
-            }
+            if (hit.collider != null) { localWallDist = hit.distance / Mathf.Abs(transform.lossyScale.x); }
+
+            else { localWallDist = coneDistance; }
 
             float clampDistance = Mathf.Min(fillDistance, localWallDist);
 
@@ -311,49 +232,100 @@ public bool FillReached(float targetWorldDistance)
         float distanceToPlayer = Vector2.Distance(player.position, transform.position);
         
     // Player Outside Cone Length
-        if (distanceToPlayer > worldConeDistance) 
-        {
-            return false;
-        }
+        if (distanceToPlayer > worldConeDistance) { return false; }
 
     // Player Outside Cone Width    
         float angleToPlayer = Vector2.Angle(transform.up, directionToPlayer);
 
-        if (angleToPlayer > angle / 2f) 
-        {
-            return false;
-        }
+        if (angleToPlayer > angle / 2f) { return false; }
 
     // Player Behind Obstacle
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, worldConeDistance, obstacleLayer);
         
-        if (hit.collider != null && hit.collider.transform != player) 
-        {
-            return false;
-        }
+        if (hit.collider != null && hit.collider.transform != player) { return false; }
     
     // Player In View
         return true;
     }
 
-    public Transform GetPlayer()
+// S T A T E  P A T T E R N : Setter
+    public void SetState(IEnemyState newState) { currentState = newState; }
+
+// S T A T E  P A T T E R N : Change State Functions
+    public void GoToIdle()          { SetState(idleState); }
+    
+    public void GoToSuspicious()    { SetState(suspiciousState); }
+    
+    public void GoToAlerted()       { SetState(alertedState); }
+
+// S T A T E  P A T T E R N : Helper Functions
+    public Transform GetPlayer()    { return player; }
+
+    public float DistanceToPlayer()
     {
-        return player;
+        if (!player) return 0f;
+        return Vector2.Distance(transform.position, player.position);
     }
+
+    public void FillTowards(float targetWorldDistance)
+    {
+    // lossyScale Fix for Scaled Enemies Breaking Cone
+        float scaleFactor = transform.lossyScale.x; 
+        float scaledTarget = targetWorldDistance / scaleFactor;
+
+        fillDistance = Mathf.MoveTowards(fillDistance, scaledTarget, (fillSpeed / scaleFactor) * Time.deltaTime);
+    }
+
+    public bool FillReached(float targetWorldDistance)
+    {
+        float scaleFactor = transform.lossyScale.x;
+        return fillDistance >= (targetWorldDistance / scaleFactor);
+    }
+
+    //////////////////////// TL6: Enemy AI Interface /////////////////////
+    
+    public bool CheckIfAlerted() { return currentState is AlertedState; }
+    
+    //////////////////////////////////////////////////////////////////////
+
+    // TEST HARNESS :[
+                    // // T E S T  H A R N E S S : Non-Playmode Refresh
+                    // public void RefreshForTest()
+                    // {
+                    //     GenerateConeMesh();
+                    // }
+
+                    // // T E S T  H A R N E S S :  
+                    // public int GetVertexCount()
+                    // {
+                    //     MeshFilter meshFilter = GetComponent<MeshFilter>();
+
+                    //     // Safety Check
+                    //     if (meshFilter != null && meshFilter.sharedMesh != null)
+                    //     {
+                    //         return meshFilter.sharedMesh.vertexCount;
+                    //     }
+                        
+                    //     else
+                    //     {
+                    //         return 0;
+                    //     }
+                    // }
 }
 
+// S T A T E  P A T T E R N : Interface
 
-public interface IEnemyState
-{
-    void UpdateState(VisualDetector enemy);
-}
+public interface IEnemyState { void UpdateState(VisualDetector enemy); }
+
+// S T A T E  P A T T E R N : States
 
 public class IdleState : IEnemyState
 {
     public void UpdateState(VisualDetector enemy)
     {
-        if (enemy.CanSeePlayer()) enemy.GoToSuspicious();
-        else enemy.FillTowards(0f);
+        if (enemy.CanSeePlayer()) { enemy.GoToSuspicious(); }
+        
+        else { enemy.FillTowards(0f); }
     }
 }
 
@@ -371,10 +343,7 @@ public class SuspiciousState : IEnemyState
         float playerDistance = enemy.DistanceToPlayer();
         enemy.FillTowards(playerDistance);
 
-        if (enemy.FillReached(playerDistance))
-        {
-            enemy.GoToAlerted();
-        }
+        if (enemy.FillReached(playerDistance)) { enemy.GoToAlerted(); }
     }
 }
 
@@ -385,7 +354,7 @@ public class AlertedState : IEnemyState
         if (!enemy.CanSeePlayer())
         {
             enemy.SendMessageUpwards("OnHearSound", (Vector2)enemy.GetPlayer().position);
-            enemy.GoToIdle();
+            enemy.GoToSuspicious();
             return;
         }
         

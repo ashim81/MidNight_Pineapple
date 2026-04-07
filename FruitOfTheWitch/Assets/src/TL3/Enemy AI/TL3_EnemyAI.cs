@@ -6,7 +6,6 @@ public class TL3_EnemyAI : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform player;
     [SerializeField] private List<Transform> patrolWaypoints;
-    // currentTarget removed as we are using Vector2 targets for flexibility
 
     [Header("Speeds")]
     [SerializeField] private float speed = 2f;
@@ -30,7 +29,7 @@ public class TL3_EnemyAI : MonoBehaviour
     private SpriteRenderer sr;
     private Animator anim;
     private Vector2 moveDirection;
-    private VisualDetector detector; // Cached for performance
+    private VisualDetector detector;
 
     private enum State { Patrol, Alerted, Chase, Attack }
     private State currentState;
@@ -55,22 +54,20 @@ public class TL3_EnemyAI : MonoBehaviour
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // 1. CHASE/ATTACK (Visual bar is 100% full)
         if (detector != null && detector.CheckIfAlerted())
         {
             currentState = (distanceToPlayer <= attackRange) ? State.Attack : State.Chase;
             hasAlertPosition = false; 
         }
-        // 2. ALERTED (Either currently seeing them OR moving to where they were)
+
         else if (hasAlertPosition || (detector != null && detector.CanSeePlayer()))
         {
             currentState = State.Alerted;
 
-            // If we actively see them, keep updating the "Last Known" to their current spot
             if (detector != null && detector.CanSeePlayer()) 
             {
                 lastHeardPosition = player.position;
-                hasAlertPosition = true; // Keep this true while seeing them!
+                hasAlertPosition = true;
             }
         }
         else
@@ -91,7 +88,7 @@ public class TL3_EnemyAI : MonoBehaviour
             case State.Alerted:
                 MoveTowards(lastHeardPosition, speed);
                 SetAnimation(true, false);
-                // If reached last known pos, go back to patrol
+
                 if (Vector2.Distance(transform.position, lastHeardPosition) < waypointBuffer)
                     hasAlertPosition = false;
                 break;
@@ -123,7 +120,7 @@ public class TL3_EnemyAI : MonoBehaviour
 
     private void UpdateWaypointIndex()
     {
-        // Ping-Pong Logic (A -> B -> C -> B -> A)
+
         if (forwardThroughWaypoints)
         {
             currentWaypointIndex++;
@@ -143,7 +140,6 @@ public class TL3_EnemyAI : MonoBehaviour
             }
         }
         
-        // Safety for single waypoint or empty lists
         currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 0, patrolWaypoints.Count - 1);
     }
 
@@ -158,21 +154,18 @@ public class TL3_EnemyAI : MonoBehaviour
         }
     }
 
-    // Called by the NoiseMaker script via SendMessage
-    public void OnHearSound(Vector3 soundPosition)
+    public void OnHearSound(Vector2 soundPosition)
     {
-        // Only react to sound if we aren't already chasing the player
-        lastHeardPosition = (Vector2)soundPosition;
+        lastHeardPosition = soundPosition;
         hasAlertPosition = true;
     }
 
     private void AttackPlayer()
     {
-        // Face the player during attack
         Vector2 dir = (player.position - transform.position).normalized;
         if (sr != null) sr.flipX = dir.x < 0;
 
-        // Attack Logic... (keep your existing TakeDamage code here)
+        // Attack Logic
     }
 
     private void SetAnimation(bool isMoving, bool isAttacking)
@@ -183,7 +176,6 @@ public class TL3_EnemyAI : MonoBehaviour
 
             if (isMoving)
             {
-                // We use Mathf.Sign or a simple check to force values to 1 or -1
                 float x = (Mathf.Abs(moveDirection.x) > 0.1f) ? Mathf.Sign(moveDirection.x) : 0;
                 float y = (Mathf.Abs(moveDirection.y) > 0.1f) ? Mathf.Sign(moveDirection.y) : 0;
 
@@ -197,12 +189,9 @@ public class TL3_EnemyAI : MonoBehaviour
     {
         if (detector != null && moveDirection != Vector2.zero)
         {
-            // 1. Calculate the target angle based on movement
             float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg - 90f;
             Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
 
-            // 2. Smoothly rotate from the current rotation to the target rotation
-            // Time.deltaTime ensures the speed is consistent regardless of frame rate
             detector.transform.rotation = Quaternion.Lerp(
                 detector.transform.rotation, 
                 targetRotation, 
