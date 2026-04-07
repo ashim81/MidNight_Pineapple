@@ -23,7 +23,6 @@ public class AudioEngine : MonoBehaviour
         public AudioClip clickClip;
         public AudioClip hoverClip;
         public AudioClip levelAmbienceClip; 
-        public AudioClip PigClip;
 
 
     [Header("Audio Sources")]
@@ -119,10 +118,6 @@ public class AudioEngine : MonoBehaviour
 
             case "LevelAmbience":
                 clip= levelAmbienceClip;
-                break;
-
-            case "Pig":
-                clip = PigClip;
                 break;
 
             default:

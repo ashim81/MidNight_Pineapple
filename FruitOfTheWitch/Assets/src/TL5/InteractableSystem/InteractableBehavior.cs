@@ -1,4 +1,3 @@
-
 //Polymorphic interaction logic for different types of interactable objects
 
 
@@ -33,18 +32,5 @@ public class CollectibleInteraction : InteractionLogic
     public override void Interact(InteractionContext context, SceneInteractable interactable)
     {
         interactable.gameObject.SetActive(false);
-    }
-}
-
-/*--------------NPC Interactables--------------*/
-public class NPCInteraction : InteractionLogic
-{
-    public override void Interact(InteractionContext context, SceneInteractable interactable)
-    {
-        var npc = interactable.GetComponent<NPCController>();
-        if (npc != null)
-        {
-            npc.OnInteract(context);
-        }
     }
 }
