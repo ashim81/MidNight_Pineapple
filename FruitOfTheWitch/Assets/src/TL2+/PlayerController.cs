@@ -16,8 +16,9 @@ public class PlayerController : MonoBehaviour
     
     private bool sneaky;
     private int exhaustion = 0;
-    public int health = 100;
-    public HealthBar healthBar;   
+    private int health = 100;
+    public HealthBar healthBar; 
+    public StaminaBar staminabar;  
     
 
     // Component
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour
     private void HandleSprinting()
     {   
         if (exhaustion > 0) exhaustion--;
+        staminabar.SetStamina(exhaustion);
         if (exhaustion <= 0){
             stateMachine.RunCommand(InternalStateMachine.Command.StopRunning);
         }
