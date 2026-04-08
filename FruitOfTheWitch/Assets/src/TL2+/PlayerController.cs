@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 respawnPoint;
     [SerializeField]
     private bool BCmode = false;
-    private Animator animator; //tl5: aded for animation
     
     private bool sneaky;
-    private int exhaustion = 0;
+    private int exhaustion = 300;
+    private bool isExhausted = false;
     private int health = 100;
     public HealthBar healthBar; 
     public StaminaBar staminabar;  
@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     // Component
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private Animator animator; //tl5: aded for animation
 
     // values
     private Vector2 inputVector;
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         stateMachine = new InternalStateMachine();
         animator = GetComponent<Animator>(); //tl5: added for animation
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -41,23 +44,7 @@ public class PlayerController : MonoBehaviour
         HandleStealth();
         HandleSprinting();
         HandleHealth();
-        
-        //tl5: added for animation
-        animator.SetBool("IsMoving", inputVector.magnitude > 0.1f);
-        animator.SetFloat("MoveX", inputVector.x);
-        animator.SetFloat("MoveY", inputVector.y);
-
-        
-        var sr = GetComponent<SpriteRenderer>();
-
-        if (inputVector.x > 0.1f)
-        {
-            sr.flipX = false;
-        }
-        else if (inputVector.x < -0.1f)
-        {
-            sr.flipX = true;
-        }
+        HandleAnimation();
     }
 
     private void HandleMovement()
@@ -71,19 +58,64 @@ public class PlayerController : MonoBehaviour
         sneaky = stateMachine.isSneaky();
     }
 
+    public void OnCrouch(InputValue value)
+    {
+        stateMachine.RunCommand(InternalStateMachine.Command.ToggleSneak);
+    }
+
     private void HandleSprinting()
-    {   
-        if (exhaustion > 0) exhaustion--;
+    {
         staminabar.SetStamina(exhaustion);
-        if (exhaustion <= 0){
+        if (exhaustion <= 300 && isExhausted)
+        {
+            exhaustion += 1;
+        } else if (isExhausted == false && exhaustion >= 0)
+        {
+            exhaustion -= 1;
+        }
+        if (exhaustion > 300) exhaustion = 300;
+        if (exhaustion < 0) {
+            exhaustion = 0;
+            isExhausted = true;
+        };
+        if (isExhausted)
+        {
             stateMachine.RunCommand(InternalStateMachine.Command.StopRunning);
         }
     }
+
+    public void OnSprint(InputValue value)
+    {
+        if (exhaustion >= 300)
+        {
+            isExhausted = false;
+            stateMachine.RunCommand(InternalStateMachine.Command.ToggleRunning);
+        }
+    }
+
     private void HandleHealth()
     {
         if (health <= 0)
         {
             Respawn();
+        }
+    }
+
+    private void HandleAnimation()
+    {
+        //tl5: added for animation
+        animator.SetBool("IsMoving", inputVector.magnitude > 0.1f);
+        animator.SetFloat("MoveX", inputVector.x);
+        animator.SetFloat("MoveY", inputVector.y);
+
+        
+        if (inputVector.x > 0.1f)
+        {
+            sr.flipX = false;
+        }
+        else if (inputVector.x < -0.1f)
+        {
+            sr.flipX = true;
         }
     }
 
@@ -93,16 +125,7 @@ public class PlayerController : MonoBehaviour
         inputVector = value.Get<Vector2>();
     }
 
-    public void OnCrouch(InputValue value)
-    {
-        stateMachine.RunCommand(InternalStateMachine.Command.ToggleSneak);
-    }
-
-    public void OnSprint(InputValue value)
-    {
-        stateMachine.RunCommand(InternalStateMachine.Command.ToggleRunning);
-        exhaustion = 300;
-    }
+    
 
     // Wrappers
     public bool isSneaky()
