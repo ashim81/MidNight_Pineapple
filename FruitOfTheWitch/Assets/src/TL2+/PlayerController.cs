@@ -12,19 +12,20 @@ public class PlayerController : MonoBehaviour
     private Vector2 respawnPoint;
     [SerializeField]
     private bool BCmode = false;
-    
+
     [SerializeField]
     private int maxExhaustion = 1500;
     [SerializeField]
     private int exhaustionGain = 1;
     [SerializeField]
     private int exhaustionLoss = 3;
+    public NoiseMaker noiseMaker;
     
     private bool sneaky;
-    private int exhaustion = 0;
+    private int exhaustion;
 
     
-    private bool isExhausted = false;
+    private bool isExhausted = true;
     private int health = 100;
     public HealthBar healthBar; 
     public StaminaBar staminabar;  
@@ -40,11 +41,13 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        exhaustion = maxExhaustion;
         rb = GetComponent<Rigidbody2D>();
         stateMachine = new InternalStateMachine();
         animator = GetComponent<Animator>(); //tl5: added for animation
         sr = GetComponent<SpriteRenderer>();
         staminabar.SetMaxStamina(maxExhaustion);
+        noiseMaker = GetComponent<NoiseMaker>();
     }
 
     // Update is called once per frame
@@ -103,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprint(InputValue value)
     {
-        if (exhaustion >= 300)
+        if (exhaustion >= maxExhaustion)
         {
             isExhausted = false;
             stateMachine.RunCommand(InternalStateMachine.Command.ToggleRunning);
