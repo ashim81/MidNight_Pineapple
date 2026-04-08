@@ -13,8 +13,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool BCmode = false;
     
+    [SerializeField]
+    private int maxExhaustion = 1500;
+    [SerializeField]
+    private int exhaustionGain = 1;
+    [SerializeField]
+    private int exhaustionLoss = 3;
+    
     private bool sneaky;
-    private int exhaustion = 300;
+    private int exhaustion = 0;
+
+    
     private bool isExhausted = false;
     private int health = 100;
     public HealthBar healthBar; 
@@ -35,6 +44,7 @@ public class PlayerController : MonoBehaviour
         stateMachine = new InternalStateMachine();
         animator = GetComponent<Animator>(); //tl5: added for animation
         sr = GetComponent<SpriteRenderer>();
+        staminabar.SetMaxStamina(maxExhaustion);
     }
 
     // Update is called once per frame
@@ -47,12 +57,18 @@ public class PlayerController : MonoBehaviour
         HandleAnimation();
     }
 
+    // Movement Playerside
     private void HandleMovement()
     {
         moveSpeed = stateMachine.getMoveSpeed();
         rb.linearVelocity = moveSpeed * inputVector;
     }
+    public void OnMove(InputValue value)
+    {
+        inputVector = value.Get<Vector2>();
+    }
 
+    // Stealth Playerside
     private void HandleStealth()
     {
         sneaky = stateMachine.isSneaky();
@@ -63,17 +79,18 @@ public class PlayerController : MonoBehaviour
         stateMachine.RunCommand(InternalStateMachine.Command.ToggleSneak);
     }
 
+    // Sprinting
     private void HandleSprinting()
     {
         staminabar.SetStamina(exhaustion);
-        if (exhaustion <= 300 && isExhausted)
+        if (exhaustion <= maxExhaustion && isExhausted)
         {
-            exhaustion += 1;
+            exhaustion += exhaustionGain;
         } else if (isExhausted == false && exhaustion >= 0)
         {
-            exhaustion -= 1;
+            exhaustion -= exhaustionLoss;
         }
-        if (exhaustion > 300) exhaustion = 300;
+        if (exhaustion > maxExhaustion) exhaustion = maxExhaustion;
         if (exhaustion < 0) {
             exhaustion = 0;
             isExhausted = true;
@@ -92,6 +109,7 @@ public class PlayerController : MonoBehaviour
             stateMachine.RunCommand(InternalStateMachine.Command.ToggleRunning);
         }
     }
+
 
     private void HandleHealth()
     {
@@ -118,14 +136,6 @@ public class PlayerController : MonoBehaviour
             sr.flipX = true;
         }
     }
-
-    // Events
-    public void OnMove(InputValue value)
-    {
-        inputVector = value.Get<Vector2>();
-    }
-
-    
 
     // Wrappers
     public bool isSneaky()

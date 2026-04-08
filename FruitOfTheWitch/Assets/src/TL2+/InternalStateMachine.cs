@@ -6,7 +6,7 @@ public class InternalStateMachine
     {
         new StateObject(5f, false), // Normal
         new StateObject(2f, true), // Sneaking
-        new StateObject(7f, false) // Running
+        new StateObject(10f, false) // Running
     };
 
     public enum State {
