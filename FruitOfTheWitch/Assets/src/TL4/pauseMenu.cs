@@ -21,11 +21,11 @@ public class PauseMenu : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+    
     void Update()
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            Debug.Log("Game is Paused!");
             PauseGame();
         }
     }
@@ -44,13 +44,15 @@ public class PauseMenu : MonoBehaviour
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene("Level1_WitchHouse");
+        pauseMenuCanvas.SetActive(false);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level1_Alternative");
     }
     public void ExitToMainMenu()
     {
         pauseMenuCanvas.SetActive(false);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
     }
-
 
 }

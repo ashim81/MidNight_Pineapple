@@ -9,6 +9,7 @@ public class AudioEngine : MonoBehaviour
         [Range(0f, 1f)] public float masterVolume = 1f;
         [Range(0f, 1f)] public float sfxVolume = 1f; // new
         [Range(0f, 1f)] public float musicVolume = 1f; // new
+        [Range(0f, 1f)] public float ambienceVolume = 1f; // new
 
 
     [Header("Audio Clips")]
@@ -16,17 +17,23 @@ public class AudioEngine : MonoBehaviour
         public AudioClip glassClip;
         public AudioClip floorTrapClip;
         public AudioClip alarmClip;
-
+        public AudioClip coinClip;
         public AudioClip startGameClip;
+        public AudioClip menuMusicClip;
+        public AudioClip clickClip;
+        public AudioClip hoverClip;
+        public AudioClip levelAmbienceClip; 
 
 
     [Header("Audio Sources")]
         public AudioSource sfxSource;
         public AudioSource musicSource;
+        public AudioSource ambienceSource;
 
     void Awake()
     {
         if (!sfxSource) sfxSource = GetComponent<AudioSource>(); // Ensure SFX Source is assigned
+        if (!ambienceSource) ambienceSource = GetComponent<AudioSource>(); // Ensure Ambience Source is assigned
         ApplyVolumeSettings(); //03/26/24: Apply volume settings on awake
     }
 
@@ -37,11 +44,22 @@ public class AudioEngine : MonoBehaviour
         masterVolume = Mathf.Clamp01(masterVolume);
         sfxVolume = Mathf.Clamp01(sfxVolume);
         musicVolume = Mathf.Clamp01(musicVolume);
+        ambienceVolume = Mathf.Clamp01(ambienceVolume);
 
         if (musicSource != null)
         {
             musicSource.volume = masterVolume * musicVolume;
         }
+    }
+
+    public void PlayMenuMusic()
+    {
+    if (musicSource == null || menuMusicClip == null) return;
+
+    musicSource.clip = menuMusicClip;
+    musicSource.volume = GetFinalMusicVolume();
+    musicSource.loop = true;
+    musicSource.Play();
     }
 
     public float GetFinalSFXVolume()
@@ -54,23 +72,11 @@ public class AudioEngine : MonoBehaviour
         return Mathf.Clamp01(masterVolume) * Mathf.Clamp01(musicVolume);
     }
 
-    /*Before 3/26/24: Old methods for playing specific SFX, now replaced by PlaySFXGame(string soundName)
-    public void Alarm(Vector3 position) //Plays alarm sound at its position
-    {
-        PlaySFX(alarmClip);
-    }
-
-    public void PlayStartGame() //Plays start game sound
-    {
-    sfxSource.PlayOneShot(startGameClip, masterVolume);
-    } */
-
     void PlaySFX(AudioClip clip)
     {
         if (!clip || !sfxSource) return;
         sfxSource.PlayOneShot(clip, GetFinalSFXVolume()); //03/26/26: Use GetFinalSFXVolume to apply master and SFX volume together
-    } 
-
+    }
     
     //Function for all stealth SFX, called by Sound Engine when it receives a signal from Noise Maker
     
@@ -96,6 +102,22 @@ public class AudioEngine : MonoBehaviour
 
             case "Alarm":
                 clip = alarmClip;
+                break;
+                
+            case "Coin":
+                clip = coinClip;
+                break;
+            
+            case "Click":
+                clip = clickClip;
+                break;
+            
+            case "Hover":
+                clip = hoverClip;
+                break;
+
+            case "LevelAmbience":
+                clip= levelAmbienceClip;
                 break;
 
             default:
@@ -126,4 +148,14 @@ public class AudioEngine : MonoBehaviour
         musicVolume = Mathf.Clamp01(value);
         ApplyVolumeSettings();
     }
+
+    public void setAmbienceVolume(float value)
+    {
+        if (ambienceSource != null)
+        {
+            ambienceSource.volume = Mathf.Clamp01(value) * masterVolume; // Apply master volume to ambience as well
+        }
+    }
 }
+
+
