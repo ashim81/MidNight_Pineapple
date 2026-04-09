@@ -9,6 +9,10 @@ public class Health : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    // 🔥 damage cooldown
+    private float damageCooldown = 0.5f;
+    private float lastDamageTime = -1f;
+
     void Awake()
     {
         currentHealth = maxHealth;
@@ -17,10 +21,16 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage, Transform attacker = null)
     {
+        // prevent rapid damage
+        if (Time.time < lastDamageTime + damageCooldown)
+            return;
+
+        lastDamageTime = Time.time;
+
         currentHealth -= damage;
         Debug.Log(gameObject.name + " took " + damage + " damage.");
 
-        // Apply knockback
+        // Knockback
         if (attacker != null && rb != null)
         {
             Vector2 direction = (transform.position - attacker.position).normalized;
@@ -33,21 +43,20 @@ public class Health : MonoBehaviour
         }
     }
 
-   void Die()
-{
-    Debug.Log(gameObject.name + " died.");
-
-    GameManager gm = FindObjectOfType<GameManager>();
-
-    if (gm != null)
+    void Die()
     {
-        gm.ShowWin();
+        Debug.Log(gameObject.name + " died.");
+
+        GameManager gm = FindFirstObjectByType<GameManager>();
+
+        if (gm != null)
+        {
+            gm.ShowWin();
+        }
+
+        Destroy(gameObject);
     }
 
-    Destroy(gameObject);
-}
-
-    // ✅ This is needed for the health bar
     public int GetCurrentHealth()
     {
         return currentHealth;

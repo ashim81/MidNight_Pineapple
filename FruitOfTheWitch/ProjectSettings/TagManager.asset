@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -12,7 +13,7 @@ TagManager:
   - obstacleLayer
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -39,14 +40,32 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: test
+    uniqueID: 3489697161
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
+  - name: Ground
     uniqueID: 1042179405
     locked: 0
-  - name: Player and enemy
+  - name: WalkInFront
+    uniqueID: 668892937
+    locked: 0
+  - name: Collisions(Walls)
     uniqueID: 821746947
+    locked: 0
+  - name: Foreground
+    uniqueID: 3624056997
+    locked: 0
+  - name: Player
+    uniqueID: 987638599
+    locked: 0
+  - name: WalkBehind
+    uniqueID: 695666421
+    locked: 0
+  - name: Decor
+    uniqueID: 1480901797
     locked: 0
   m_RenderingLayers:
   - Default
