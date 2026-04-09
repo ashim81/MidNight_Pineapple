@@ -37,6 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2008265970361897134}
+  - {fileID: 4502012146884799633}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &612794980758518241
@@ -307,8 +308,9 @@ MonoBehaviour:
   maxExhaustion: 1500
   exhaustionGain: 1
   exhaustionLoss: 3
-  healthBar: {fileID: 0}
-  staminabar: {fileID: 0}
+  noiseMaker: {fileID: 0}
+  healthBar: {fileID: 794846304223712290}
+  staminabar: {fileID: 3980954286710858461}
 --- !u!114 &787570634268432665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +349,110 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &7239472228768706582
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6635918822505132632}
+    m_Modifications:
+    - target: {fileID: 4106174985748213001, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_Name
+      value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 5109691712001910647, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5109691712001910647, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670667554060887005, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670667554060887005, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.04827
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5108097
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944663806799741726, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+      propertyPath: m_Name
+      value: Stamina Bar
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+--- !u!114 &794846304223712290 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8029945770014221364, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+  m_PrefabInstance: {fileID: 7239472228768706582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d3dfa834d4c7e42865c0bfc3f51985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &3980954286710858461 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6001316392025477835, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+  m_PrefabInstance: {fileID: 7239472228768706582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5b9446af2c59f4c93e7931656db129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StaminaBar
+--- !u!4 &4502012146884799633 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6489011496236850311, guid: aec027449aa67c0469bd3db1a2e76dc7, type: 3}
+  m_PrefabInstance: {fileID: 7239472228768706582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8333120187028456238
 PrefabInstance:
   m_ObjectHideFlags: 0

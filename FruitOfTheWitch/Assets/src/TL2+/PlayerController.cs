@@ -27,8 +27,10 @@ public class PlayerController : MonoBehaviour
     
     private bool isExhausted = true;
     private int health = 100;
-    public HealthBar healthBar; 
-    public StaminaBar staminabar;  
+    [SerializeField]
+    private HealthBar healthBar;
+    [SerializeField] 
+    private StaminaBar staminabar; 
     
 
     // Component
