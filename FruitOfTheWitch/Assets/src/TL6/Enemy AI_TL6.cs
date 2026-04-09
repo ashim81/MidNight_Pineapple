@@ -9,7 +9,7 @@ public class EnemyAI_TL6 : MonoBehaviour
     public float attackRange = 1.8f;
     public float soundRange = 6f;
 
-    public float returnRange = 8f; // 🔥 NEW (IMPORTANT)
+    public float returnRange = 8f; 
 
     public float patrolDistance = 3f;
 
