@@ -3,10 +3,11 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
-{
-    public GameObject pauseMenuCanvas;
+{    
+    [SerializeField]
+    private GameObject pauseMenuCanvas;
     public static PauseMenu Instance{get; private set;}
-    public static bool GameIsPaused = false;
+    public bool GameIsPaused = false;
 
     void Awake()
     {

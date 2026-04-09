@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    public GameObject Player;
+    private GameObject Player;
     private GameObject playerInstance;
     //Gamemanager Singleton
     private void Awake()
@@ -19,8 +19,8 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    /*
-    public void DestroyPlayer()
+    
+    /*public void DestroyPlayer()
     {
         Destroy(GameObject.FindWithTag("Player"));
         Debug.Log("Player should be Destroyed");
