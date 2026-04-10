@@ -6,7 +6,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        var manager = Object.FindFirstObjectByType<DialogueManager>();
+        var manager = FindFirstObjectByType<DialogueManager>();
 
         if (manager != null)
         {
