@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1573,7 +1573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d2ff67f0be8eb4eac88f537188ed73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameAssembly::LevelManager
-  Player: {fileID: 0}
 --- !u!1 &2049712343 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3925138601865762962, guid: cb3b09cdb7a571a479d77847dee9d234, type: 3}
@@ -2361,6 +2360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::pauseMenu
   pauseMenuCanvas: {fileID: 8090861720209556724}
+  GameIsPaused: 0
 --- !u!1 &3266857438411022513
 GameObject:
   m_ObjectHideFlags: 0
