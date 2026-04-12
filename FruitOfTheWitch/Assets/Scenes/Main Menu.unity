@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Load from Save
       objectReference: {fileID: 0}
+    - target: {fileID: 3925138601865762962, guid: cb3b09cdb7a571a479d77847dee9d234, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4118968675505542335, guid: cb3b09cdb7a571a479d77847dee9d234, type: 3}
       propertyPath: m_Name
       value: Load from Save Button
@@ -866,7 +870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8616489459586867104, guid: cb3b09cdb7a571a479d77847dee9d234, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: -56
       objectReference: {fileID: 0}
     - target: {fileID: 8616489459586867104, guid: cb3b09cdb7a571a479d77847dee9d234, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3301,7 +3305,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -3312,7 +3316,7 @@ SceneRoots:
   - {fileID: 820479236}
   - {fileID: 619394802}
   - {fileID: 429183009}
-  - {fileID: 1722085450795718794}
   - {fileID: 1282478672}
   - {fileID: 393896487}
   - {fileID: 8429827083153309855}
+  - {fileID: 1722085450795718794}

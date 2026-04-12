@@ -18,6 +18,10 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D rb;
     private EnemyAttack enemyAttack;
     private Animator animator;
+    
+    private int health = 100;
+    [SerializeField]
+    private WitchHealth witchhealth;
 
     private bool isGrounded;
 
@@ -126,4 +130,5 @@ public class EnemyAI : MonoBehaviour
             isGrounded = false;
         }
     }
+
 }

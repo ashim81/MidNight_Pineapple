@@ -19,12 +19,6 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    /*public void DestroyPlayer()
-    {
-        Destroy(GameObject.FindWithTag("Player"));
-        Debug.Log("Player should be Destroyed");
-    } */
     public void NextLevel()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);

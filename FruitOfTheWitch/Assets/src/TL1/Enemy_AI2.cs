@@ -8,7 +8,7 @@ public class Enemy_AI2 : MonoBehaviour
     private Rigidbody2D rb;
     private int health = 100;
     [SerializeField]
-    private WitchHealth witchHealth;
+    private WitchHealth witchhealth;
 
     void Awake()
     {
@@ -29,6 +29,6 @@ public class Enemy_AI2 : MonoBehaviour
         {
             health = 0;
         }
-        witchHealth.SetHealth(health); 
+        witchhealth.SetHealth(health); 
     }
 }

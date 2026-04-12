@@ -43,12 +43,13 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        staminabar.SetMaxStamina(maxExhaustion);
         exhaustion = maxExhaustion;
         rb = GetComponent<Rigidbody2D>();
         stateMachine = new InternalStateMachine();
         animator = GetComponent<Animator>(); //tl5: added for animation
         sr = GetComponent<SpriteRenderer>();
-        staminabar.SetMaxStamina(maxExhaustion);
+       // staminabar.SetMaxStamina(maxExhaustion);
         noiseMaker = GetComponent<NoiseMaker>();
     }
 
