@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
   nameText: {fileID: 1248245605}
   dialogueText: {fileID: 1293791394}
+  animator: {fileID: 775792846}
 --- !u!4 &224327234
 Transform:
   m_ObjectHideFlags: 0
@@ -434,7 +435,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 328270815}
-  - component: {fileID: 328270819}
   - component: {fileID: 328270818}
   - component: {fileID: 328270817}
   - component: {fileID: 328270816}
@@ -462,8 +462,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -96.577, y: 31.719}
-  m_SizeDelta: {x: 168.5, y: 26.3237}
+  m_AnchoredPosition: {x: -115.38318, y: 35.480225}
+  m_SizeDelta: {x: 206.1123, y: 33.8462}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &328270816
 MonoBehaviour:
@@ -559,19 +559,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328270814}
   m_CullTransparentMesh: 1
---- !u!114 &328270819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328270814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43b00979abff5324d9cfd72f54ec01d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  dialogue: {fileID: 0}
 --- !u!1 &405287111
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +841,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 900321572}
   - {fileID: 775792842}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -895,9 +881,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 775792842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.49456033, y: 0}
-  m_AnchorMax: {x: 0.49456033, y: 0}
-  m_AnchoredPosition: {x: 7.3992, y: 121.32}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.39919996, y: 0.3199997}
   m_SizeDelta: {x: 1442.0396, y: 301.3716}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &752819425
@@ -947,9 +933,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 775792842}
-  - component: {fileID: 775792845}
   - component: {fileID: 775792844}
   - component: {fileID: 775792843}
+  - component: {fileID: 775792846}
   m_Layer: 5
   m_Name: DialogueBox
   m_TagString: Untagged
@@ -976,10 +962,10 @@ RectTransform:
   - {fileID: 1596656366}
   m_Father: {fileID: 514736144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 172.5, y: -376.31}
-  m_SizeDelta: {x: -638.1864, y: -837.36}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 190}
+  m_SizeDelta: {x: 1281.8136, y: 242.64001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &775792843
 MonoBehaviour:
@@ -1019,187 +1005,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775792841}
   m_CullTransparentMesh: 1
---- !u!114 &775792845
-MonoBehaviour:
+--- !u!95 &775792846
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775792841}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae269447c0984c24ead482c83c3c258b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
-  name: Brother
-  sentences:
-  - 'Amelia, What did the Wizard say? '
-  - ...
-  - 'He told me I don''t have much time left. '
-  - ...
-  - 'But he told me about the evil Witch that lives in a house past the forest.  '
-  - 'He said she has a Magical Pineapple. '
-  - A Magical Pineapple?
-  - Yes ...
-  - 'The Wizard claimed it has magical healing powers that can cure any disease. '
-  - '... '
-  - The dangerous forest across the bridge?
-  - Yes ...
-  - Amelia. I will slay the Evil Witch and bring you the magical Pineapple! So you
-    can be healed from your curse.
-  - ...
-  - Be Safe ... Brother.
---- !u!1 &797607792
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 797607793}
-  - component: {fileID: 797607795}
-  - component: {fileID: 797607794}
-  m_Layer: 5
-  m_Name: PortraitBoarder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &797607793
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797607792}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 900321572}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.9369049, y: 3.38031}
-  m_SizeDelta: {x: 357.0442, y: 337.8433}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &797607794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797607792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -529989299966459861, guid: c5b45190471458f4a89595fec9cdfe6c, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &797607795
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797607792}
-  m_CullTransparentMesh: 1
---- !u!1 &900321571
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 900321572}
-  - component: {fileID: 900321574}
-  - component: {fileID: 900321573}
-  m_Layer: 5
-  m_Name: Portrait
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &900321572
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900321571}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 797607793}
-  m_Father: {fileID: 514736144}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -716, y: -370}
-  m_SizeDelta: {x: 262.3691, y: 255.2518}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &900321573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900321571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.6117647, g: 0.5137255, b: 0.4431373, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &900321574
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900321571}
-  m_CullTransparentMesh: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6165e26c674628246b22db31f075b3ef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &934523981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,7 +1077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1248245604
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1381,6 +1208,8 @@ GameObject:
   - component: {fileID: 1293791393}
   - component: {fileID: 1293791395}
   - component: {fileID: 1293791394}
+  - component: {fileID: 1293791396}
+  - component: {fileID: 1293791397}
   m_Layer: 5
   m_Name: Dialogue
   m_TagString: Untagged
@@ -1402,10 +1231,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 775792842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 641.3334, y: -89.60061}
-  m_SizeDelta: {x: 1256.3069, y: 1.8296}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.33337402, y: -210.60062}
+  m_SizeDelta: {x: 1256.3069, y: 1.8295975}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1293791394
 MonoBehaviour:
@@ -1427,8 +1256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is to test the font to make sure it is spaced properly! This is to
-    test the font to make sure it is spaced properly!
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b63463546c364441ba1ef7d567631a7, type: 2}
   m_sharedMaterial: {fileID: 7082780007003186987, guid: 3b63463546c364441ba1ef7d567631a7, type: 2}
@@ -1494,7 +1322,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -1.7429504, y: -128.33647, z: -3.486023, w: 0}
+  m_margin: {x: -1.7429504, y: -190.39676, z: -3.486023, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1508,6 +1336,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293791392}
   m_CullTransparentMesh: 1
+--- !u!95 &1293791396
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293791392}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b85dc58ea9f68b148bdccc334825c9c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1293791397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293791392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b00979abff5324d9cfd72f54ec01d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  dialogue:
+    name: Dialogue
+    sentences:
+    - 'Brother
+
+
+      Amelia, What did the Wizard Say?'
+    - 'Amelia
+
+
+      He said I dont have much longer.'
+    - 'Brother
+
+
+      ... '
+    - 'Amelia
+
+
+      He did tell me about the Evil Witch that lives across the bridge,
+      past the forrest.'
+    - 'Amelia
+
+
+      He said that she has a Magical Pineapple that can cure any
+      disease.'
+    - 'Brother
+
+
+      Amelia, I will slay the witch and bring the pineapple to you!'
+    - 'Amelia
+
+
+      Be Safe'
 --- !u!1 &1425334377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,7 +1461,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1596656366}
-  - component: {fileID: 1596656370}
   - component: {fileID: 1596656369}
   - component: {fileID: 1596656368}
   - component: {fileID: 1596656367}
@@ -1576,7 +1470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1596656366
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1594,7 +1488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -88.5, y: -26}
+  m_AnchoredPosition: {x: 0.5394287, y: 632}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1596656367
@@ -1641,7 +1535,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1596656370}
+      - m_Target: {fileID: 1293791397}
         m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
         m_MethodName: TriggerDialogue
         m_Mode: 1
@@ -1691,19 +1585,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596656365}
   m_CullTransparentMesh: 1
---- !u!114 &1596656370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596656365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43b00979abff5324d9cfd72f54ec01d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  dialogue: {fileID: 775792845}
 --- !u!1 &1607429460
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,7 +1910,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: Continue >>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b63463546c364441ba1ef7d567631a7, type: 2}
   m_sharedMaterial: {fileID: 7082780007003186987, guid: 3b63463546c364441ba1ef7d567631a7, type: 2}

@@ -4,17 +4,12 @@ public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
 
+    void Start()
+    {
+        TriggerDialogue();
+    }
     public void TriggerDialogue()
     {
-        var manager = FindFirstObjectByType<DialogueManager>();
-
-        if (manager != null)
-        {
-            manager.StartDialogue(dialogue);
-        }
-        else
-        {
-            Debug.LogError("No DialogueManager found in the scene!");
-        }
+        FindFirstObjectByType<DialogueManager>().StartDialogue(dialogue);
     }
 }
