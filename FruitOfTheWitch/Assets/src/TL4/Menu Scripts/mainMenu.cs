@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenuCanvas;
+    private LevelManager levelmanager;
     public void Update(){
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
@@ -18,8 +19,8 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayBCMode()
     {
-        SceneManager.LoadScene("Level2_Jungle");
-        Debug.Log("BC MODE");
+        SceneManager.LoadScene("Cutscene_intro");
+        Debug.Log("BC MODE Selected");
     }
         public void LoadSave()
     {

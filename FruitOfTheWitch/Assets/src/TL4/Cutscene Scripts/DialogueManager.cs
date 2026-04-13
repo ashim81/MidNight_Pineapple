@@ -49,7 +49,15 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         animator.SetBool("isOpen", false);
-        LevelManager.instance.LoadScene("Level1_Alternative");
+
+        if (SceneManager.GetActiveScene().name == "Cutscene_intro")
+        {
+            LevelManager.instance.LoadScene("Level1_Alternative");
+        }
+        else
+        {
+            LevelManager.instance.LoadScene("Main Menu");
+        }
     }
 
 }

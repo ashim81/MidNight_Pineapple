@@ -15,12 +15,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenuCanvas.SetActive(false);
         if(Instance != null && Instance != this)
         {
-            Debug.Log("The old menu is destroyed");
             Destroy(this.gameObject);
         }
         else
         {
-            Debug.Log("The Menu Persisists");
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }

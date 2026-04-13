@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     private GameObject Player;
     private GameObject playerInstance;
+
     //Gamemanager Singleton
     private void Awake()
     {
