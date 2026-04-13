@@ -7,12 +7,14 @@ public class Enemy_AI2 : MonoBehaviour
 
     private Rigidbody2D rb;
     private int health = 100;
+
     [SerializeField]
     private WitchHealth witchhealth;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        witchhealth.SetMaxHealth(health);
     }
 
     void FixedUpdate()
@@ -22,13 +24,25 @@ public class Enemy_AI2 : MonoBehaviour
         Vector2 direction = (player.position - transform.position).normalized;
         rb.linearVelocity = direction * moveSpeed;
     }
-        private void TakeDamage(int damage)
+
+    // Make this public so other scripts can call it if needed
+    public void TakeDamage(int damage)
     {
         health -= damage;
-        if(health >= 0)
+
+        if (health <= 0)
         {
             health = 0;
         }
-        witchhealth.SetHealth(health); 
+
+        witchhealth.SetHealth(health);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            TakeDamage(10);
+        }
     }
 }

@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
        // staminabar.SetMaxStamina(maxExhaustion);
         noiseMaker = GetComponent<NoiseMaker>();
+        healthBar.SetMaxHealth(health);
     }
 
     // Update is called once per frame
