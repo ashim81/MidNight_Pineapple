@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene("Level1_Alternative");
+        SceneManager.LoadScene("Cutscene_intro");
     }
     public void PlayBCMode()
     {

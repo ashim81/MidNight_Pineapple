@@ -6,7 +6,8 @@ public class PauseMenu : MonoBehaviour
 {    
     [SerializeField]
     private GameObject pauseMenuCanvas;
-    public static PauseMenu Instance{get; private set;}
+    public static PauseMenu Instance;
+    private string sceneName;
     public bool GameIsPaused = false;
 
     void Awake()
@@ -14,10 +15,12 @@ public class PauseMenu : MonoBehaviour
         pauseMenuCanvas.SetActive(false);
         if(Instance != null && Instance != this)
         {
+            Debug.Log("The old menu is destroyed");
             Destroy(this.gameObject);
         }
         else
         {
+            Debug.Log("The Menu Persisists");
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
@@ -25,6 +28,7 @@ public class PauseMenu : MonoBehaviour
     
     void Update()
     {
+        Debug.Log("Game is Active");
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             PauseGame();
@@ -33,12 +37,14 @@ public class PauseMenu : MonoBehaviour
 
     private void PauseGame()
     {
+        Debug.Log("Game is Paused");
         Time.timeScale = 0f;
         GameIsPaused = true;
         pauseMenuCanvas.SetActive(true);
     }
     public void ResumeGame()
     {
+        Debug.Log("Game is Resumed");
         Time.timeScale = 1f;
         GameIsPaused = false;
         pauseMenuCanvas.SetActive(false);
@@ -47,7 +53,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuCanvas.SetActive(false);
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level1_Alternative");
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
     public void ExitToMainMenu()
     {
@@ -55,5 +61,4 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
     }
-
 }

@@ -23,12 +23,12 @@ public class HUD : MonoBehaviour
         if(sneak)
         {
             sneakEffect.SetActive(true);
-            Debug.Log("I am SNeaking");
+            //Debug.Log("I am SNeaking");
         }
         else
         {
             sneakEffect.SetActive(false);
-            Debug.Log("I am not Sneaky");
+            //Debug.Log("I am not Sneaking");
         }
     }
 }
