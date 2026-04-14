@@ -8,14 +8,17 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
+    public Animator animator;
     private LevelManager levelmanager;
     private Queue<string> sentences;
+    private DialogueTrigger dialogueTrigger;
     void Start()
     {
         sentences = new Queue<string>();
     }
     public void StartDialogue(Dialogue dialogue)
     {
+        animator.SetBool("isOpen", true);
         Debug.Log("Starting Conversations with " + dialogue.name);
         nameText.text = dialogue.name;
 
@@ -24,11 +27,12 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+        Debug.Log("this has been called First ");
         DisplayNextSentence();
     }
-
     public void DisplayNextSentence()
     {
+        Debug.Log("this has been called ");
         if(sentences.Count == 0)
         {
             EndDialogue();
@@ -39,11 +43,21 @@ public class DialogueManager : MonoBehaviour
             string sentence = sentences.Dequeue();
             dialogueText.text = sentence; 
         }
+
     }
 
     private void EndDialogue()
     {
-        LevelManager.instance.LoadScene("Level1_Alternative");
+        animator.SetBool("isOpen", false);
+
+        if (SceneManager.GetActiveScene().name == "Cutscene_intro")
+        {
+            LevelManager.instance.LoadScene("Level1_Alternative");
+        }
+        else
+        {
+            LevelManager.instance.LoadScene("Main Menu");
+        }
     }
 
 }
