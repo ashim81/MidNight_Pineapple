@@ -20,6 +20,11 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void EnterHiddenLevel()
+    {
+        SceneManager.LoadSceneAsync("HiddenLevel");
+    }
     public void NextLevel()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
