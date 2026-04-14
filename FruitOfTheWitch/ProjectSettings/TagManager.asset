@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -37,8 +38,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - TableTop
+  - Background
   m_SortingLayers:
   - name: test
     uniqueID: 3489697161
