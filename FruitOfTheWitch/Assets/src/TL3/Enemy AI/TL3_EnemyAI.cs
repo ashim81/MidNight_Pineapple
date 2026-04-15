@@ -31,6 +31,9 @@ public class TL3_EnemyAI : MonoBehaviour
     private Vector2 moveDirection;
     private VisualDetector detector;
 
+    private float lastAttackTime = 0f;
+    public float attackCooldown = 2f;
+
     private enum State { Patrol, Alerted, Chase, Attack }
     private State currentState;
 
@@ -160,12 +163,30 @@ public class TL3_EnemyAI : MonoBehaviour
         hasAlertPosition = true;
     }
 
-    private void AttackPlayer()
+    void AttackPlayer()
     {
-        Vector2 dir = (player.position - transform.position).normalized;
-        if (sr != null) sr.flipX = dir.x < 0;
+        Vector2 direction = (player.position - transform.position).normalized;
 
-        // Attack Logic
+        if (sr != null)
+        { if (direction.x > 0.1f)
+                sr.flipX = false;
+            else if (direction.x < -0.1f)
+                sr.flipX = true;
+        }
+
+        if (Time.time - lastAttackTime > attackCooldown)
+        {
+            PlayerController pc = player.GetComponent<PlayerController>();
+
+            if (pc != null)
+            {
+                pc.TakeDamage(10);
+                Debug.Log("Enemy attacked player!");
+            }
+
+            lastAttackTime = Time.time;
+        }
+           
     }
 
     private void SetAnimation(bool isMoving, bool isAttacking)
