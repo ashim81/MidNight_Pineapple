@@ -4,9 +4,9 @@ public class InternalStateMachine
 {
     private StateObject[] statesList = 
     {
-        new StateObject(5f, false), // Normal
-        new StateObject(2f, true), // Sneaking
-        new StateObject(10f, false) // Running
+        new StateObject(5f, false, 5f), // Normal
+        new StateObject(2f, true, 3f), // Sneaking
+        new StateObject(10f, false, 7f) // Running
     };
 
     public enum State {
@@ -31,6 +31,11 @@ public class InternalStateMachine
     public bool isSneaky()
     {
         return statesList[(int)currentState].sneaky;
+    }
+
+    public float getSoundRadius()
+    {
+        return statesList[(int)currentState].soundRadius;
     }
 
     public void RunCommand(Command command)

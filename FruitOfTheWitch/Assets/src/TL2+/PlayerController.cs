@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour
     private void HandleStealth()
     {
         sneaky = stateMachine.isSneaky();
+        // tl3 stuff. THey should uncomment this
+        //noiseMaker.setRadius(stateMachine.getSoundRadius());
     }
 
     public void OnCrouch(InputValue value)
