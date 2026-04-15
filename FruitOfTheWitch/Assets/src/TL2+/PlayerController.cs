@@ -176,4 +176,9 @@ public class PlayerController : MonoBehaviour
         exhaustion = 0;
         stateMachine.RunCommand(InternalStateMachine.Command.Reset);
     }
+
+    public void ThrowPunchAnimation()
+    {
+        animator.SetTrigger("Punch");
+    }
 }

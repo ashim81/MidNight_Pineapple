@@ -43,6 +43,7 @@ public class Enemy_AI2 : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             TakeDamage(10);
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(10);
         }
     }
 }
