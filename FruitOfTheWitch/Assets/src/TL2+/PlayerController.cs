@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     private int exhaustionLoss = 3;
     public NoiseMaker noiseMaker;
     
-    private bool sneaky;
     private int exhaustion;
 
     
@@ -78,9 +77,13 @@ public class PlayerController : MonoBehaviour
     // Stealth Playerside
     private void HandleStealth()
     {
-        sneaky = stateMachine.isSneaky();
         // tl3 stuff. THey should uncomment this
         //noiseMaker.setRadius(stateMachine.getSoundRadius());
+    }
+
+    public bool isSneaky()
+    {
+        return stateMachine.isSneaky();
     }
 
     public void OnCrouch(InputValue value)
@@ -147,10 +150,6 @@ public class PlayerController : MonoBehaviour
     }
 
     // Wrappers
-    public bool isSneaky()
-    {
-        return sneaky;
-    }
 
     public int getExhaustion()
     {

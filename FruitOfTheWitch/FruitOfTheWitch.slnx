@@ -1,14 +1,15 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="AudioEngine.csproj" />
+  <Project Path="TL4StressTest.csproj" />
+  <Project Path="PlayerTests.csproj" />
   <Project Path="ViasualDetector.csproj" />
-<<<<<<< Updated upstream
   <Project Path="TL3 PlayMode.csproj" />
-  <Project Path="PlayerTests.csproj" />
+  <Project Path="TL2Plus.csproj" />
+  <Project Path="NoiseMaker.csproj" />
+  <Project Path="TL2PlusEditTests.csproj" />
+  <Project Path="TL5 PlayMode.csproj" />
+  <Project Path="AsimTest.csproj" />
+  <Project Path="TL5EditMode.csproj" />
   <Project Path="TL3 Editmode.csproj" />
-=======
-  <Project Path="PlayerTests.csproj" />
-  <Project Path="Test.csproj" />
-  <Project Path="PlayMode1.csproj" />
->>>>>>> Stashed changes
-  <Project Path="BoundaryTests.csproj" />
 </Solution>

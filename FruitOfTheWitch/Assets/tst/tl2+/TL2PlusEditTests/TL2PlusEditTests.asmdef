@@ -1,0 +1,12 @@
+{
+    "name": "TL2PlusEditTests",
+    "references": [
+        "TL2Plus"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}

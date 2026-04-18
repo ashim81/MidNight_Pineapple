@@ -4,9 +4,9 @@ public class InternalStateMachine
 {
     private StateObject[] statesList = 
     {
-        new StateObject(5f, false, 5f), // Normal
-        new StateObject(2f, true, 3f), // Sneaking
-        new StateObject(10f, false, 7f) // Running
+        new NormalState(),
+        new RunningState(), // Sneaking
+        new StealthState() // Running
     };
 
     public enum State {
@@ -25,17 +25,17 @@ public class InternalStateMachine
 
     public float getMoveSpeed()
     {
-        return statesList[(int)currentState].moveSpeed;
+        return statesList[(int)currentState].getMoveSpeed();
+    }
+    
+    public float getSoundRadius()
+    {
+        return statesList[(int)currentState].getSoundRadius();
     }
 
     public bool isSneaky()
     {
-        return statesList[(int)currentState].sneaky;
-    }
-
-    public float getSoundRadius()
-    {
-        return statesList[(int)currentState].soundRadius;
+        return statesList[(int)currentState].isSneaky();
     }
 
     public void RunCommand(Command command)
@@ -68,5 +68,10 @@ public class InternalStateMachine
                 }  
                 break;
         }
+    }
+
+    public void ForceState(State state)
+    {
+        currentState = state;
     }
 }
