@@ -171,8 +171,7 @@ public class EnemyAI_TL6 : MonoBehaviour
         Vector2 direction = (player.position - transform.position).normalized;
 
         if (sr != null)
-        {
-            if (direction.x > 0.1f)
+        { if (direction.x > 0.1f)
                 sr.flipX = false;
             else if (direction.x < -0.1f)
                 sr.flipX = true;
@@ -190,6 +189,7 @@ public class EnemyAI_TL6 : MonoBehaviour
 
             lastAttackTime = Time.time;
         }
+           
     }
 
     // -------- ANIMATION --------
