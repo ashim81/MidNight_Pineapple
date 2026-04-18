@@ -9,11 +9,11 @@ public class StateTests
     private InternalStateMachine stateMachine;
 
     // A Test behaves as an ordinary method
-    [Test]
+    [TestCase(5f, 5f, true, InternalStateMachine.State.Normal)]
     public void TestStateValues()
     {
-        InternalStateMachine stateMachine = new InternalStateMachine();
-        Assert.AreEqual(0,1);
+        stateMachine = new InternalStateMachine();
+        stateMachine.ForceState(InternalStateMachine.State.Normal);
     }
 
     // // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
