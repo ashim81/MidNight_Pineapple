@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
         stateMachine = new InternalStateMachine();
         animator = GetComponent<Animator>(); //tl5: added for animation
         sr = GetComponent<SpriteRenderer>();
-       // staminabar.SetMaxStamina(maxExhaustion);
         noiseMaker = GetComponent<NoiseMaker>();
         healthBar.SetMaxHealth(health);
     }
@@ -88,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnCrouch(InputValue value)
     {
-        stateMachine.RunCommand(InternalStateMachine.Command.ToggleSneak);
+        stateMachine.toggleSneakCommand.Execute();
     }
 
     // Sprinting
@@ -109,7 +108,7 @@ public class PlayerController : MonoBehaviour
         };
         if (isExhausted)
         {
-            stateMachine.RunCommand(InternalStateMachine.Command.StopRunning);
+            stateMachine.stopRunningCommand.Execute();
         }
     }
 
@@ -118,7 +117,7 @@ public class PlayerController : MonoBehaviour
         if (exhaustion >= maxExhaustion)
         {
             isExhausted = false;
-            stateMachine.RunCommand(InternalStateMachine.Command.ToggleRunning);
+            stateMachine.toggleRunningCommand.Execute();
         }
     }
 
@@ -173,7 +172,8 @@ public class PlayerController : MonoBehaviour
         transform.position = respawnPoint;
         health = 100;
         exhaustion = 0;
-        stateMachine.RunCommand(InternalStateMachine.Command.Reset);
+        stateMachine.resetCommand.Execute();
+        healthBar.SetHealth(health);
     }
 
     public void ThrowPunchAnimation()

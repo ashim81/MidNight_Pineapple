@@ -1,5 +1,8 @@
 {
     "name": "AsimTest",
+    "references": [
+        "SrcCode"
+    ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ]

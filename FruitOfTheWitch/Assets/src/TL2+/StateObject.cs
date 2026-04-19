@@ -1,29 +1,18 @@
 using UnityEngine;
 
-public class StateObject
+public class State
 {
     protected float moveSpeed;
     protected float soundRadius;
     protected bool sneaky;
+    protected string name;
 
-    public StateObject(float moveSpeed, bool sneaky, float soundRadius)
-    {
-        this.moveSpeed = moveSpeed;
-        this.soundRadius = soundRadius;
-        this.sneaky = sneaky;
-    }
-    public StateObject()
+    public State()
     {
         this.moveSpeed = 0;
         this.soundRadius = 5f;
         this.sneaky = false;
-    }
-
-    public void setValues(float moveSpeed, bool sneaky, float soundRadius)
-    {
-        this.moveSpeed = moveSpeed;
-        this.soundRadius = soundRadius;
-        this.sneaky = sneaky;
+        this.name = "generic";
     }
 
     public float getMoveSpeed()
@@ -40,34 +29,42 @@ public class StateObject
     {
         return sneaky;
     }
+
+    public string getName()
+    {
+        return name;
+    }
 }
 
-public class NormalState : StateObject
+public class NormalState : State
 {
     public NormalState()
     {
         moveSpeed = 5f;
         soundRadius = 5f;
         sneaky = false;
+        name = "normal";
     }
 }
 
-public class StealthState : StateObject
+public class SneakingState : State
 {
-    public StealthState()
+    public SneakingState()
     {
         moveSpeed = 2f;
         soundRadius = 3f;
         sneaky = true;
+        name = "sneaking";
     }
 }
 
-public class RunningState : StateObject
+public class RunningState : State
 {
     public RunningState()
     {
         moveSpeed = 10f;
         soundRadius = 7f;
         sneaky = false;
+        name = "running";
     }
 }

@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HiddenLevel.unity
     guid: ab9d144fadf95f44bb021784ef2dcd2a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Combat_test.unity
     guid: 678dfe3a4739547b8a60e99353924630
   - enabled: 0

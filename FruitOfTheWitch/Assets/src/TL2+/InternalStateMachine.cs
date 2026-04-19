@@ -2,25 +2,33 @@ using UnityEngine;
 
 public class InternalStateMachine
 {
-    private StateObject[] statesList = 
+    private State[] statesList = 
     {
         new NormalState(),
         new RunningState(), // Sneaking
-        new StealthState() // Running
+        new SneakingState() // Running
     };
 
-    public enum State {
+    public enum StateEnum {
         Normal = 0,
-        Sneaking = 1,
-        Running = 2
+        Sneaking = 2,
+        Running = 1
     }
-    public State currentState;
+    private StateEnum currentState;
 
-    public enum Command {ToggleSneak, ToggleRunning, StopRunning, Reset}
+    public enum CommandEnum {ToggleSneak, ToggleRunning, StopRunning, Reset}
+    public Command toggleSneakCommand;
+    public Command toggleRunningCommand;
+    public Command stopRunningCommand;
+    public Command resetCommand;
 
     public InternalStateMachine()
     {
-        currentState = State.Normal;
+        currentState = StateEnum.Normal;
+        toggleSneakCommand = new ToggleSneakCommand(this);
+        toggleRunningCommand = new ToggleRunningCommand(this);
+        stopRunningCommand = new StopRunningCommand(this);
+        resetCommand = new ResetCommand(this);
     }
 
     public float getMoveSpeed()
@@ -38,40 +46,55 @@ public class InternalStateMachine
         return statesList[(int)currentState].isSneaky();
     }
 
-    public void RunCommand(Command command)
+    public string getName()
+    {
+        return statesList[(int)currentState].getName();
+    }
+
+    public void RunCommandOld(CommandEnum command)
     {
         switch (command)
         {
-            case Command.ToggleSneak:
-                if (currentState == State.Normal)
+            case CommandEnum.ToggleSneak:
+                if (currentState == StateEnum.Normal)
                 {
-                    currentState = State.Sneaking;
+                    currentState = StateEnum.Sneaking;
                 }
-                else if (currentState == State.Sneaking)
+                else if (currentState == StateEnum.Sneaking)
                 {
-                    currentState = State.Normal;
-                }
-                break;
-            case Command.ToggleRunning:
-                if (currentState == State.Normal)
-                {
-                    currentState = State.Running;
-                } else if (currentState == State.Running)
-                {
-                    currentState = State.Normal;
+                    currentState = StateEnum.Normal;
                 }
                 break;
-            case Command.StopRunning:
-                if (currentState == State.Running)
+            case CommandEnum.ToggleRunning:
+                if (currentState == StateEnum.Normal)
                 {
-                    currentState = State.Normal;
+                    currentState = StateEnum.Running;
+                } else if (currentState == StateEnum.Running)
+                {
+                    currentState = StateEnum.Normal;
+                }
+                break;
+            case CommandEnum.StopRunning:
+                if (currentState == StateEnum.Running)
+                {
+                    currentState = StateEnum.Normal;
                 }  
                 break;
         }
     }
 
-    public void ForceState(State state)
+    public void ForceState(StateEnum state)
     {
         currentState = state;
+    }
+
+    public StateEnum getCurrentStateEnum()
+    {
+        return currentState;
+    }
+
+    public State getCurrentState()
+    {
+        return statesList[(int)currentState];
     }
 }
