@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private int exhaustion;
 
     
-    private bool isExhausted = true;
+    private bool exhausted = false;
     private int health = 100;
     [SerializeField]
     private HealthBar healthBar;
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
     private void HandleStealth()
     {
         // tl3 stuff. THey should uncomment this
-        //noiseMaker.setRadius(stateMachine.getSoundRadius());
+        noiseMaker.setRadius(stateMachine.getSoundRadius());
     }
 
     public bool isSneaky()
@@ -94,19 +95,19 @@ public class PlayerController : MonoBehaviour
     private void HandleSprinting()
     {
         staminabar.SetStamina(exhaustion);
-        if (exhaustion <= maxExhaustion && isExhausted)
+        if (exhaustion <= maxExhaustion && exhausted)
         {
             exhaustion += exhaustionGain;
-        } else if (isExhausted == false && exhaustion >= 0)
+        } else if (exhausted == false && exhaustion >= 0)
         {
             exhaustion -= exhaustionLoss;
         }
         if (exhaustion > maxExhaustion) exhaustion = maxExhaustion;
         if (exhaustion < 0) {
             exhaustion = 0;
-            isExhausted = true;
+            exhausted = true;
         };
-        if (isExhausted)
+        if (exhausted)
         {
             stateMachine.stopRunningCommand.Execute();
         }
@@ -114,9 +115,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprint(InputValue value)
     {
-        if (exhaustion >= maxExhaustion)
+        if (exhaustion >= 0 && !exhausted)
         {
-            isExhausted = false;
             stateMachine.toggleRunningCommand.Execute();
         }
     }
@@ -155,6 +155,11 @@ public class PlayerController : MonoBehaviour
         return exhaustion;
     }
 
+    public bool isExhausted()
+    {
+        return exhausted;
+    }
+
     public int getHealth()
     {
         return health;
@@ -163,7 +168,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (BCmode == false) health -= damage;
-        if (health <= 0) health = 0;
+        health -= damage;
         healthBar.SetHealth(health);
     }
 
@@ -171,7 +176,7 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = respawnPoint;
         health = 100;
-        exhaustion = 0;
+        exhaustion = maxExhaustion/2;
         stateMachine.resetCommand.Execute();
         healthBar.SetHealth(health);
     }
@@ -179,5 +184,17 @@ public class PlayerController : MonoBehaviour
     public void ThrowPunchAnimation()
     {
         animator.SetTrigger("Punch");
+    }
+
+
+    // Testing Methods
+    public InternalStateMachine getStateMachine()
+    {
+        return stateMachine;
+    }
+
+    public void ForceState(InternalStateMachine.StateEnum state)
+    {
+        stateMachine.ForceState(state);
     }
 }

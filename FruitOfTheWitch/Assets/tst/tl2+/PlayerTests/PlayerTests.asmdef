@@ -1,7 +1,9 @@
 {
     "name": "PlayerTests",
     "references": [
-        "SrcCode"
+        "SrcCode",
+        "Unity.InputSystem",
+        "NoiseMaker"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

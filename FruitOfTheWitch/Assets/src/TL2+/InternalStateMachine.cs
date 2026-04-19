@@ -11,8 +11,8 @@ public class InternalStateMachine
 
     public enum StateEnum {
         Normal = 0,
-        Sneaking = 2,
-        Running = 1
+        Running = 1,
+        Sneaking = 2
     }
     private StateEnum currentState;
 
@@ -51,38 +51,6 @@ public class InternalStateMachine
         return statesList[(int)currentState].getName();
     }
 
-    public void RunCommandOld(CommandEnum command)
-    {
-        switch (command)
-        {
-            case CommandEnum.ToggleSneak:
-                if (currentState == StateEnum.Normal)
-                {
-                    currentState = StateEnum.Sneaking;
-                }
-                else if (currentState == StateEnum.Sneaking)
-                {
-                    currentState = StateEnum.Normal;
-                }
-                break;
-            case CommandEnum.ToggleRunning:
-                if (currentState == StateEnum.Normal)
-                {
-                    currentState = StateEnum.Running;
-                } else if (currentState == StateEnum.Running)
-                {
-                    currentState = StateEnum.Normal;
-                }
-                break;
-            case CommandEnum.StopRunning:
-                if (currentState == StateEnum.Running)
-                {
-                    currentState = StateEnum.Normal;
-                }  
-                break;
-        }
-    }
-
     public void ForceState(StateEnum state)
     {
         currentState = state;
@@ -96,5 +64,10 @@ public class InternalStateMachine
     public State getCurrentState()
     {
         return statesList[(int)currentState];
+    }
+
+    public State getState(StateEnum state)
+    {
+        return statesList[(int)state];
     }
 }

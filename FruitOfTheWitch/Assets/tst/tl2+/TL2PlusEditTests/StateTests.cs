@@ -23,25 +23,6 @@ public class StateTests
     }
 
     [Test]
-    public void TestOldStateTransitions()
-    {
-        stateMachine = new InternalStateMachine();
-        Assert.AreEqual(InternalStateMachine.StateEnum.Normal, stateMachine.getCurrentStateEnum());
-
-        stateMachine.RunCommandOld(InternalStateMachine.CommandEnum.ToggleSneak);
-        Assert.AreEqual(InternalStateMachine.StateEnum.Sneaking, stateMachine.getCurrentStateEnum());
-
-        stateMachine.RunCommandOld(InternalStateMachine.CommandEnum.ToggleSneak);
-        Assert.AreEqual(InternalStateMachine.StateEnum.Normal, stateMachine.getCurrentStateEnum());
-
-        stateMachine.RunCommandOld(InternalStateMachine.CommandEnum.ToggleRunning);
-        Assert.AreEqual(InternalStateMachine.StateEnum.Running, stateMachine.getCurrentStateEnum());
-
-        stateMachine.RunCommandOld(InternalStateMachine.CommandEnum.StopRunning);
-        Assert.AreEqual(InternalStateMachine.StateEnum.Normal, stateMachine.getCurrentStateEnum());
-    }
-
-    [Test]
     public void TestCommandsStructuredCorrectly()
     {
         stateMachine = new InternalStateMachine();

@@ -1,7 +1,8 @@
 {
     "name": "TL2PlusEditTests",
     "references": [
-        "SrcCode"
+        "SrcCode",
+        "Unity.InputSystem"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
