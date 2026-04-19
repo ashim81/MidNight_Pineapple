@@ -37,7 +37,7 @@
 //         StartCoroutine(ShootLoop());
 //     }
 
-//     // 🔥 FIRE EVERY 1 SECOND
+//     //  FIRE EVERY 1 SECOND
 //     IEnumerator ShootLoop()
 //     {
 //         while (true)
@@ -89,7 +89,7 @@
 
 //         GameObject spell = Instantiate(fireSpellPrefab, firePoint.position, Quaternion.identity);
 
-//         // ✅ USE BASE CLASS (dynamic binding)
+//         // USE BASE CLASS (dynamic binding)
 //         Projectile proj = spell.GetComponent<Projectile>();
 
 //         if (proj != null)
