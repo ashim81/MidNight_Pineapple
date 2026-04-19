@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1795999115691815534}
   - component: {fileID: 3902394040853659420}
   - component: {fileID: 3450495346631516716}
-  - component: {fileID: 970251175322738400}
+  - component: {fileID: 738587315302782804}
   m_Layer: 0
   m_Name: Fireball (1)
-  m_TagString: Untagged
+  m_TagString: Fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &970251175322738400
+--- !u!114 &738587315302782804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4442020504361276481}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34013dbb6849d4f8db40916165dd0476, type: 3}
+  m_Script: {fileID: 11500000, guid: 13134317f408144f9b7896bded51845a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FireSpell
+  m_EditorClassIdentifier: SrcCode::Fireball
   speed: 5
