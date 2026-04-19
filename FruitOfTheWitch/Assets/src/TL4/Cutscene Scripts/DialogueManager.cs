@@ -6,11 +6,10 @@ using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Animator animator;
     private LevelManager levelmanager;
-    private Queue<string> sentences;
+    private Queue<string> sentences = new Queue<string>();
     private DialogueTrigger dialogueTrigger;
     void Start()
     {
@@ -19,21 +18,17 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         animator.SetBool("isOpen", true);
-        Debug.Log("Starting Conversations with " + dialogue.name);
-        nameText.text = dialogue.name;
 
         sentences.Clear();
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
-        Debug.Log("this has been called First ");
         DisplayNextSentence();
     }
     public void DisplayNextSentence()
     {
-        Debug.Log("this has been called ");
-        if(sentences.Count == 0)
+        if(sentences.Count == 0 || sentences.Count == 0)
         {
             EndDialogue();
             return;
@@ -46,18 +41,10 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-    private void EndDialogue()
+    public virtual void EndDialogue()
     {
         animator.SetBool("isOpen", false);
-
-        if (SceneManager.GetActiveScene().name == "Cutscene_intro")
-        {
-            LevelManager.instance.LoadScene("Level1_Alternative");
-        }
-        else
-        {
-            LevelManager.instance.LoadScene("Main Menu");
-        }
+        LevelManager.instance.LoadScene("Main Menu");
     }
 
 }
