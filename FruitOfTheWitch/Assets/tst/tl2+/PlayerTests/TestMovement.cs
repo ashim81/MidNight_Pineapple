@@ -195,6 +195,35 @@ public class TestMovement
         yield return null;
     }
 
+    [UnityTest]
+    public IEnumerator TestMoveSpeed()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        PlayerController controller = player.GetComponent<PlayerController>();
+        Assert.IsNotNull(controller, "PlayerController component not found on the player object.");
+
+        yield return null;
+
+        float targetNormalMoveSpeed = controller.getStateMachine().getState(InternalStateMachine.StateEnum.Normal).getMoveSpeed();
+        float targetSneakingMoveSpeed = controller.getStateMachine().getState(InternalStateMachine.StateEnum.Sneaking).getMoveSpeed();
+        float targetRunningMoveSpeed = controller.getStateMachine().getState(InternalStateMachine.StateEnum.Running).getMoveSpeed();
+
+        controller.ForceState(InternalStateMachine.StateEnum.Normal);
+        yield return null;
+        Assert.AreEqual(targetNormalMoveSpeed, controller.getStateMachine().getMoveSpeed(), "Player move speed should match the current state move speed (Normal).");  
+        yield return null;
+
+        controller.ForceState(InternalStateMachine.StateEnum.Sneaking);
+        yield return null;
+        Assert.AreEqual(targetSneakingMoveSpeed, controller.getStateMachine().getMoveSpeed(), "Player move speed should match the current state move speed (Sneaking).");
+        yield return null;
+
+        controller.ForceState(InternalStateMachine.StateEnum.Running);
+        yield return null;
+        Assert.AreEqual(targetRunningMoveSpeed, controller.getStateMachine().getMoveSpeed(), "Player move speed should match the current state move speed (Running).");
+        yield return null;
+    }
+
     [TearDown]
      public void Teardown()
      {
