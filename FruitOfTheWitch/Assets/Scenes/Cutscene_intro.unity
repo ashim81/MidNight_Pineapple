@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224327234}
-  - component: {fileID: 224327233}
+  - component: {fileID: 224327235}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -215,21 +215,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &224327233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224327232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93f778dd9c83aab4bbd65a0029e8faa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  nameText: {fileID: 1248245605}
-  dialogueText: {fileID: 1293791394}
-  animator: {fileID: 775792846}
 --- !u!4 &224327234
 Transform:
   m_ObjectHideFlags: 0
@@ -245,6 +230,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &224327235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224327232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf3d10a72a9fda488287db4d3cd0016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SrcCode::DialogueSequencing
+  nameText: {fileID: 1248245605}
+  dialogueText: {fileID: 1293791394}
+  animator: {fileID: 775792846}
 --- !u!1 &280539184
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,8 +509,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 224327233}
-        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+      - m_Target: {fileID: 224327235}
+        m_TargetAssemblyTypeName: DialogueSequencing, SrcCode
         m_MethodName: DisplayNextSentence
         m_Mode: 1
         m_Arguments:
