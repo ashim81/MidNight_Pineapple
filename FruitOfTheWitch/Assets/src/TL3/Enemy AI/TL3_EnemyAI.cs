@@ -6,59 +6,72 @@ public class TL3_EnemyAI : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform player;
     [SerializeField] private List<Transform> patrolWaypoints;
-    [SerializeField] private VisualDetector detector; // optional
 
     [Header("Speeds")]
     [SerializeField] private float speed = 2f;
     [SerializeField] private float patrolSpeed = 1.5f;
 
+    [Header("Movement Smoothness")]
+    [SerializeField] private float rotationSpeed = 5f;
+
     [Header("Ranges")]
-    [SerializeField] private float attackRange = 2.5f;
-    [SerializeField] private float chaseRange = 6f;
+    [SerializeField] private float attackRange = 1.8f;
     [SerializeField] private float waypointBuffer = 0.2f;
 
+    [Header("Patrol Settings")]
     private int currentWaypointIndex = 0;
     private bool forwardThroughWaypoints = true;
+
+    [Header("Alerted Settings")]
+    private Vector2 lastHeardPosition;
+    private bool hasAlertPosition = false;
 
     private SpriteRenderer sr;
     private Animator anim;
     private Vector2 moveDirection;
+    private VisualDetector detector;
 
     private float lastAttackTime = 0f;
     public float attackCooldown = 2f;
 
-    private enum State { Patrol, Chase, Attack }
+    private enum State { Patrol, Alerted, Chase, Attack }
     private State currentState;
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        detector = GetComponentInChildren<VisualDetector>();
         currentState = State.Patrol;
     }
 
     void Update()
     {
         if (player == null) return;
-
         HandleStateSwitching();
         ExecuteStateAction();
+        RotateVisionCone();
     }
 
-    // ================= STATE LOGIC =================
     private void HandleStateSwitching()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // 🔴 Always attack if close (NO FAILURE)
-        if (distanceToPlayer <= attackRange)
+        if (detector != null && detector.CheckIfAlerted())
         {
-            currentState = State.Attack;
+            currentState = (distanceToPlayer <= attackRange) ? State.Attack : State.Chase;
+            hasAlertPosition = false; 
         }
-        // 🟡 Use detector OR distance for chase
-        else if ((detector != null && detector.CheckIfAlerted()) || distanceToPlayer <= chaseRange)
+
+        else if (hasAlertPosition || (detector != null && detector.CanSeePlayer()))
         {
-            currentState = State.Chase;
+            currentState = State.Alerted;
+
+            if (detector != null && detector.CanSeePlayer()) 
+            {
+                lastHeardPosition = player.position;
+                hasAlertPosition = true;
+            }
         }
         else
         {
@@ -75,6 +88,14 @@ public class TL3_EnemyAI : MonoBehaviour
                 SetAnimation(true, false);
                 break;
 
+            case State.Alerted:
+                MoveTowards(lastHeardPosition, speed);
+                SetAnimation(true, false);
+
+                if (Vector2.Distance(transform.position, lastHeardPosition) < waypointBuffer)
+                    hasAlertPosition = false;
+                break;
+
             case State.Chase:
                 MoveTowards(player.position, speed);
                 SetAnimation(true, false);
@@ -87,7 +108,6 @@ public class TL3_EnemyAI : MonoBehaviour
         }
     }
 
-    // ================= PATROL =================
     private void HandlePatrol()
     {
         if (patrolWaypoints == null || patrolWaypoints.Count == 0) return;
@@ -125,7 +145,6 @@ public class TL3_EnemyAI : MonoBehaviour
         currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 0, patrolWaypoints.Count - 1);
     }
 
-    // ================= MOVEMENT =================
     private void MoveTowards(Vector2 targetPos, float currentSpeed)
     {
         moveDirection = (targetPos - (Vector2)transform.position).normalized;
@@ -137,9 +156,22 @@ public class TL3_EnemyAI : MonoBehaviour
         }
     }
 
-    // ================= ATTACK =================
+    public void OnHearSound(Vector2 soundPosition)
+    {
+        lastHeardPosition = soundPosition;
+        hasAlertPosition = true;
+    }
+
+    //  Attack function
     void AttackPlayer()
     {
+        if (player == null) return;
+
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        // Only attack if still in range
+        if (distance > attackRange) return;
+
         Vector2 direction = (player.position - transform.position).normalized;
 
         if (sr != null)
@@ -152,35 +184,23 @@ public class TL3_EnemyAI : MonoBehaviour
 
         if (Time.time - lastAttackTime > attackCooldown)
         {
-            Debug.Log("Enemy ATTACKING!");
-
-            // 🔴 Visual feedback for demo
-            sr.color = Color.red;
-            Invoke(nameof(ResetColor), 0.2f);
-
             PlayerController pc = player.GetComponent<PlayerController>();
+
             if (pc != null)
             {
                 pc.TakeDamage(10);
+                Debug.Log("Enemy attacked player!");
             }
 
             lastAttackTime = Time.time;
         }
     }
 
-    void ResetColor()
-    {
-        if (sr != null)
-            sr.color = Color.white;
-    }
-
-    // ================= ANIMATION =================
     private void SetAnimation(bool isMoving, bool isAttacking)
     {
         if (anim != null)
         {
             anim.SetBool("isMoving", isMoving);
-            anim.SetBool("isAttacking", isAttacking);
 
             if (isMoving)
             {
@@ -190,6 +210,21 @@ public class TL3_EnemyAI : MonoBehaviour
                 anim.SetFloat("MoveX", x);
                 anim.SetFloat("MoveY", y);
             }
+        }
+    }
+
+    private void RotateVisionCone()
+    {
+        if (detector != null && moveDirection != Vector2.zero)
+        {
+            float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg - 90f;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+
+            detector.transform.rotation = Quaternion.Lerp(
+                detector.transform.rotation, 
+                targetRotation, 
+                rotationSpeed * Time.deltaTime
+            );
         }
     }
 }
