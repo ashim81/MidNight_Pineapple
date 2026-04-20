@@ -6,6 +6,8 @@ public class PauseMenu : MonoBehaviour
 {    
     [SerializeField]
     private GameObject pauseMenuCanvas;
+    [SerializeField]
+    private GameObject viewControlsCanvas;
     public static PauseMenu Instance;
     private string sceneName;
     public bool GameIsPaused = false;
@@ -13,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     void Awake()
     {
         pauseMenuCanvas.SetActive(false);
+        viewControlsCanvas.SetActive(false);
         if(Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
@@ -47,6 +50,17 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         pauseMenuCanvas.SetActive(false);
     }
+    public void ViewControls()
+    {
+        pauseMenuCanvas.SetActive(false);
+        viewControlsCanvas.SetActive(true);
+    }
+
+    public void CloseControls()
+    {
+        viewControlsCanvas.SetActive(false);
+        pauseMenuCanvas.SetActive(true);
+    }
     public void RestartGame()
     {
         pauseMenuCanvas.SetActive(false);
@@ -57,6 +71,6 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuCanvas.SetActive(false);
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Main Menu");
+        LevelManager.instance.LoadMainMenu();
     }
 }

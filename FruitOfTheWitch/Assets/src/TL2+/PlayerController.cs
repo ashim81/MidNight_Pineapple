@@ -167,8 +167,12 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (BCmode == false) health -= damage;
-        health -= damage;
+        
+        if (!LevelManager.instance.IsBCMode)
+        {
+            health -= damage;
+        }
+
         healthBar.SetHealth(health);
     }
 

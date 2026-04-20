@@ -19,8 +19,9 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayBCMode()
     {
-        SceneManager.LoadScene("Cutscene_intro");
         Debug.Log("BC MODE Selected");
+        LevelManager.instance.BCMode(); 
+        SceneManager.LoadScene("Cutscene_intro");
     }
         public void LoadSave()
     {
