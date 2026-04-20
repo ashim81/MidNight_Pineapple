@@ -14,4 +14,5 @@
   <Project Path="AsimTest.csproj" />
   <Project Path="TL5EditMode.csproj" />
   <Project Path="TL3 Editmode.csproj" />
+  <Project Path="TL4EditTest.csproj" />
 </Solution>

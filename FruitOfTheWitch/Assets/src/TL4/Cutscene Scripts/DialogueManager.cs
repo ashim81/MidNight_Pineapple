@@ -40,11 +40,22 @@ public class DialogueManager : MonoBehaviour
         }
 
     }
+    public void SkipCutscene()
+    {
+        animator.SetBool("isOpen", false);
+        if (SceneManager.GetActiveScene().name == "Cutscene_intro")
+        {
+            LevelManager.instance.LoadScene("Level1_Alternative");
+        }
+        else
+        {
+            LevelManager.instance.LoadScene("Main Menu");
+        }
+    }
 
     public virtual void EndDialogue()
     {
         animator.SetBool("isOpen", false);
         LevelManager.instance.LoadScene("Main Menu");
     }
-
 }
