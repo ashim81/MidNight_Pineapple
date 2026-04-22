@@ -6,7 +6,7 @@ public class Phase3Attack : BaseBossAttack
     private float timer = 0f;
     private int fireballCount = 5;
     private Rigidbody2D rb;
-    private float chargeCooldown = 10f;
+    private float chargeCooldown = 20f;
     private float chargeTimer = 0f;
     private float chargeSpeed = 10f;
 
@@ -27,7 +27,7 @@ public class Phase3Attack : BaseBossAttack
         if (timer >= fireRate)
         {
             timer = 0f;
-            ShootFireballs(boss, fireballCount, 15f);
+            ShootFireballs(boss, fireballCount, 20f);
         }
 
         chargeTimer += Time.deltaTime;

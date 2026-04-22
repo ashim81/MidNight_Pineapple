@@ -126,16 +126,24 @@ public class Enemy_AI2 : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Fireball")) return;
+   {
+    if (collision.gameObject.CompareTag("Fireball")) return;
 
-        if (collision.gameObject.CompareTag("Player"))
+    if (collision.gameObject.CompareTag("Player"))
+    {
+        TakeDamage(7);
+
+        // ADD NULL CHECK
+        PlayerController pc = collision.gameObject
+            .GetComponent<PlayerController>();
+        if (pc != null)
         {
-            TakeDamage(7);
-            collision.gameObject.GetComponent<PlayerController>().TakeDamage(3);
-            Vector2 dir = (transform.position - collision.transform.position).normalized;
-            rb.AddForce(dir * 90f, ForceMode2D.Impulse);
-            isKnockedBack = true;
+            pc.TakeDamage(3);
         }
+
+        Vector2 dir = (transform.position - collision.transform.position).normalized;
+        rb.AddForce(dir * 90f, ForceMode2D.Impulse);
+        isKnockedBack = true;
+    }
     }
 }
