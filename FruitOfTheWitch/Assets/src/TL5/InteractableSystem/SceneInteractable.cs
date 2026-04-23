@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum InteractableType
 {
@@ -11,7 +12,6 @@ public class SceneInteractable : MonoBehaviour //Scene object
 {
     [SerializeField] private InteractableType type;
     [SerializeField] private bool requiresKeyPress = true;
-    [SerializeField] private KeyCode interactKey = KeyCode.E;
     [SerializeField] private AudioEngine audioEngine;
     [SerializeField] private string soundName = "Coin";
 
@@ -56,7 +56,10 @@ public class SceneInteractable : MonoBehaviour //Scene object
 
     private void Update()
     {
-        if (requiresKeyPress && playerInRange != null && Input.GetKeyDown(interactKey))
+        if (requiresKeyPress &&
+            playerInRange != null &&
+            Keyboard.current != null &&
+            Keyboard.current.eKey.wasPressedThisFrame)
         {
             InteractionStart(playerInRange);
         }
