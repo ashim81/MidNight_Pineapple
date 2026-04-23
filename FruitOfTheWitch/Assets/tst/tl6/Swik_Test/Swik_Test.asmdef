@@ -1,0 +1,6 @@
+{
+    "name": "Swik_Test",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}
