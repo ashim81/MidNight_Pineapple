@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NoiseMaker : MonoBehaviour
+public class NoiseMaker : DetectorSuperclass
 {
 [Header("Sound Settings")]
 
@@ -12,7 +12,7 @@ public class NoiseMaker : MonoBehaviour
 //////////////////////// TL5: Audio Engine Interface /////////////////////
     [SerializeField] private SoundType soundToEmit = SoundType.Default;
     private GameObject audioEngine;
-    
+
     public enum SoundType
     {
         Default,
@@ -46,12 +46,27 @@ public class NoiseMaker : MonoBehaviour
     }
 //////////////////////////////////////////////////////////////////////////
 
+// D Y N A M I C  B I N D I N G
+
+private DetectorSuperclass d_NoiseMaker;
+
+    void Start()
+    {
+        d_NoiseMaker = this;
+    }
+
+    public override void PerformDetection()
+    {
+        Debug.Log("This is the virtual overide of PerformDetection()");
+        StartCoroutine(EmitSound());
+    }
+
 // Trigger Sound if Player Detected
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(EmitSound());
+            d_NoiseMaker.PerformDetection();
         }
     }
 
@@ -110,14 +125,24 @@ public class NoiseMaker : MonoBehaviour
         Destroy(visual);
     }
 
-    // TL2+ Added radius.
+//////////////////////// TL2+: Radius Interface ////////////////////////////////
     public void setRadius(float newRadius)
     {
-        radius = newRadius;
+        if (newRadius >= 0)
+        {
+            radius = newRadius;
+        }
+    
+        else
+        {
+            radius = 0;
+            Debug.LogWarning("Cannot set a negative radius on NoiseMaker.");
+        }
     }
 
     public float getRadius()
     {
         return radius;
     }
+///////////////////////////////////////////////////////////////////////////////
 }

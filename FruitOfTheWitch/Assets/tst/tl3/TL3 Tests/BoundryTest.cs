@@ -1,39 +1,28 @@
 using NUnit.Framework;
 using UnityEngine;
 
-// public class VisualDetectorEditTests
-// {
-//     [Test]
-//     [TestCase(0)]
-//     [TestCase(1)]
-//     [TestCase(65535)]
-//     [TestCase(100000)]
-    
-//     public void TrianglesInCone_ScalesCorrectly(int triangleCount)
-//     {
-//         GameObject go = new GameObject();
-//         VisualDetector detector = go.AddComponent<VisualDetector>();
-        
-//         detector.trianglesInCone = triangleCount;
-    
-//     // Manually Refresh out of Playmode
-//         detector.RefreshForTest();
+public class VisualDetectorEditTests
+{
+    [Test]
+    [TestCase(0f)]
+    [TestCase(10.5f)]
+    [TestCase(-5f)]
+    [TestCase(1)]
+    [TestCase(65535)]
+    [TestCase(100000)]
 
-//         int expectedVertices;
+    public void SetRadius_UpdatesValueCorrectly(float testRadius)
+    {
+        GameObject go = new GameObject();
+        NoiseMaker detector = go.AddComponent<NoiseMaker>();
 
-//         if (triangleCount > 0)
-//         {
-//             // +2 for Start & End Vertices
-//             expectedVertices = triangleCount + 2;
-//         }
+        detector.setRadius(testRadius);
 
-//         else
-//         {
-//             expectedVertices = 0;
-//         }
+        float expectedValue = testRadius < 0 ? 0f : testRadius;
 
-//         Assert.AreEqual(expectedVertices, detector.GetVertexCount(), $"Failed at {triangleCount} triangles.");
+        Assert.AreEqual(expectedValue, detector.getRadius(), 
+            $"Radius did not match expected value for input: {testRadius}");
 
-//         Object.DestroyImmediate(go);
-//     }
-// }
+        Object.DestroyImmediate(go);
+    }
+}
