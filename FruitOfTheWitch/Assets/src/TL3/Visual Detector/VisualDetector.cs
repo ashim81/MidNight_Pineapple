@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 
-public class VisualDetector : MonoBehaviour
+public class VisualDetector : DetectorSuperclass
 {
 [Header("Cone Settings")]
 
@@ -61,6 +61,18 @@ public class VisualDetector : MonoBehaviour
         currentState.UpdateState(this);
         GenerateConeMesh();
         UpdateFillMesh();
+
+    // D Y N A M I C  B I N D I N G
+        if(CheckIfAlerted())
+        {
+            PerformDetection();
+        }
+    }
+
+// D Y N A M I C  B I N D I N G
+    public  void PerformDetection()
+    {
+        Debug.Log("Idealy this would set the enemies into a new state defined in their code.");
     }
 
 // Create a Cone Based on Inspector Inputs
@@ -317,7 +329,7 @@ public class VisualDetector : MonoBehaviour
 
 public interface IEnemyState { void UpdateState(VisualDetector enemy); }
 
-// S T A T E  P A T T E R N : States
+// S T A T E  P A T T E R N : States [IDLE | SUSPICIOUS | ALERTED]
 
 public class IdleState : IEnemyState
 {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NoiseMaker : MonoBehaviour
+public class NoiseMaker : DetectorSuperclass
 {
 [Header("Sound Settings")]
 
@@ -12,7 +12,7 @@ public class NoiseMaker : MonoBehaviour
 //////////////////////// TL5: Audio Engine Interface /////////////////////
     [SerializeField] private SoundType soundToEmit = SoundType.Default;
     private GameObject audioEngine;
-    
+
     public enum SoundType
     {
         Default,
@@ -46,12 +46,27 @@ public class NoiseMaker : MonoBehaviour
     }
 //////////////////////////////////////////////////////////////////////////
 
+// D Y N A M I C  B I N D I N G
+
+private DetectorSuperclass d_NoiseMaker;
+
+    void Start()
+    {
+        d_NoiseMaker = this;
+    }
+
+    public override void PerformDetection()
+    {
+        Debug.Log("This is the virtual overide of PerformDetection()");
+        StartCoroutine(EmitSound());
+    }
+
 // Trigger Sound if Player Detected
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(EmitSound());
+            d_NoiseMaker.PerformDetection();
         }
     }
 
@@ -81,12 +96,20 @@ public class NoiseMaker : MonoBehaviour
         // Scale Visual
             visual.transform.localScale = new Vector3(currentRadius * 2f, currentRadius * 2f, 1f);
         
+        //////////////////////// COPYWRITE VIOLATION ///////////////////////////////////////////////////////
+        // Code copied directly from: https://discussions.unity.com/t/how-to-change-alpha-of-a-sprite/137534
+        // No credit given to user "zeppike"
+        // Website visited 03/30/2026 from Brandon Lunney's personal computer.
+        // Code only lightly modified to fit the structure of the rest of the code.
+        // Fair Use: Is for a school project to demonstrate a copywrite violation.
+
         // Visual Fade Out Effect
             SpriteRenderer soundCircle = visual.GetComponent<SpriteRenderer>();
             Color alpha = soundCircle.color;
             alpha.a = 1f - (currentRadius / radius);
             soundCircle.color = alpha;
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         // Detect Enemies Hit by Soundwave
             Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(transform.position, currentRadius, enemyLayer);
 
@@ -102,14 +125,24 @@ public class NoiseMaker : MonoBehaviour
         Destroy(visual);
     }
 
-    // TL2+ Added radius.
+//////////////////////// TL2+: Radius Interface ////////////////////////////////
     public void setRadius(float newRadius)
     {
-        radius = newRadius;
+        if (newRadius >= 0)
+        {
+            radius = newRadius;
+        }
+    
+        else
+        {
+            radius = 0;
+            Debug.LogWarning("Cannot set a negative radius on NoiseMaker.");
+        }
     }
 
     public float getRadius()
     {
         return radius;
     }
+///////////////////////////////////////////////////////////////////////////////
 }
