@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,25 +13,44 @@ public class PlayerController : MonoBehaviour
     private Vector2 respawnPoint;
     [SerializeField]
     private bool BCmode = false;
-    private Animator animator; //tl5: aded for animation
-    
-    private bool sneaky;
-    private int exhaustion = 0;
-    public int health = 100;
 
+    [SerializeField]
+    private int maxExhaustion = 1500;
+    [SerializeField]
+    private int exhaustionGain = 1;
+    [SerializeField]
+    private int exhaustionLoss = 3;
+    public NoiseMaker noiseMaker;
+    
+    private int exhaustion;
+
+    
+    private bool exhausted = false;
+    private int health = 100;
+    [SerializeField]
+    private HealthBar healthBar;
+    [SerializeField] 
+    private StaminaBar staminabar; 
     
 
     // Component
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private Animator animator; //tl5: aded for animation
 
     // values
     private Vector2 inputVector;
 
     void Awake()
     {
+        staminabar.SetMaxStamina(maxExhaustion);
+        exhaustion = maxExhaustion;
         rb = GetComponent<Rigidbody2D>();
         stateMachine = new InternalStateMachine();
         animator = GetComponent<Animator>(); //tl5: added for animation
+        sr = GetComponent<SpriteRenderer>();
+        noiseMaker = GetComponent<NoiseMaker>();
+        healthBar.SetMaxHealth(health);
     }
 
     // Update is called once per frame
@@ -40,15 +60,84 @@ public class PlayerController : MonoBehaviour
         HandleStealth();
         HandleSprinting();
         HandleHealth();
-        
+        HandleAnimation();
+    }
+
+    // Movement Playerside
+    private void HandleMovement()
+    {
+        moveSpeed = stateMachine.getMoveSpeed();
+        rb.linearVelocity = moveSpeed * inputVector;
+    }
+    public void OnMove(InputValue value)
+    {
+        inputVector = value.Get<Vector2>();
+    }
+
+    // Stealth Playerside
+    private void HandleStealth()
+    {
+        // tl3 stuff. THey should uncomment this
+        noiseMaker.setRadius(stateMachine.getSoundRadius());
+    }
+
+    public bool isSneaky()
+    {
+        return stateMachine.isSneaky();
+    }
+
+    public void OnCrouch(InputValue value)
+    {
+        stateMachine.toggleSneakCommand.Execute();
+    }
+
+    // Sprinting
+    private void HandleSprinting()
+    {
+        staminabar.SetStamina(exhaustion);
+        if (exhaustion <= maxExhaustion && exhausted)
+        {
+            exhaustion += exhaustionGain;
+        } else if (exhausted == false && exhaustion >= 0)
+        {
+            exhaustion -= exhaustionLoss;
+        }
+        if (exhaustion > maxExhaustion) exhaustion = maxExhaustion;
+        if (exhaustion < 0) {
+            exhaustion = 0;
+            exhausted = true;
+        };
+        if (exhausted)
+        {
+            stateMachine.stopRunningCommand.Execute();
+        }
+    }
+
+    public void OnSprint(InputValue value)
+    {
+        if (exhaustion >= 0 && !exhausted)
+        {
+            stateMachine.toggleRunningCommand.Execute();
+        }
+    }
+
+
+    private void HandleHealth()
+    {
+        if (health <= 0)
+        {
+            Respawn();
+        }
+    }
+
+    private void HandleAnimation()
+    {
         //tl5: added for animation
         animator.SetBool("IsMoving", inputVector.magnitude > 0.1f);
         animator.SetFloat("MoveX", inputVector.x);
         animator.SetFloat("MoveY", inputVector.y);
 
         
-        var sr = GetComponent<SpriteRenderer>();
-
         if (inputVector.x > 0.1f)
         {
             sr.flipX = false;
@@ -59,58 +148,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleMovement()
-    {
-        moveSpeed = stateMachine.getMoveSpeed();
-        rb.linearVelocity = moveSpeed * inputVector;
-    }
-
-    private void HandleStealth()
-    {
-        sneaky = stateMachine.isSneaky();
-    }
-
-    private void HandleSprinting()
-    {   
-        if (exhaustion > 0) exhaustion--;
-        if (exhaustion <= 0){
-            stateMachine.RunCommand(InternalStateMachine.Command.StopRunning);
-        }
-    }
-    private void HandleHealth()
-    {
-        if (health <= 0)
-        {
-            Respawn();
-        }
-    }
-
-    // Events
-    public void OnMove(InputValue value)
-    {
-        inputVector = value.Get<Vector2>();
-    }
-
-    public void OnCrouch(InputValue value)
-    {
-        stateMachine.RunCommand(InternalStateMachine.Command.ToggleSneak);
-    }
-
-    public void OnSprint(InputValue value)
-    {
-        stateMachine.RunCommand(InternalStateMachine.Command.ToggleRunning);
-        exhaustion = 300;
-    }
-
     // Wrappers
-    public bool isSneaky()
-    {
-        return sneaky;
-    }
 
     public int getExhaustion()
     {
         return exhaustion;
+    }
+
+    public bool isExhausted()
+    {
+        return exhausted;
     }
 
     public int getHealth()
@@ -120,15 +167,38 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (BCmode == false) health -= damage;
-        if (health <= 0) health = 0;
+        
+        if (!LevelManager.instance.IsBCMode)
+        {
+            health -= damage;
+        }
+
+        healthBar.SetHealth(health);
     }
 
     public void Respawn()
     {
         transform.position = respawnPoint;
         health = 100;
-        exhaustion = 0;
-        stateMachine.RunCommand(InternalStateMachine.Command.Reset);
+        exhaustion = maxExhaustion/2;
+        stateMachine.resetCommand.Execute();
+        healthBar.SetHealth(health);
+    }
+
+    public void ThrowPunchAnimation()
+    {
+        animator.SetTrigger("Punch");
+    }
+
+
+    // Testing Methods
+    public InternalStateMachine getStateMachine()
+    {
+        return stateMachine;
+    }
+
+    public void ForceState(InternalStateMachine.StateEnum state)
+    {
+        stateMachine.ForceState(state);
     }
 }

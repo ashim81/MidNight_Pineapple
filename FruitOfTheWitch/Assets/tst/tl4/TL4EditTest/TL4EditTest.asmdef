@@ -1,0 +1,13 @@
+{
+    "name": "TL4EditTest",
+    "references": [
+        "SrcCode",
+        "Unity.InputSystem"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}
