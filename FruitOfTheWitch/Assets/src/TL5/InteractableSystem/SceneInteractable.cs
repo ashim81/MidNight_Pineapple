@@ -1,111 +1,98 @@
-using System;
 using UnityEngine;
 
-public class SceneInteractable : MonoBehaviour
+public enum InteractableType
 {
-    [SerializeField] private InteractableType interactableType;
-    [SerializeField] private bool requiresButtonPress = true;
-    [SerializeField] private KeyCode interactKey = KeyCode.E; //Interaction key, default is E
-    [SerializeField] private string nextSceneName; //For transitional interactables
-    [SerializeField] private bool oneTimeUse = true; //anti-spam
-
-    [Header("Audio")]
-    [SerializeField] private AudioEngine audioEngine;
-    [SerializeField] private string soundName;
-    
-
-    private InteractionLogic _logic;
-    private bool _hasBeenUsed = false;
-    private GameObject _playerInRange;
-
-    private void Awake() //Checks for type and creates correct logic for each
-    {
-        _logic = CreateLogic();
-    }
-
-    private void Update() //Only for button press-type interactables
-    {
-        if (requiresButtonPress && _playerInRange != null && Input.GetKeyDown(interactKey))
-        {
-            TryInteract(_playerInRange);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) //What happens when player touches object
-    {
-        if (!other.CompareTag("Player"))
-        {
-            return;
-        }
-
-        if (requiresButtonPress)
-        {
-            _playerInRange = other.gameObject;
-        }
-        else
-        {
-            TryInteract(other.gameObject);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other) //Prevent interaction outside range
-    {
-        if (_playerInRange == other.gameObject)
-        {
-            _playerInRange = null;
-        }
-    }
-
-    private void TryInteract(GameObject player) //Core function.
-    {
-        if (oneTimeUse && _hasBeenUsed)
-        {
-            return;
-        }
-
-        if (audioEngine != null && !string.IsNullOrEmpty(soundName))
-        {
-            audioEngine.PlaySFXGame(soundName);
-        }
-
-        InteractionContext context = new InteractionContext(player);
-        _logic.Interact(context, this); //polymorphic logic to run correct interactable
-
-        if (oneTimeUse)
-        {
-            _hasBeenUsed = true;
-        }
-    }
-
-    private InteractionLogic CreateLogic() //Correct logic based on type
-    {
-        switch (interactableType)
-        {
-            case InteractableType.Trapdoor:
-                return new TrapdoorInteraction();
-
-            case InteractableType.Ladder:
-                return new LadderInteraction();
-
-            case InteractableType.Door:
-                return new DoorInteraction();
-
-            case InteractableType.Collectible:
-                return new CollectibleInteraction();
-
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-    }
-
-    public string GetNextSceneName()
-    {
-        return nextSceneName;
-    }
-
-    public void RequestTransition()
-{
-    // Plug transition code here
-    gameObject.SetActive(false); //temporary testing
+    Collectible,
+    Transition,
+    NPC
 }
+
+public class SceneInteractable : MonoBehaviour //Scene object
+{
+    [SerializeField] private InteractableType type;
+    [SerializeField] private bool requiresKeyPress = true;
+    [SerializeField] private KeyCode interactKey = KeyCode.E;
+    [SerializeField] private AudioEngine audioEngine;
+    [SerializeField] private string soundName = "Coin";
+
+    private GameObject playerInRange;
+
+    private void Awake()
+    {
+        if (type == InteractableType.Collectible)
+            requiresKeyPress = false;
+    }
+
+        private void InteractionStart(GameObject player)
+    {
+    //    InteractionLogic logic = new CollectibleInteraction();
+    //
+    //    logic.PlaySound(this);        // static
+    //    logic.Interact(player, this); // dynamic
+    //
+    //    return;
+    
+        InteractionLogic logic; //Static Type InteractionLogic (Grandpa* pGrandpa)
+
+        switch (type) //Object creation and assignment
+        {
+            case InteractableType.Collectible:
+                logic = new CollectibleInteraction();
+                break;
+            case InteractableType.Transition:
+                logic = new TransitionInteraction();
+                break;
+            case InteractableType.NPC:
+                logic = new NPCInteraction();
+                break;
+            default:
+                logic = new InteractionLogic();
+                break;
+        }
+        
+        logic.PlaySound(this); // statically bound (everything will play same sound)
+        logic.Interact(player, this);    // dynamically bound (Interact is virtual)
+    }
+
+    private void Update()
+    {
+        if (requiresKeyPress && playerInRange != null && Input.GetKeyDown(interactKey))
+        {
+            InteractionStart(playerInRange);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        if (requiresKeyPress)
+            playerInRange = other.gameObject;
+        else
+            InteractionStart(other.gameObject);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (playerInRange == other.gameObject)
+            playerInRange = null;
+    }
+
+    public void PlaySound()
+{
+    if (audioEngine != null && !string.IsNullOrEmpty(soundName))
+    {
+        audioEngine.PlaySFXGame(soundName);
+    }
+}
+
+    public void OnTransitionTriggered()
+    {
+        Debug.Log("Transition happens here");
+    }
+
+    public void OnNPCTriggered()
+    {
+        Debug.Log("NPC interaction happens here");
+    }
 }

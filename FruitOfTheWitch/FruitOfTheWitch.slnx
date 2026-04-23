@@ -1,6 +1,8 @@
 ﻿<Solution>
-  <Project Path="SrcCode.csproj" />
+  <Project Path="Swik_Test.csproj" />
+  <Project Path="TL6.csproj" />
   <Project Path="TL2PlayModeTests.csproj" />
+  <Project Path="SrcCode.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="AudioEngine.csproj" />
   <Project Path="TL2PlusEditTests.csproj" />
@@ -10,6 +12,7 @@
   <Project Path="AsimTest.csproj" />
   <Project Path="TL2EditModeTests.csproj" />
   <Project Path="NoiseMaker.csproj" />
+  <Project Path="TL6EditModeTests.csproj" />
   <Project Path="TL5 PlayMode.csproj" />
   <Project Path="PlayerTests.csproj" />
   <Project Path="TL5EditMode.csproj" />
