@@ -109,4 +109,15 @@ public class NoiseMaker : MonoBehaviour
 
         Destroy(visual);
     }
+
+    // TL2+ Added radius.
+    public void setRadius(float newRadius)
+    {
+        radius = newRadius;
+    }
+
+    public float getRadius()
+    {
+        return radius;
+    }
 }

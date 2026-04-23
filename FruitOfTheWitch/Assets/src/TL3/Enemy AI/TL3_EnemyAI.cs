@@ -31,6 +31,9 @@ public class TL3_EnemyAI : MonoBehaviour
     private Vector2 moveDirection;
     private VisualDetector detector;
 
+    private float lastAttackTime = 0f;
+    public float attackCooldown = 2f;
+
     private enum State { Patrol, Alerted, Chase, Attack }
     private State currentState;
 
@@ -120,7 +123,6 @@ public class TL3_EnemyAI : MonoBehaviour
 
     private void UpdateWaypointIndex()
     {
-
         if (forwardThroughWaypoints)
         {
             currentWaypointIndex++;
@@ -139,7 +141,7 @@ public class TL3_EnemyAI : MonoBehaviour
                 forwardThroughWaypoints = true;
             }
         }
-        
+
         currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 0, patrolWaypoints.Count - 1);
     }
 
@@ -160,12 +162,38 @@ public class TL3_EnemyAI : MonoBehaviour
         hasAlertPosition = true;
     }
 
-    private void AttackPlayer()
+    //  Attack function
+    void AttackPlayer()
     {
-        Vector2 dir = (player.position - transform.position).normalized;
-        if (sr != null) sr.flipX = dir.x < 0;
+        if (player == null) return;
 
-        // Attack Logic
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        // Only attack if still in range
+        if (distance > attackRange) return;
+
+        Vector2 direction = (player.position - transform.position).normalized;
+
+        if (sr != null)
+        {
+            if (direction.x > 0.1f)
+                sr.flipX = false;
+            else if (direction.x < -0.1f)
+                sr.flipX = true;
+        }
+
+        if (Time.time - lastAttackTime > attackCooldown)
+        {
+            PlayerController pc = player.GetComponent<PlayerController>();
+
+            if (pc != null)
+            {
+                pc.TakeDamage(10);
+                Debug.Log("Enemy attacked player!");
+            }
+
+            lastAttackTime = Time.time;
+        }
     }
 
     private void SetAnimation(bool isMoving, bool isAttacking)

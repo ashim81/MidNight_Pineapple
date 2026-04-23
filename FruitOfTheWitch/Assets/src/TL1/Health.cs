@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    // 🔥 damage cooldown
+    // damage cooldown
     private float damageCooldown = 0.5f;
     private float lastDamageTime = -1f;
 
