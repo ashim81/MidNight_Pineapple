@@ -3,7 +3,7 @@ Author: Lainey Brekken
 4/5 Stars
 Version: 1.0
 Price: $0.99
-[![Simple HUD Prefab](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/u9cPH6BQ_LU)
+[![Simple HUD Prefab](https://www.youtube.com/watch?v=u9cPH6BQ_LU)](https://www.youtube.com/watch?v=u9cPH6BQ_LU)
 
 
 Description
