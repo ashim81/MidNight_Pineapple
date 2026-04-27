@@ -18,3 +18,24 @@
     <img src="https://img.shields.io/badge/Watch%20Presentation-Google%20Drive-blue?style=for-the-badge&logo=google-drive" />
   </a>
 </p>
+
+---
+
+## Demo Mode
+
+The demo mode runs automatically if there is no user input.
+
+- Activates after **10 seconds of inactivity** in the Main Menu  
+- Plays a randomly selected video as a Demo Mode:
+  - **Success Path**  
+  - **Failure Path**  
+- Stops when any user input is detected  
+
+### 📁 Demo Mode Videos
+<p align="center">
+  <a href="https://drive.google.com/drive/folders/1T6ZxSVBgA4BfxFMcyHvCQ0cIl9iI2_dl" target="_blank">
+    <img src="https://img.shields.io/badge/View%20Demo%20Videos-Google%20Drive-blue?style=for-the-badge&logo=google-drive" />
+  </a>
+</p>
+
+> **Note:** These are the individual video files used within Unity. The actual functionality of Demo Mode is demonstrated once the game is opened.
