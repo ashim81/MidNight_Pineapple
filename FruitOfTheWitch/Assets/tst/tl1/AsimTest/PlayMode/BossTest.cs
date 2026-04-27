@@ -101,26 +101,20 @@ public class CheckpointEditTests
 
         GameObject.DestroyImmediate(fireball);
     }
-
     // -----------------------------------------
-    // TEST 8 — Phase scripts can be added
+    // TEST 8 — Phase scripts can be instantiated
     // -----------------------------------------
     [Test]
     public void Test08_AllBossPhasesExist()
     {
-        GameObject obj = new GameObject();
+        Phase1Attack p1 = new Phase1Attack();
+    Phase2Attack p2 = new Phase2Attack();
+    Phase3Attack p3 = new Phase3Attack();
 
-        obj.AddComponent<Phase1Attack>();
-        obj.AddComponent<Phase2Attack>();
-        obj.AddComponent<Phase3Attack>();
-
-        Assert.IsNotNull(obj.GetComponent<Phase1Attack>());
-        Assert.IsNotNull(obj.GetComponent<Phase2Attack>());
-        Assert.IsNotNull(obj.GetComponent<Phase3Attack>());
-
-        GameObject.DestroyImmediate(obj);
-    }
-
+    Assert.IsNotNull(p1);
+    Assert.IsNotNull(p2);
+    Assert.IsNotNull(p3);
+}
     // -----------------------------------------
     // TEST 9 — Safe GetComponent usage
     // (protects against teammate mistakes)

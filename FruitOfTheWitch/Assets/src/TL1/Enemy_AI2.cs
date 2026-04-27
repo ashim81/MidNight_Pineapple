@@ -15,7 +15,7 @@ public class Enemy_AI2 : MonoBehaviour
     public FireSpell fireSpell;
 
     // PHASE VARIABLES
-    private BaseBossAttack currentPhase;
+    private BaseBossAttack currentPhase;//static type 
     private Phase1Attack phase1;
     private Phase2Attack phase2;
     private Phase3Attack phase3;
@@ -26,31 +26,25 @@ public class Enemy_AI2 : MonoBehaviour
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        witchhealth.SetMaxHealth(health);
+    rb = GetComponent<Rigidbody2D>();
+    witchhealth.SetMaxHealth(health);
 
-        // GET Health component
-        healthComponent = GetComponent<Health>();
+    healthComponent = GetComponent<Health>();
 
-        // GET Phase components
-        phase1 = GetComponent<Phase1Attack>();
-        phase2 = GetComponent<Phase2Attack>();
-        phase3 = GetComponent<Phase3Attack>();
+    // Phase object created (Dynamic type)
+    phase1 = new Phase1Attack();
+    phase2 = new Phase2Attack();
+    phase3 = new Phase3Attack();
 
-        // IF all phases exist = this is a boss
-        if (phase1 != null && phase2 != null && phase3 != null)
-        {
-            isBoss = true;
-            Debug.Log("BOSS MODE ON");
-            phase1.Initialize(player);
-            phase2.Initialize(player);
-            phase3.Initialize(player);
-            SetPhase(phase1);
-        }
-        else
-        {
-            Debug.Log("NORMAL ENEMY MODE");
-        }
+    if (phase1 != null && phase2 != null && phase3 != null)
+    {
+        isBoss = true;
+        Debug.Log("BOSS MODE ON");
+        phase1.Initialize(player);
+        phase2.Initialize(player);
+        phase3.Initialize(player, rb); 
+        SetPhase(phase1);
+    }
     }
 
     void Update()
@@ -104,9 +98,14 @@ public class Enemy_AI2 : MonoBehaviour
 
     private void SetPhase(BaseBossAttack newPhase)
     {
-        currentPhase?.OnPhaseExit();
+    currentPhase?.OnPhaseExit();
+
+    if (newPhase == phase2)
+        currentPhase = new ExtraFireDecorator(newPhase);
+    else
         currentPhase = newPhase;
-        currentPhase.OnPhaseEnter();
+
+    currentPhase.OnPhaseEnter();
     }
 
     public void TakeDamage(int damage)

@@ -47,12 +47,12 @@ public class Health : MonoBehaviour
     {
         Debug.Log(gameObject.name + " died.");
 
-        GameManager gm = FindFirstObjectByType<GameManager>();
+        //GameManager gm = FindFirstObjectByType<GameManager>();
 
-        if (gm != null)
-        {
-            gm.ShowWin();
-        }
+        // if (gm != null)
+        // {
+        //     gm.ShowWin();
+        // }
 
         Destroy(gameObject);
     }

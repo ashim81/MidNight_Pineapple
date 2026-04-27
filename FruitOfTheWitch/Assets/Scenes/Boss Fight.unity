@@ -446,7 +446,6 @@ MonoBehaviour:
   moveSpeed: 2
   witchhealth: {fileID: 896149886}
   fireSpell: {fileID: 812398833}
-  fireSpell: {fileID: 0}
 --- !u!114 &56558886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,6 +483,54 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &56558888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56558880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fad9ffbf55f64b4e8966ed9af325f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SrcCode::BaseBossAttack
+--- !u!114 &56558889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56558880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4efc3ca88a7147c2a07f4022d1d2bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SrcCode::Phase3Attack
+--- !u!114 &56558890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56558880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648ff91c1dfc3471caad83b0a28d063e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SrcCode::Phase2Attack
+--- !u!114 &56558891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56558880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9d33c3f27b14bb4b6aaea556cef7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SrcCode::Phase1Attack
 --- !u!1 &245721344
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,54 +664,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245721344}
   m_CullTransparentMesh: 1
---- !u!114 &56558888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 56558880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fad9ffbf55f64b4e8966ed9af325f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: SrcCode::BaseBossAttack
---- !u!114 &56558889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 56558880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4efc3ca88a7147c2a07f4022d1d2bc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: SrcCode::Phase3Attack
---- !u!114 &56558890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 56558880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 648ff91c1dfc3471caad83b0a28d063e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: SrcCode::Phase2Attack
---- !u!114 &56558891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 56558880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f9d33c3f27b14bb4b6aaea556cef7f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: SrcCode::Phase1Attack
 --- !u!224 &275497598 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3060221388252980184, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
@@ -14568,10 +14567,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2708897280357679374, guid: 456123313d127ad4b8a3c7ceaee9e329, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1493581427}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 456123313d127ad4b8a3c7ceaee9e329, type: 3}
 --- !u!1 &688896409
 GameObject:
@@ -19922,7 +19918,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.375
+  orthographic size: 6.6770835
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

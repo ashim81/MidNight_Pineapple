@@ -1,19 +1,20 @@
 using UnityEngine;
-
 public class Phase3Attack : BaseBossAttack
 {
-    private float fireRate = 1f;
+    private float fireRate = 5f;
     private float timer = 0f;
     private int fireballCount = 5;
-    private Rigidbody2D rb;
     private float chargeCooldown = 20f;
     private float chargeTimer = 0f;
     private float chargeSpeed = 10f;
 
-    public override void Initialize(Transform playerTransform)
+    private Rigidbody2D rb;
+
+    // Override with the signature that accepts the rb directly
+    public override void Initialize(Transform playerTransform, Rigidbody2D bossRb)
     {
-        base.Initialize(playerTransform);
-        rb = GetComponentInParent<Rigidbody2D>();
+        base.Initialize(playerTransform, bossRb);
+        rb = bossRb;
     }
 
     public override void OnPhaseEnter()

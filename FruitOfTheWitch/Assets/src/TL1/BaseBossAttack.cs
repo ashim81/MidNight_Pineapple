@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class BaseBossAttack : MonoBehaviour
+public class BaseBossAttack
 {
     protected Transform player;
+    protected Rigidbody2D rb;
 
-    public virtual void Initialize(Transform playerTransform)
+    public virtual void Initialize(Transform playerTransform, Rigidbody2D bossRb = null)
     {
         player = playerTransform;
+        rb = bossRb;
     }
 
     public virtual void ExecuteAttack(Transform boss) { }
