@@ -156,9 +156,9 @@ public class TL3_EnemyAI : MonoBehaviour
         }
     }
 
-    public void OnHearSound(Vector2 soundPosition)
+    public void OnHearSound(Vector3 soundPosition)
     {
-        lastHeardPosition = soundPosition;
+        lastHeardPosition = (Vector2)soundPosition;
         hasAlertPosition = true;
     }
 
@@ -169,7 +169,6 @@ public class TL3_EnemyAI : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // Only attack if still in range
         if (distance > attackRange) return;
 
         Vector2 direction = (player.position - transform.position).normalized;

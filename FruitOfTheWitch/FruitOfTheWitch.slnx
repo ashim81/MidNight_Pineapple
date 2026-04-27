@@ -7,11 +7,11 @@
   <Project Path="TL4StressTest.csproj" />
   <Project Path="VisualDetector.csproj" />
   <Project Path="TL3 PlayMode.csproj" />
+  <Project Path="AsimTest.csproj" />
   <Project Path="TL2EditModeTests.csproj" />
   <Project Path="NoiseMaker.csproj" />
   <Project Path="TL5 PlayMode.csproj" />
   <Project Path="PlayerTests.csproj" />
-  <Project Path="AsimTest.csproj" />
   <Project Path="TL5EditMode.csproj" />
   <Project Path="TL3 Editmode.csproj" />
   <Project Path="TL4EditTest.csproj" />

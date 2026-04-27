@@ -187,6 +187,7 @@ MonoBehaviour:
   rotationSpeed: 5
   attackRange: 1.8
   waypointBuffer: 0.2
+  attackCooldown: 2
 --- !u!1001 &4600904298445035897
 PrefabInstance:
   m_ObjectHideFlags: 0
