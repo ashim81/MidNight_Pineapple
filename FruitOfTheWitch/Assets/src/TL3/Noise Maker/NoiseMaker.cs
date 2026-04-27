@@ -81,12 +81,20 @@ public class NoiseMaker : MonoBehaviour
         // Scale Visual
             visual.transform.localScale = new Vector3(currentRadius * 2f, currentRadius * 2f, 1f);
         
+        //////////////////////// COPYWRITE VIOLATION ///////////////////////////////////////////////////////
+        // Code copied directly from: https://discussions.unity.com/t/how-to-change-alpha-of-a-sprite/137534
+        // No credit given to user "zeppike"
+        // Website visited 03/30/2026 from Brandon Lunney's personal computer.
+        // Code only lightly modified to fit the structure of the rest of the code.
+        // Fair Use: Is for a school project to demonstrate a copywrite violation.
+
         // Visual Fade Out Effect
             SpriteRenderer soundCircle = visual.GetComponent<SpriteRenderer>();
             Color alpha = soundCircle.color;
             alpha.a = 1f - (currentRadius / radius);
             soundCircle.color = alpha;
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         // Detect Enemies Hit by Soundwave
             Collider2D[] detectedEnemies = Physics2D.OverlapCircleAll(transform.position, currentRadius, enemyLayer);
 
