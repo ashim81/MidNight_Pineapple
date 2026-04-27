@@ -13,6 +13,11 @@
 ---
 
 ## Presentation: AI in Videogames
+
+PDF: https://raw.githubusercontent.com/ashim81/MidNight_Pineapple/2e74056e5c9a7e18e51bb2d0eab09317c133f5f8/docs/team_lead05/Ethics%20and%20AI%20presentation.pdf
+
+Video: https://github.com/ashim81/MidNight_Pineapple/blob/2e74056e5c9a7e18e51bb2d0eab09317c133f5f8/docs/team_lead05/Ethics%20and%20AI%20presentation.pdf
+
 <p align="center">
   <a href="https://drive.google.com/file/d/1q6dI1HvE9JHoPRlOQEES95DF8cLIl8B4/view" target="_blank">
     <img src="https://img.shields.io/badge/Watch%20Presentation-Google%20Drive-blue?style=for-the-badge&logo=google-drive" />
