@@ -7,7 +7,7 @@
 ## Team Logo
 
 <p align="center">
-  <img src="images/pineapple.png" alt="Team Logo" width="200"/>
+  <img src="images/pineapple.png" alt="Team Logo"/>
 </p>
 
 ## Presentation: AI in Videogames
