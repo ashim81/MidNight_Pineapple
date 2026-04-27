@@ -38,3 +38,9 @@ Video Files: https://drive.google.com/drive/folders/1T6ZxSVBgA4BfxFMcyHvCQ0cIl9i
 
 
 *Note: These are the individual video files used within Unity. The actual functionality of Demo Mode is demonstrated once the game is opened.*
+
+
+## Dynamic Binding Code
+
+- [SceneInteractable.cs](FruitOfTheWitch/Assets/src/TL5/InteractableSystem/SceneInteractable.cs)  
+- [InteractableClasses.cs](FruitOfTheWitch/Assets/src/TL5/InteractableSystem/InteractableClasses.cs)
