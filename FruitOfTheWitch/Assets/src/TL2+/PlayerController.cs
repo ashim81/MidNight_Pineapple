@@ -145,13 +145,23 @@ public class PlayerController : MonoBehaviour
     // Power Up
     public void HandlePowerUp()
     {
-        if (isRunning())
+        if (stateMachine.isPowered())
         {
             healthBar.SetPowered(true);
         } else
         {
             healthBar.SetPowered(false);
         }
+    }
+
+    public void PowerUp()
+    {
+        stateMachine.powerUpCommand.Execute();
+    }
+
+    public void OnCheat(InputValue value)
+    {
+        PowerUp();
     }
 
     // Wrappers
@@ -208,8 +218,5 @@ public class PlayerController : MonoBehaviour
         stateMachine.ForceState(state);
     }
 
-    public void PowerUp()
-    {
-        // Do Nothing.
-    }
+    
 }

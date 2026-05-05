@@ -181,3 +181,19 @@ public class ResetCommand : Command
         stateMachine.ForceState(InternalStateMachine.StateEnum.Normal);
     }
 }
+
+public class PowerUpCommand : Command
+{
+    public PowerUpCommand(InternalStateMachine stateMachine) : base(stateMachine)
+    {
+    }
+
+    public override bool isValid()
+    {
+        return true;
+    }
+    public override void Execute()
+    {
+        stateMachine.ForceState(InternalStateMachine.StateEnum.Powered);
+    }
+}

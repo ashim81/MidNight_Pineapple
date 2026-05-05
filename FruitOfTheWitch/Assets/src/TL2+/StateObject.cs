@@ -10,6 +10,8 @@ public class State
 
     protected int staminaDelta;
 
+    protected bool powered;
+
     public State()
     {
         this.moveSpeed = 0;
@@ -18,6 +20,7 @@ public class State
         this.running = false;
         this.name = "generic";
         this.staminaDelta = 0;
+        powered = false;
     }
 
     public float getMoveSpeed()
@@ -49,6 +52,11 @@ public class State
     {
         return staminaDelta;
     }
+
+    public bool isPowered()
+    {
+        return powered;
+    }
 }
 
 public class NormalState : State
@@ -61,6 +69,7 @@ public class NormalState : State
         running = false;
         name = "normal";
         staminaDelta = 0;
+        powered = false;
     }
 }
 
@@ -74,6 +83,7 @@ public class ExhaustedState : State
         running = false;
         name = "exhausted";
         staminaDelta = 1;
+        powered = false;
     }
 }
 
@@ -87,6 +97,7 @@ public class SneakingState : State
         running = false;
         name = "sneaking";
         staminaDelta = 0;
+        powered = false;
     }
 }
 
@@ -100,6 +111,7 @@ public class RunningState : State
         running = true;
         name = "running";
         staminaDelta = -3;
+        powered = false;
     }
 }
 
@@ -113,5 +125,6 @@ public class PoweredState : State
         running = false;
         name = "powered";
         staminaDelta = -6;
+        powered = true;
     }
 }

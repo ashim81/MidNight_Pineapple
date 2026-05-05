@@ -25,7 +25,8 @@ public class InternalStateMachine
     public Command toggleRunningCommand;
     public Command stopRunningCommand;
     public Command startRunningCommand;
-    public Command stopExhaustedCommand;    
+    public Command stopExhaustedCommand;   
+    public Command powerUpCommand; 
     public Command resetCommand;
 
     public InternalStateMachine()
@@ -36,6 +37,7 @@ public class InternalStateMachine
         stopRunningCommand = new StopRunningCommand(this);
         startRunningCommand = new StartRunningCommand(this);
         stopExhaustedCommand = new StopExhaustedCommand(this);
+        powerUpCommand = new PowerUpCommand(this);
         resetCommand = new ResetCommand(this);
     }
 
@@ -57,6 +59,11 @@ public class InternalStateMachine
     public bool isRunning()
     {
         return statesList[(int)currentState].isRunning();
+    }
+
+    public bool isPowered()
+    {
+        return statesList[(int)currentState].isPowered();
     }
 
     public string getName()
