@@ -18,12 +18,12 @@ public class HealthBar : MonoBehaviour
 
     public void SetPowered(bool powered)
     {
-        if (!powered)
-        {
-            slider.fillRect.GetComponent<Image>().color = new Color(153f/255f, 0f, 0f);
-        } else
+        if (powered)
         {
             slider.fillRect.GetComponent<Image>().color = new Color(0f, 0f, 1f);
+        } else
+        {
+            slider.fillRect.GetComponent<Image>().color = new Color(153f/255f, 1f/255f, 1f/255f);
         }
         
     }

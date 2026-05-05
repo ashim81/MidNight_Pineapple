@@ -144,9 +144,11 @@ public class PlayerController : MonoBehaviour
         if (stateMachine.isPowered())
         {
             healthBar.SetPowered(true);
+            staminabar.SetPowered(true);
         } else
         {
             healthBar.SetPowered(false);
+            staminabar.SetPowered(false);
         }
     }
 

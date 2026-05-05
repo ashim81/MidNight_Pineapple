@@ -119,12 +119,12 @@ public class PoweredState : State
 {
     public PoweredState()
     {
-        moveSpeed = 7f;
-        soundRadius = 5f;
+        moveSpeed = 10f;
+        soundRadius = 0f;
         sneaky = false;
-        running = false;
+        running = true;
         name = "powered";
-        staminaDelta = -6;
+        staminaDelta = -1;
         powered = true;
     }
 }
