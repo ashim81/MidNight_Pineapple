@@ -1,3 +1,4 @@
+using PlasticGui.WorkspaceWindow.QueryViews.Branches;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,5 +14,10 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(int health)
     {
         slider.value = health;
+    }
+
+    public void SetBlue()
+    {
+        slider.fillRect.GetComponent<Image>().color = Color.blue;
     }
 }

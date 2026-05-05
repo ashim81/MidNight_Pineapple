@@ -5,6 +5,7 @@ public class State
     protected float moveSpeed;
     protected float soundRadius;
     protected bool sneaky;
+    protected bool running;
     protected string name;
 
     public State()
@@ -12,6 +13,7 @@ public class State
         this.moveSpeed = 0;
         this.soundRadius = 5f;
         this.sneaky = false;
+        this.running = false;
         this.name = "generic";
     }
 
@@ -30,6 +32,11 @@ public class State
         return sneaky;
     }
 
+    public bool isRunning()
+    {
+        return running;
+    }
+
     public string getName()
     {
         return name;
@@ -43,6 +50,7 @@ public class NormalState : State
         moveSpeed = 5f;
         soundRadius = 5f;
         sneaky = false;
+        running = false;
         name = "normal";
     }
 }
@@ -54,6 +62,7 @@ public class SneakingState : State
         moveSpeed = 2f;
         soundRadius = 3f;
         sneaky = true;
+        running = false;
         name = "sneaking";
     }
 }
@@ -65,6 +74,7 @@ public class RunningState : State
         moveSpeed = 10f;
         soundRadius = 7f;
         sneaky = false;
+        running = true;
         name = "running";
     }
 }

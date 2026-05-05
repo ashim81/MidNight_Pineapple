@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         noiseMaker = GetComponent<NoiseMaker>();
         healthBar.SetMaxHealth(health);
+        // healthBar.SetBlue();
     }
 
     // Update is called once per frame
@@ -92,21 +93,31 @@ public class PlayerController : MonoBehaviour
     }
 
     // Sprinting
+    public bool isRunning()
+    {
+        return stateMachine.isRunning();
+    }
     private void HandleSprinting()
     {
         staminabar.SetStamina(exhaustion);
         if (exhaustion <= maxExhaustion && exhausted)
         {
             exhaustion += exhaustionGain;
-        } else if (exhausted == false && exhaustion >= 0)
+        } else if (exhausted == false && exhaustion >= 0 && isRunning())
         {
             exhaustion -= exhaustionLoss;
         }
-        if (exhaustion > maxExhaustion) exhaustion = maxExhaustion;
+        if (exhausted && exhaustion >= maxExhaustion)
+        {
+            exhausted = false;
+        }
+        if (exhaustion > maxExhaustion) {
+            exhaustion = maxExhaustion;
+        }
         if (exhaustion < 0) {
             exhaustion = 0;
             exhausted = true;
-        };
+        }
         if (exhausted)
         {
             stateMachine.stopRunningCommand.Execute();
@@ -200,5 +211,10 @@ public class PlayerController : MonoBehaviour
     public void ForceState(InternalStateMachine.StateEnum state)
     {
         stateMachine.ForceState(state);
+    }
+
+    public void PowerUp()
+    {
+        // Do Nothing.
     }
 }

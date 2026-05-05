@@ -1,6 +1,3 @@
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEngine;
-
 
 /** This is using the command design pattern. */
 public class Command

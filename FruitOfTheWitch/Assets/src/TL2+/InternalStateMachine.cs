@@ -46,6 +46,11 @@ public class InternalStateMachine
         return statesList[(int)currentState].isSneaky();
     }
 
+    public bool isRunning()
+    {
+        return statesList[(int)currentState].isRunning();
+    }
+
     public string getName()
     {
         return statesList[(int)currentState].getName();
