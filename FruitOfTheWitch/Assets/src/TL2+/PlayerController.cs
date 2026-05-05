@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     private int exhaustion;
 
     
-    private bool exhausted = false;
     private int health = 100;
     [SerializeField]
     private HealthBar healthBar;
@@ -51,7 +50,6 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         noiseMaker = GetComponent<NoiseMaker>();
         healthBar.SetMaxHealth(health);
-        // healthBar.SetBlue();
     }
 
     // Update is called once per frame
@@ -59,9 +57,10 @@ public class PlayerController : MonoBehaviour
     {
         HandleMovement();
         HandleStealth();
-        HandleSprinting();
+        HandleExhaustion();
         HandleHealth();
         HandleAnimation();
+        HandlePowerUp();
     }
 
     // Movement Playerside
@@ -97,39 +96,23 @@ public class PlayerController : MonoBehaviour
     {
         return stateMachine.isRunning();
     }
-    private void HandleSprinting()
+    private void HandleExhaustion()
     {
         staminabar.SetStamina(exhaustion);
-        if (exhaustion <= maxExhaustion && exhausted)
-        {
-            exhaustion += exhaustionGain;
-        } else if (exhausted == false && exhaustion >= 0 && isRunning())
-        {
-            exhaustion -= exhaustionLoss;
-        }
-        if (exhausted && exhaustion >= maxExhaustion)
-        {
-            exhausted = false;
-        }
-        if (exhaustion > maxExhaustion) {
-            exhaustion = maxExhaustion;
-        }
-        if (exhaustion < 0) {
-            exhaustion = 0;
-            exhausted = true;
-        }
-        if (exhausted)
+        exhaustion += stateMachine.getStaminaCost();
+        if (exhaustion <= 0)
         {
             stateMachine.stopRunningCommand.Execute();
+        } if (exhaustion > maxExhaustion)
+        {
+            exhaustion = maxExhaustion;
+            stateMachine.stopExhaustedCommand.Execute();
         }
     }
 
     public void OnSprint(InputValue value)
     {
-        if (exhaustion >= 0 && !exhausted)
-        {
-            stateMachine.toggleRunningCommand.Execute();
-        }
+        stateMachine.toggleRunningCommand.Execute();
     }
 
 
@@ -159,6 +142,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Power Up
+    public void HandlePowerUp()
+    {
+        if (isRunning())
+        {
+            healthBar.SetPowered(true);
+        } else
+        {
+            healthBar.SetPowered(false);
+        }
+    }
+
     // Wrappers
 
     public int getExhaustion()
@@ -168,7 +163,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isExhausted()
     {
-        return exhausted;
+        return stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Exhausted;
     }
 
     public int getHealth()

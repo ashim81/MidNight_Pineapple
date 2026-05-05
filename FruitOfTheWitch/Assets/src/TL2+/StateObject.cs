@@ -8,6 +8,8 @@ public class State
     protected bool running;
     protected string name;
 
+    protected int staminaDelta;
+
     public State()
     {
         this.moveSpeed = 0;
@@ -15,6 +17,7 @@ public class State
         this.sneaky = false;
         this.running = false;
         this.name = "generic";
+        this.staminaDelta = 0;
     }
 
     public float getMoveSpeed()
@@ -41,6 +44,11 @@ public class State
     {
         return name;
     }
+
+    public int getStaminaCost()
+    {
+        return staminaDelta;
+    }
 }
 
 public class NormalState : State
@@ -52,6 +60,20 @@ public class NormalState : State
         sneaky = false;
         running = false;
         name = "normal";
+        staminaDelta = 0;
+    }
+}
+
+public class ExhaustedState : State
+{
+    public ExhaustedState()
+    {
+        moveSpeed = 4f;
+        soundRadius = 5f;
+        sneaky = false;
+        running = false;
+        name = "exhausted";
+        staminaDelta = 1;
     }
 }
 
@@ -64,6 +86,7 @@ public class SneakingState : State
         sneaky = true;
         running = false;
         name = "sneaking";
+        staminaDelta = 0;
     }
 }
 
@@ -76,5 +99,19 @@ public class RunningState : State
         sneaky = false;
         running = true;
         name = "running";
+        staminaDelta = -3;
+    }
+}
+
+public class PoweredState : State
+{
+    public PoweredState()
+    {
+        moveSpeed = 7f;
+        soundRadius = 5f;
+        sneaky = false;
+        running = false;
+        name = "powered";
+        staminaDelta = -6;
     }
 }

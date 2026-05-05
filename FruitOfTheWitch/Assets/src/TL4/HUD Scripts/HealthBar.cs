@@ -16,8 +16,15 @@ public class HealthBar : MonoBehaviour
         slider.value = health;
     }
 
-    public void SetBlue()
+    public void SetPowered(bool powered)
     {
-        slider.fillRect.GetComponent<Image>().color = Color.blue;
+        if (!powered)
+        {
+            slider.fillRect.GetComponent<Image>().color = new Color(153f/255f, 0f, 0f);
+        } else
+        {
+            slider.fillRect.GetComponent<Image>().color = new Color(0f, 0f, 1f);
+        }
+        
     }
 }

@@ -61,7 +61,9 @@ public class ToggleRunningCommand : Command
     public override bool isValid()
     {
         return stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Normal
-            || stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Running;
+            || stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Running
+            || stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Exhausted
+            ;
     }
     public override void Execute()
     {
@@ -70,6 +72,40 @@ public class ToggleRunningCommand : Command
             stateMachine.ForceState(InternalStateMachine.StateEnum.Running);
         }
         else if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Running)
+        {
+            stateMachine.ForceState(InternalStateMachine.StateEnum.Normal);
+        } else if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Exhausted)
+        {
+            stateMachine.ForceState(InternalStateMachine.StateEnum.Exhausted); // Do nothing, just stay exhausted
+        }
+    }
+}
+
+public class StartRunningCommand : Command
+{
+    public StartRunningCommand(InternalStateMachine stateMachine) : base(stateMachine)
+    {
+    }
+
+    public override bool isValid()
+    {
+        return stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Normal ||
+            stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Exhausted; 
+    }
+    public override void Execute()
+    {
+        if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Normal)
+        {
+            stateMachine.ForceState(InternalStateMachine.StateEnum.Running);
+        } else if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Exhausted)
+        {
+            stateMachine.ForceState(InternalStateMachine.StateEnum.Exhausted); // Do nothing, just stay exhausted
+        }
+    }
+
+    public override void Unexecute()
+    {
+        if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Running)
         {
             stateMachine.ForceState(InternalStateMachine.StateEnum.Normal);
         }
@@ -90,6 +126,33 @@ public class StopRunningCommand : Command
     {
         if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Running)
         {
+            stateMachine.ForceState(InternalStateMachine.StateEnum.Exhausted);
+        }
+    }
+
+    public override void Unexecute()
+    {
+        if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Exhausted)
+        {
+            stateMachine.ForceState(InternalStateMachine.StateEnum.Running);
+        }
+    }
+}
+
+public class StopExhaustedCommand : Command
+{
+    public StopExhaustedCommand(InternalStateMachine stateMachine) : base(stateMachine)
+    {
+    }
+
+    public override bool isValid()
+    {
+        return stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Exhausted;
+    }
+    public override void Execute()
+    {
+        if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Exhausted)
+        {
             stateMachine.ForceState(InternalStateMachine.StateEnum.Normal);
         }
     }
@@ -98,7 +161,7 @@ public class StopRunningCommand : Command
     {
         if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Normal)
         {
-            stateMachine.ForceState(InternalStateMachine.StateEnum.Running);
+            stateMachine.ForceState(InternalStateMachine.StateEnum.Exhausted);
         }
     }
 }

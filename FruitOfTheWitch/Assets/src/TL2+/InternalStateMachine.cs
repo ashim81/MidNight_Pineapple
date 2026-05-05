@@ -6,13 +6,17 @@ public class InternalStateMachine
     {
         new NormalState(),
         new RunningState(), // Sneaking
-        new SneakingState() // Running
+        new SneakingState(), // Running
+        new ExhaustedState(), // Exhausted
+        new PoweredState() // Powered
     };
 
     public enum StateEnum {
         Normal = 0,
         Running = 1,
-        Sneaking = 2
+        Sneaking = 2,
+        Exhausted = 3,
+        Powered = 4
     }
     private StateEnum currentState;
 
@@ -20,6 +24,8 @@ public class InternalStateMachine
     public Command toggleSneakCommand;
     public Command toggleRunningCommand;
     public Command stopRunningCommand;
+    public Command startRunningCommand;
+    public Command stopExhaustedCommand;    
     public Command resetCommand;
 
     public InternalStateMachine()
@@ -28,6 +34,8 @@ public class InternalStateMachine
         toggleSneakCommand = new ToggleSneakCommand(this);
         toggleRunningCommand = new ToggleRunningCommand(this);
         stopRunningCommand = new StopRunningCommand(this);
+        startRunningCommand = new StartRunningCommand(this);
+        stopExhaustedCommand = new StopExhaustedCommand(this);
         resetCommand = new ResetCommand(this);
     }
 
@@ -54,6 +62,11 @@ public class InternalStateMachine
     public string getName()
     {
         return statesList[(int)currentState].getName();
+    }
+
+    public int getStaminaCost()
+    {
+        return statesList[(int)currentState].getStaminaCost();
     }
 
     public void ForceState(StateEnum state)
