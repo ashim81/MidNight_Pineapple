@@ -11,15 +11,9 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     [SerializeField]
     private Vector2 respawnPoint;
-    [SerializeField]
-    private bool BCmode = false;
 
     [SerializeField]
     private int maxExhaustion = 1500;
-    [SerializeField]
-    private int exhaustionGain = 1;
-    [SerializeField]
-    private int exhaustionLoss = 3;
     public NoiseMaker noiseMaker;
     
     private int exhaustion;
