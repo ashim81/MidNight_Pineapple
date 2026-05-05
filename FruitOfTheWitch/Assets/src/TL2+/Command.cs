@@ -120,11 +120,13 @@ public class StopRunningCommand : Command
 
     public override bool isValid()
     {
-        return stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Running;
+        return stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Running
+            || stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Powered;
     }
     public override void Execute()
     {
-        if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Running)
+        if (stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Running
+         || stateMachine.getCurrentStateEnum() == InternalStateMachine.StateEnum.Powered)
         {
             stateMachine.ForceState(InternalStateMachine.StateEnum.Exhausted);
         }

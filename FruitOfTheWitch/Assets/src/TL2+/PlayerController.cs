@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
     
     private int exhaustion;
 
-    
+    [SerializeField]
+    private int maxHealth = 100;
     private int health = 100;
     [SerializeField]
     private HealthBar healthBar;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         staminabar.SetMaxStamina(maxExhaustion);
         exhaustion = maxExhaustion;
+        health = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         stateMachine = new InternalStateMachine();
         animator = GetComponent<Animator>(); //tl5: added for animation
@@ -156,6 +158,7 @@ public class PlayerController : MonoBehaviour
 
     public void PowerUp()
     {
+        exhaustion = maxExhaustion;
         stateMachine.powerUpCommand.Execute();
     }
 
@@ -184,7 +187,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         
-        if (!LevelManager.instance.IsBCMode)
+        if (!LevelManager.instance.IsBCMode && !stateMachine.isPowered())
         {
             health -= damage;
         }
@@ -195,7 +198,7 @@ public class PlayerController : MonoBehaviour
     public void Respawn()
     {
         transform.position = respawnPoint;
-        health = 100;
+        health = maxHealth;
         exhaustion = maxExhaustion/2;
         stateMachine.resetCommand.Execute();
         healthBar.SetHealth(health);
