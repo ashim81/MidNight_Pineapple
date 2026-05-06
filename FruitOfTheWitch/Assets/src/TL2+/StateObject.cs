@@ -20,7 +20,7 @@ public class State
         this.running = false;
         this.name = "generic";
         this.staminaDelta = 0;
-        powered = false;
+        this.powered = false;
     }
 
     public float getMoveSpeed()

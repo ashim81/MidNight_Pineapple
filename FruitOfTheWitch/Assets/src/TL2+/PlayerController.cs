@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
         stateMachine = new InternalStateMachine();
         animator = GetComponent<Animator>(); //tl5: added for animation
         sr = GetComponent<SpriteRenderer>();
-        noiseMaker = GetComponent<NoiseMaker>();
         healthBar.SetMaxHealth(health);
     }
 
@@ -75,6 +74,8 @@ public class PlayerController : MonoBehaviour
     {
         // tl3 stuff. THey should uncomment this
         noiseMaker.setRadius(stateMachine.getSoundRadius());
+        Debug.Log("Sneaking");
+
     }
 
     public bool isSneaky()
@@ -94,12 +95,13 @@ public class PlayerController : MonoBehaviour
     }
     private void HandleExhaustion()
     {
-        staminabar.SetStamina(exhaustion);
         exhaustion += stateMachine.getStaminaCost();
+        Debug.Log("Exhaustion: " + exhaustion);
+        staminabar.SetStamina(exhaustion);
         if (exhaustion <= 0)
         {
             stateMachine.stopRunningCommand.Execute();
-        } if (exhaustion > maxExhaustion)
+        } if (exhaustion >= maxExhaustion)
         {
             exhaustion = maxExhaustion;
             stateMachine.stopExhaustedCommand.Execute();
