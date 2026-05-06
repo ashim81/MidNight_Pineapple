@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using System.Collections.Generic;
 
 public class StartScreenUI : MonoBehaviour
@@ -68,61 +67,60 @@ public class StartScreenUI : MonoBehaviour
     }
 
     public void StartGame()
-{
-    startButton.gameObject.SetActive(false);
+    {
+        startButton.gameObject.SetActive(false);
 
-    potion1Button.gameObject.SetActive(true);
-    potion2Button.gameObject.SetActive(true);
-    potion3Button.gameObject.SetActive(true);
-    potion4Button.gameObject.SetActive(true);
-    potion5Button.gameObject.SetActive(true);
+        potion1Button.gameObject.SetActive(true);
+        potion2Button.gameObject.SetActive(true);
+        potion3Button.gameObject.SetActive(true);
+        potion4Button.gameObject.SetActive(true);
+        potion5Button.gameObject.SetActive(true);
 
-    restartButton.gameObject.SetActive(false);
-    exitLevelButton.gameObject.SetActive(false);
-    mixButton.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
+        exitLevelButton.gameObject.SetActive(false);
+        mixButton.gameObject.SetActive(false);
 
-    // hide selected text for now
-    selectedText.gameObject.SetActive(false);
+        selectedText.gameObject.SetActive(false);
 
-    titleText.text = "You have 5 chemical to make this potion";
+        titleText.text = "You have 5 chemical to make this potion";
 
-    CancelInvoke();
-    Invoke(nameof(ShowSelectMessage), 3f);
-}
+        CancelInvoke();
+        Invoke(nameof(ShowSelectMessage), 3f);
+    }
 
-private void ShowSelectMessage()
-{
-    titleText.text = "Select 3 chemical to make potion";
-}
+    private void ShowSelectMessage()
+    {
+        titleText.text = "Select 3 chemical to make potion";
+    }
 
     public void SelectPotion(Button clickedButton)
-{
-    if (selectedButtons.Contains(clickedButton))
     {
-        return;
+        if (selectedButtons.Contains(clickedButton))
+        {
+            return;
+        }
+
+        if (selectedButtons.Count >= 3)
+        {
+            return;
+        }
+
+        selectedButtons.Add(clickedButton);
+
+        string potionName = clickedButton.GetComponentInChildren<TextMeshProUGUI>().text;
+        selectedPotionNames.Add(potionName);
+
+        clickedButton.image.color = Color.yellow;
+
+        titleText.text = "You have selected:";
+        selectedText.gameObject.SetActive(true);
+        selectedText.text = string.Join(", ", selectedPotionNames);
+
+        if (selectedButtons.Count == 3)
+        {
+            mixButton.gameObject.SetActive(true);
+        }
     }
-
-    if (selectedButtons.Count >= 3)
-    {
-        return;
-    }
-
-    selectedButtons.Add(clickedButton);
-
-    string potionName = clickedButton.GetComponentInChildren<TextMeshProUGUI>().text;
-    selectedPotionNames.Add(potionName);
-
-    clickedButton.image.color = Color.yellow;
-
-    titleText.text = "You have selected:";
-    selectedText.gameObject.SetActive(true);
-    selectedText.text = string.Join(", ", selectedPotionNames);
-
-    if (selectedButtons.Count == 3)
-    {
-        mixButton.gameObject.SetActive(true);
-    }
-}
 
     public void MixPotions()
     {
@@ -130,23 +128,6 @@ private void ShowSelectMessage()
         {
             titleText.text = "Please select 3 chemical first";
             return;
-        }
-
-        List<string> selectedSorted = new List<string>(selectedPotionNames);
-        List<string> correctSorted = new List<string>(correctPotionNames);
-
-        selectedSorted.Sort();
-        correctSorted.Sort();
-
-        bool isCorrect = true;
-
-        for (int i = 0; i < correctSorted.Count; i++)
-        {
-            if (selectedSorted[i] != correctSorted[i])
-            {
-                isCorrect = false;
-                break;
-            }
         }
 
         potion1Button.gameObject.SetActive(false);
@@ -157,17 +138,18 @@ private void ShowSelectMessage()
 
         mixButton.gameObject.SetActive(false);
 
-        if (isCorrect)
+        PotionResult result = PotionEvaluator.Evaluate(selectedPotionNames, correctPotionNames);
+
+        titleText.text = result.GetMessage();
+        selectedText.text = "";
+
+        if (result.CanExitLevel())
         {
-            titleText.text = "Congratulations you have created BlueMoon potion, You pass";
-            selectedText.text = "";
             restartButton.gameObject.SetActive(false);
             exitLevelButton.gameObject.SetActive(true);
         }
         else
         {
-            titleText.text = "Wrong potion, want to try again?";
-            selectedText.text = "";
             restartButton.gameObject.SetActive(true);
             exitLevelButton.gameObject.SetActive(false);
         }
@@ -200,9 +182,10 @@ private void ShowSelectMessage()
     }
 
     private void ResetPotionButton(Button button)
-{
-    button.image.color = new Color(0.8f, 0.2f, 0.2f, 1f);
-}
+    {
+        button.image.color = originalButtonColor;
+    }
+
     public void ExitLevel()
     {
         SceneManager.LoadScene("Level1_Alternative");
