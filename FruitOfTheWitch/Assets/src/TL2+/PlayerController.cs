@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
     {
         // tl3 stuff. THey should uncomment this
         noiseMaker.setRadius(stateMachine.getSoundRadius());
-        Debug.Log("Sneaking");
+        // Debug.Log("Sneaking");
 
     }
 
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     private void HandleExhaustion()
     {
         exhaustion += stateMachine.getStaminaCost();
-        Debug.Log("Exhaustion: " + exhaustion);
+        // Debug.Log("Exhaustion: " + exhaustion);
         staminabar.SetStamina(exhaustion);
         if (exhaustion <= 0)
         {
