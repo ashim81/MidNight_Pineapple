@@ -19902,7 +19902,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.78125
+  orthographic size: 9.828125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -30177,11 +30177,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3060221388252980184, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 230.2836
+      value: 91.6685
       objectReference: {fileID: 0}
     - target: {fileID: 3060221388252980184, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 13.1246
+      value: 6.3972015
       objectReference: {fileID: 0}
     - target: {fileID: 3060221388252980184, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
       propertyPath: m_LocalScale.x
@@ -30225,11 +30225,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3060221388252980184, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -386.74026
+      value: -100.3
       objectReference: {fileID: 0}
     - target: {fileID: 3060221388252980184, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0627594
+      value: 55.300003
       objectReference: {fileID: 0}
     - target: {fileID: 3060221388252980184, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -30243,6 +30243,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5661375210178139589, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100.6636
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661375210178139589, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 11.5364
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661375210178139589, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661375210178139589, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6634965782205966865, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -30250,6 +30266,14 @@ PrefabInstance:
     - target: {fileID: 6634965782205966865, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634965782205966865, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.0087662
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634965782205966865, guid: b7be1de4f4665d349b74ad8594ca8acb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.004261017
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
